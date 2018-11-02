@@ -1,3 +1,5 @@
+[ -f ~/dotfiles/alias.sh ] && source ~/dotfiles/alias.sh
+
 function gitdeploy() {
     if [ -z "$1" ]; then
         echo "Usage: $0 [version or branch]";
