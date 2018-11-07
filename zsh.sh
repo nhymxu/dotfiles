@@ -1,3 +1,5 @@
+[ -f ~/dotfiles/alias.sh ] && source ~/dotfiles/alias.sh
+
 function gitdeploy() {
     if [ -z "$1" ]; then
         echo "Usage: $0 [version or branch]";
@@ -89,12 +91,20 @@ function regen_icon_cache() {
 	done
 }
 
+command_exists () {
+    type "$1" &> /dev/null ;
+}
+
 export COMPOSER_DISABLE_XDEBUG_WARN=1
 export PATH=~/.local/bin:~/.pyenv/bin:$PATH
 
-eval "$(pyenv init -)"
-# eval "$(pyenv virtualenv-init -)"
+if hash pyenv 2>/dev/null; then
+    eval "$(pyenv init -)"
+    # eval "$(pyenv virtualenv-init -)"
+fi
 
 export PIPENV_VENV_IN_PROJECT=1
 
-eval "$(pipenv --completion)"
+if hash pipenv 2>/dev/null; then
+    eval "$(pipenv --completion)"
+fi
