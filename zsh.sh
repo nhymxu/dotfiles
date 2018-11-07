@@ -1,3 +1,11 @@
+platform='unknown'
+unamestr=`uname`
+if [[ "$unamestr" == 'Linux' ]]; then
+   platform='linux'
+elif [[ "$unamestr" == 'Darwin' ]]; then
+   platform='macos'
+fi
+
 [ -f ~/dotfiles/alias.sh ] && source ~/dotfiles/alias.sh
 
 function gitdeploy() {
