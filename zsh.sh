@@ -34,6 +34,11 @@ fi
 
 [ -f ~/dotfiles/alias.sh ] && source ~/dotfiles/alias.sh
 
+function pip_upgrade() {
+    pip list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip install -U
+    # pip install -U `pip list --format=columns --outdated | awk '!/Package|---/{ print $1}'`
+}
+
 function gitdeploy() {
     if [ -z "$1" ]; then
         echo "Usage: $0 [version or branch]";
