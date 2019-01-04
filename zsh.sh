@@ -56,6 +56,9 @@ command_exists () {
     type "$1" &> /dev/null ;
 }
 
+# Fix gpg: signing failed: Inappropriate ioctl for device
+export GPG_TTY=$(tty)
+
 export COMPOSER_DISABLE_XDEBUG_WARN=1
 export PATH=~/.local/bin:~/.pyenv/bin:$PATH
 
