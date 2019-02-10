@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bundleid</key>
+	<string>net.isometry.alfred.tty</string>
+	<key>category</key>
+	<string>Tools</string>
+	<key>connections</key>
+	<dict>
+		<key>45E888C5-D745-4FEC-B0CC-80C4A33371F8</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>C9298943-AE22-4585-8C3B-4A3E72EEAAA4</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>C9298943-AE22-4585-8C3B-4A3E72EEAAA4</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>83C7D354-7702-4395-AA13-7F6F3E1EC22F</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+	</dict>
+	<key>createdby</key>
+	<string>Robin Breathe</string>
+	<key>description</key>
+	<string>Select or close windows, tabs and panes in iTerm2</string>
+	<key>disabled</key>
+	<false/>
+	<key>name</key>
+	<string>^tty</string>
+	<key>objects</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>alfredfiltersresults</key>
+				<false/>
+				<key>alfredfiltersresultsmatchmode</key>
+				<integer>0</integer>
+				<key>argumenttrimmode</key>
+				<integer>1</integer>
+				<key>argumenttype</key>
+				<integer>1</integer>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>keyword</key>
+				<string>{var:keyword}</string>
+				<key>queuedelaycustom</key>
+				<integer>3</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<false/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>2</integer>
+				<key>runningsubtext</key>
+				<string>Please wait…</string>
+				<key>script</key>
+				<string></string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string>filter.js</string>
+				<key>subtext</key>
+				<string></string>
+				<key>title</key>
+				<string>Select or close an iTerm window, tab or pane</string>
+				<key>type</key>
+				<integer>8</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>C9298943-AE22-4585-8C3B-4A3E72EEAAA4</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>action</key>
+				<integer>0</integer>
+				<key>argument</key>
+				<integer>0</integer>
+				<key>focusedappvariable</key>
+				<false/>
+				<key>focusedappvariablename</key>
+				<string></string>
+				<key>hotkey</key>
+				<integer>40</integer>
+				<key>hotmod</key>
+				<integer>1310720</integer>
+				<key>hotstring</key>
+				<string>T</string>
+				<key>leftcursor</key>
+				<false/>
+				<key>modsmode</key>
+				<integer>0</integer>
+				<key>relatedAppsMode</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.hotkey</string>
+			<key>uid</key>
+			<string>45E888C5-D745-4FEC-B0CC-80C4A33371F8</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string></string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string>action.js</string>
+				<key>type</key>
+				<integer>8</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>83C7D354-7702-4395-AA13-7F6F3E1EC22F</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+	</array>
+	<key>readme</key>
+	<string> Trigger the workflow with the keyword `tty`, or via hotkey, followed by some characters from the title of an open window, tab or pane; press `Enter` to activate the selected window/tab/pane, `Alt-Enter` to close it, or `Cmd-Enter` to trigger your ssh workflow. For example, enter `tty as3` to switch to a tab with the title `user@azure-server-03`.
+
+If no active terminal matches, or you use the `Cmd`-modifier, trigger your preferred ssh workflow, e.g. `⇄ ssh as3`.
+By default, the ssh workflow is assumed to be `net.isometry.alfred.ssh` (i.e. [isometry/alfred-ssh](https://github.com/isometry/alfred-ssh), version 2.3+). Override by setting the `ssh_workflow` and `ssh_trigger` variables; for [deanishe/alfred-ssh](https://github.com/deanishe/alfred-ssh), set the `ssh_workflow` variable to `net.deanishe.alfred-ssh`.
+
+In order to make working with more than one window/tab/pane with the same title easier, the tty is displayed beneath the result, and can be provided as a second argument to the trigger. For example, enter `tty lo 3` to select the the session with title `localhost` running on `/dev/ttys003`.
+
+To select by tty alone, use two spaces between the trigger and the tty number. For example, `tty  4` will select `/dev/ttys004`.
+
+Optionally associate a hotkey trigger to further accelerate operation, e.g. `Ctrl+Cmd+T`, or change the trigger word via the `keyword` variable.
+
+Combine with an [iTerm2](https://www.iterm2.com/) profile configured as ssh protocol handler (e.g. "Name":=`$$USER$$@$$HOST$$`, "Command":=`$$` and "Schemes handled":=`ssh`) and an [alfred-ssh](https://github.com/isometry/alfred-ssh) workflow to make opening and jumping between remote sessions across many windows, tabs and panes easy.
+
+### Workflow Variables
+
+`keyword` – the keyword trigger for the workflow; default: `tty`.
+
+`ssh_workflow` – the workflow bundle identifier for your preferred alfred-ssh workflow; default: `net.isometry.alfred.ssh`.
+
+`ssh_trigger` – the name of the trigger within `ssh_workflow`; default: `ssh`.
+
+`iterm_application` – the application identifier of the iTerm2 instance you want to control, either bundleId, application name or absolute path; default: `com.googlecode.iterm2`.</string>
+	<key>uidata</key>
+	<dict>
+		<key>45E888C5-D745-4FEC-B0CC-80C4A33371F8</key>
+		<dict>
+			<key>xpos</key>
+			<integer>70</integer>
+			<key>ypos</key>
+			<integer>70</integer>
+		</dict>
+		<key>83C7D354-7702-4395-AA13-7F6F3E1EC22F</key>
+		<dict>
+			<key>note</key>
+			<string>action</string>
+			<key>xpos</key>
+			<integer>430</integer>
+			<key>ypos</key>
+			<integer>70</integer>
+		</dict>
+		<key>C9298943-AE22-4585-8C3B-4A3E72EEAAA4</key>
+		<dict>
+			<key>note</key>
+			<string>filter</string>
+			<key>xpos</key>
+			<integer>250</integer>
+			<key>ypos</key>
+			<integer>70</integer>
+		</dict>
+	</dict>
+	<key>variables</key>
+	<dict>
+		<key>iterm_application</key>
+		<string>com.googlecode.iterm2</string>
+		<key>keyword</key>
+		<string>tty</string>
+		<key>ssh_trigger</key>
+		<string>ssh</string>
+		<key>ssh_workflow</key>
+		<string>net.isometry.alfred.ssh</string>
+	</dict>
+	<key>version</key>
+	<string>1.4-beta1</string>
+	<key>webaddress</key>
+	<string>https://github.com/isometry/alfred-tty</string>
+</dict>
+</plist>
