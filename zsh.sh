@@ -60,7 +60,7 @@ command_exists () {
 export GPG_TTY=$(tty)
 
 export COMPOSER_DISABLE_XDEBUG_WARN=1
-export PATH=~/.local/bin:~/.pyenv/bin:$PATH
+export PATH=~/.local/bin:~/.pyenv/bin:~/.poetry/bin:$PATH
 
 if hash pyenv 2>/dev/null; then
     eval "$(pyenv init -)"
