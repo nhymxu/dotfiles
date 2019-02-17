@@ -6,7 +6,7 @@ elif [[ "$unamestr" == 'Darwin' ]]; then
    platform='macos'
 fi
 
-
+DOTFILES_DIR='~/dotfiles'
 
 #if [[ "$OSTYPE" == "linux-gnu" ]]; then
         # ...
@@ -27,12 +27,12 @@ fi
 
 
 if [[ $platform == 'linux' ]]; then
-    [ -f ~/dotfiles/bash/linux.sh ] && source ~/dotfiles/bash/linux.sh
+    [ -f ${DOTFILES_DIR}/bash/linux.sh ] && source ${DOTFILES_DIR}/bash/linux.sh
 elif [[ $platform == 'macos' ]]; then
-    [ -f ~/dotfiles/bash/macos.sh ] && source ~/dotfiles/bash/macos.sh
+    [ -f ${DOTFILES_DIR}/bash/macos.sh ] && source ${DOTFILES_DIR}/bash/macos.sh
 fi
 
-[ -f ~/dotfiles/alias.sh ] && source ~/dotfiles/alias.sh
+[ -f ${DOTFILES_DIR}/alias.sh ] && source ${DOTFILES_DIR}/alias.sh
 
 function pip_upgrade() {
     pip list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip install -U
@@ -56,11 +56,29 @@ command_exists () {
     type "$1" &> /dev/null ;
 }
 
+source ${DOTFILES_DIR}/bash/history.zsh
+
 # Fix gpg: signing failed: Inappropriate ioctl for device
 export GPG_TTY=$(tty)
 
 export COMPOSER_DISABLE_XDEBUG_WARN=1
-export PATH=~/.local/bin:~/.pyenv/bin:~/.poetry/bin:$PATH
+
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/bin" ] ; then
+    PATH="$HOME/bin:$PATH"
+fi
+
+# set PATH so it includes user's local bin if it exists
+if [ -d "$HOME/.local/bin" ] ; then
+    PATH="$HOME/.local/bin:$PATH"
+fi
+
+# set PATH so it includes user's cargo bin if it exists
+if [ -d "$HOME/.pyenv/bin" ] ; then
+    PATH="$HOME/.pyenv/bin:$PATH"
+fi
+
+
 
 if hash pyenv 2>/dev/null; then
     eval "$(pyenv init -)"
