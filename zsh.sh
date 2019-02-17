@@ -6,7 +6,7 @@ elif [[ "$unamestr" == 'Darwin' ]]; then
    platform='macos'
 fi
 
-DOTFILES_DIR='~/dotfiles'
+DOTFILES_DIR=$HOME/dotfiles
 
 #if [[ "$OSTYPE" == "linux-gnu" ]]; then
         # ...
