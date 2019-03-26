@@ -3,6 +3,9 @@
 # Append rather than overwrite the history on disk
 # shopt -s histappend
 
+# Add timestamp to history file
+export HISTTIMEFORMAT="%d/%m/%y %T "
+
 # Don't put duplicate lines in the history.
 export HISTCONTROL=$HISTCONTROL${HISTCONTROL+,}ignoredups:erasedups
 

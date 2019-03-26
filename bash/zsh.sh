@@ -32,7 +32,7 @@ elif [[ $platform == 'macos' ]]; then
     [ -f ${DOTFILES_DIR}/bash/macos.sh ] && source ${DOTFILES_DIR}/bash/macos.sh
 fi
 
-[ -f ${DOTFILES_DIR}/alias.sh ] && source ${DOTFILES_DIR}/alias.sh
+[ -f ${DOTFILES_DIR}/bash/alias.sh ] && source ${DOTFILES_DIR}/bash/alias.sh
 
 function pip_upgrade() {
     pip list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip install -U

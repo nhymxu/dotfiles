@@ -1,6 +1,6 @@
-# dotfiles
+:# dotfiles
 
 Load zsh custom config
 ```
-[ -f ~/dotfiles/zsh.sh ] && source ~/dotfiles/zsh.sh
+[ -f ~/dotfiles/bash/zsh.sh ] && source ~/dotfiles/bash/zsh.sh
 ```
