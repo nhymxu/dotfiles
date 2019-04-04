@@ -6,3 +6,5 @@ function clear_dns() {
 	echo "Flushing cache....";
 	sudo dscacheutil -flushcache
 }
+
+alias pyenvi='CFLAGS="-I$(xcrun --show-sdk-path)/usr/include" pyenv install'
