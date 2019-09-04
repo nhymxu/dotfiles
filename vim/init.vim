@@ -92,5 +92,6 @@ set cursorline  " Highlight current line
 set showmatch
 set tabstop=4 " Default indentation is 4 spaces long and uses tabs, not spaces
 set matchtime=2
+set laststatus=2
 " set termguicolors " Enable true colors support
 let python_highlight_all = 1
