@@ -95,3 +95,4 @@ set matchtime=2
 set laststatus=2
 " set termguicolors " Enable true colors support
 let python_highlight_all = 1
+set t_Co=256 " Enable 256 colors
