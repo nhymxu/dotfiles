@@ -4,6 +4,15 @@ call plug#begin()
 Plug 'nikitavoloboev/vim-monokai-night' " Theme
 Plug 'itchyny/lightline.vim' " Light and configurable statusline/tabline plugin.
 
+" Layout
+Plug 'scrooloose/nerdtree' " A tree explorer plugin for vim.
+Plug 'jistr/vim-nerdtree-tabs' " will always look the same in all tabs, including expanded/collapsed nodes, scroll position etc.
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+Plug 'ryanoasis/vim-devicons'
+
+Plug 'yggdroot/indentline' " A vim plugin to display the indention levels with thin vertical lines
+Plug 'ntpeters/vim-better-whitespace' " Better whitespace highlighting for Vim
+
 " Utility
 Plug 'romainl/vim-cool' " Stop matching after search is done.
 Plug 'jiangmiao/auto-pairs' " Insert or delete brackets, parens, quotes in pair..
@@ -96,3 +105,22 @@ set laststatus=2
 " set termguicolors " Enable true colors support
 let python_highlight_all = 1
 set t_Co=256 " Enable 256 colors
+" let g:WebDevIconsUnicodeDecorateFolderNodes = 1 " ryanoasis/vim-devicons
+
+" scrooloose/nerdtree
+" autocmd vimenter * NERDTree | wincmd w
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif " auto close if only NERDTree open
+let g:NERDTreeMinimalUI = 1
+let g:NERDTreeShowHidden = 1
+let g:NERDTreeDirArrows = 1
+map <C-h> :NERDTreeToggle<CR>
+
+let g:better_whitespace_enabled=1 " ntpeters/vim-better-whitespace
+
+set guicursor=n-v-c:hor20,i-ci:ver20 " Make cursor block in insert mode and underline in normal mode
+autocmd VimLeave * set guicursor=a:ver25-blinkon25 " Make cursor block when leaving to shell
+
+" Key Mapping
+let mapleader = ',' " Remap leader key
+inoremap jj <ESC> " Exit to normal mode
+nnoremap ; : " Save extra shift
