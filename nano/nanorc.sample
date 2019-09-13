@@ -1,4 +1,25 @@
-## Here is an example for nanorc files.
+## Remember the used search/replace strings for the next session.
+set historylog
+
+## Enable vim-style lock-files.  This is just to let a vim user know you
+## are editing a file [s]he is trying to edit and vice versa. There are
+## no plans to implement vim-style undo state in these files.
+set locking
+
+## Don't wrap text at all.
+set nowrap
+
+## Allow nano to be suspended.
+set suspend
+
+## Use this tab size instead of the default; it must be greater than 0.
+set tabsize 4
+
+## Convert typed tabs to spaces.
+set tabstospaces
+
+
+## color config
 ##
 syntax "Nanorc" "\.?nanorc$"
 ## Possible errors and parameters
@@ -15,3 +36,8 @@ icolor white ""(\\.|[^"])*""
 ## Comments
 icolor brightblue "^[[:space:]]*#.*$"
 icolor cyan "^[[:space:]]*##.*$"
+
+
+## include all existing syntax definitions
+include "/usr/share/nano/*.nanorc"
+include "~/dotfiles/nano/*.nanorc"

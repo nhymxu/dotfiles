@@ -28,5 +28,5 @@ helptags ~/dotfiles/vim/docs' > ~/.config/nvim/init.vim
 Install nano
 
 ```shell
-cp ~/dotfiles/nano/nanorc ~/.nanorc
+cp ~/dotfiles/nano/nanorc.sample ~/.nanorc
 ```
