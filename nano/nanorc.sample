@@ -39,5 +39,4 @@ icolor cyan "^[[:space:]]*##.*$"
 
 
 ## include all existing syntax definitions
-include "/usr/share/nano/*.nanorc"
 include "~/dotfiles/nano/*.nanorc"
