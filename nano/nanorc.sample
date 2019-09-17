@@ -18,6 +18,8 @@ set tabsize 4
 ## Convert typed tabs to spaces.
 set tabstospaces
 
+## Show linenumbers when nano > 4
+# set linenumbers
 
 ## color config
 ##
