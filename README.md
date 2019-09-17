@@ -1,12 +1,12 @@
 # dotfiles
 
-Load zsh custom config
+## Load zsh custom config
 
 ```shell
 [ -f ~/dotfiles/shell/zsh.sh ] && source ~/dotfiles/shell/zsh.sh
 ```
 
-Install vim
+## Install vim
 
 ```shell
 echo '
@@ -15,7 +15,7 @@ source ~/dotfiles/vim/init.vim
 helptags ~/dotfiles/vim/docs' > ~/.vimrc
 ```
 
-Install neovim
+## Install neovim
 
 ```shell
 mkdir -p ~/.config/nvim
@@ -25,13 +25,13 @@ source ~/dotfiles/vim/init.vim
 helptags ~/dotfiles/vim/docs' > ~/.config/nvim/init.vim
 ```
 
-Install nano
+## Install nano
 
 ```shell
 cp ~/dotfiles/nano/nanorc.sample ~/.nanorc
 ```
 
-Install git
+## Install git
 
 ```shell
 # Install diff-so-fancy
@@ -45,4 +45,11 @@ ln -s ~/dotfiles/git/gitignore ~/.gitignore_global
 
 # Copy example content for local config and edit this
 cp ~/dotfiles/git/local.example ~/.gitconfig_local
+```
+
+## Homebrew
+
+##### Dump to Brewfile
+```shell
+brew bundle dump --force --all
 ```
