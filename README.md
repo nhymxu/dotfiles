@@ -42,4 +42,7 @@ chmod +x ~/bin/diff-so-fancy
 rm -rf ~/.gitconfig && rm -rf ~/.gitignore
 ln -s ~/dotfiles/git/gitconfig ~/.gitconfig
 ln -s ~/dotfiles/git/gitignore ~/.gitignore
+
+# Copy example content for local config and edit this
+cp ~/dotfiles/git/local.example ~/.gitconfig_local
 ```

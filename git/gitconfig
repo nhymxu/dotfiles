@@ -1,10 +1,6 @@
 [core]
 	excludesfile = ~/.gitignore
 	pager = diff-so-fancy | less --tabs=4 -RFX
-[user]
-	email = ...
-	name = ...
-	signingkey = ...
 [push]
 	default = simple
 [http]
@@ -22,3 +18,5 @@
 	old = red bold
 	new = green bold
 	whitespace = red reverse
+[include]
+    path = .gitconfig_local
