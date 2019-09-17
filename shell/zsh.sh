@@ -7,6 +7,7 @@ elif [[ "$unamestr" == 'Darwin' ]]; then
 fi
 
 DOTFILES_DIR=$HOME/dotfiles
+DOTFILES_SHELL_DIR=$DOTFILES_DIR/shell
 
 #if [[ "$OSTYPE" == "linux-gnu" ]]; then
         # ...
@@ -27,12 +28,12 @@ DOTFILES_DIR=$HOME/dotfiles
 
 
 if [[ $platform == 'linux' ]]; then
-    [ -f ${DOTFILES_DIR}/bash/linux.sh ] && source ${DOTFILES_DIR}/bash/linux.sh
+    [ -f ${DOTFILES_SHELL_DIR}/linux.sh ] && source ${DOTFILES_SHELL_DIR}/linux.sh
 elif [[ $platform == 'macos' ]]; then
-    [ -f ${DOTFILES_DIR}/bash/macos.sh ] && source ${DOTFILES_DIR}/bash/macos.sh
+    [ -f ${DOTFILES_SHELL_DIR}/macos.sh ] && source ${DOTFILES_SHELL_DIR}/macos.sh
 fi
 
-[ -f ${DOTFILES_DIR}/bash/alias.sh ] && source ${DOTFILES_DIR}/bash/alias.sh
+[ -f ${DOTFILES_SHELL_DIR}/alias.sh ] && source ${DOTFILES_SHELL_DIR}/alias.sh
 
 function pip_upgrade() {
     pip list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip install -U
@@ -56,7 +57,7 @@ command_exists () {
     type "$1" &> /dev/null ;
 }
 
-source ${DOTFILES_DIR}/bash/history.zsh
+source ${DOTFILES_SHELL_DIR}/history.zsh
 
 # Fix gpg: signing failed: Inappropriate ioctl for device
 export GPG_TTY=$(tty)

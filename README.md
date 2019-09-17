@@ -3,7 +3,7 @@
 Load zsh custom config
 
 ```shell
-[ -f ~/dotfiles/bash/zsh.sh ] && source ~/dotfiles/bash/zsh.sh
+[ -f ~/dotfiles/shell/zsh.sh ] && source ~/dotfiles/shell/zsh.sh
 ```
 
 Install vim
