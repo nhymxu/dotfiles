@@ -39,9 +39,9 @@ curl https://raw.githubusercontent.com/so-fancy/diff-so-fancy/master/third_party
 chmod +x ~/bin/diff-so-fancy
 
 # Install git config
-rm -rf ~/.gitconfig && rm -rf ~/.gitignore
+rm -rf ~/.gitconfig && rm -rf ~/.gitignore_global
 ln -s ~/dotfiles/git/gitconfig ~/.gitconfig
-ln -s ~/dotfiles/git/gitignore ~/.gitignore
+ln -s ~/dotfiles/git/gitignore ~/.gitignore_global
 
 # Copy example content for local config and edit this
 cp ~/dotfiles/git/local.example ~/.gitconfig_local
