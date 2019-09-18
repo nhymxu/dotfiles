@@ -32,6 +32,7 @@ Plug 'thinca/vim-quickrun' " Run commands quickly.
 
 " Git
 Plug 'tpope/vim-fugitive' " Git wrapper.
+Plug 'junegunn/gv.vim' " Git commit browser
 Plug 'mhinz/vim-signify' " Show a diff using Vim its sign column.
 
 call plug#end()
