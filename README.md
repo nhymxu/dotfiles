@@ -38,13 +38,13 @@ cp ~/dotfiles/nano/nanorc.sample ~/.nanorc
 curl https://raw.githubusercontent.com/so-fancy/diff-so-fancy/master/third_party/build_fatpack/diff-so-fancy -o ~/bin/diff-so-fancy
 chmod +x ~/bin/diff-so-fancy
 
+# Copy example content for local config and edit this
+cp ~/dotfiles/git/local.example ~/.gitconfig_local
+
 # Install git config
 rm -rf ~/.gitconfig && rm -rf ~/.gitignore_global
 ln -s ~/dotfiles/git/gitconfig ~/.gitconfig
 ln -s ~/dotfiles/git/gitignore ~/.gitignore_global
-
-# Copy example content for local config and edit this
-cp ~/dotfiles/git/local.example ~/.gitconfig_local
 ```
 
 ## Homebrew
