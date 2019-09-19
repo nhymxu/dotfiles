@@ -29,6 +29,7 @@
 	cleanup = "!git branch --merged | grep -v -P '^\\*|master|develop' | xargs -n1 -r git branch -d"
 	children = "!bash -c 'c=${1:-HEAD}; set -- $(git rev-list --all --not \"$c\"^@ --children | grep $(git rev-parse \"$c\") ); shift; echo $1' -"
 	lg = "!git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit"
+	lg2 = "!git log --graph --abbrev-commit --decorate --date=relative --all"
 	ignored = "!git ls-files --others --i --exclude-standard"
 	graphgpg = log --graph --color --pretty=format:"%C(yellow)%H%C(green)%d%C(reset)%n%x20%cd%n%x20%cn%C(blue)%x20(%ce)%x20%C(cyan)[gpg:%GK%x20%G?]%C(reset)%n%x20%s%n"
 	graph = log --graph --color --pretty=format:"%C(yellow)%H%C(green)%d%C(reset)%n%x20%cd%n%x20%cn%C(blue)%x20(%ce)%x20%C(cyan)%C(reset)%n%x20%s%n"
