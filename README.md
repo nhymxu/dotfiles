@@ -49,7 +49,19 @@ ln -s ~/dotfiles/git/gitignore ~/.gitignore_global
 
 ## Homebrew
 
-##### Dump to Brewfile
+Dump to Brewfile
+
 ```shell
 brew bundle dump --force --all
+```
+
+## Curl
+
+```shell
+# Remove current config file
+rm -rf ~/.curlrc && rm -rf ~/.curl-format
+
+# Symlink config
+ln -s ~/dotfiles/curl/curlrc ~/.curlrc
+ln -s ~/dotfiles/curl/curl-format ~/.curl-format
 ```
