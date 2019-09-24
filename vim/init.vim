@@ -35,6 +35,11 @@ Plug 'tpope/vim-fugitive' " Git wrapper.
 Plug 'junegunn/gv.vim' " Git commit browser
 Plug 'mhinz/vim-signify' " Show a diff using Vim its sign column.
 
+" Special plugin for Neovim or Vim 8
+if has('nvim') || (v:version >= 800)
+    Plug 'neoclide/coc.nvim', {'branch': 'release'}
+endif
+
 call plug#end()
 
 " Options
