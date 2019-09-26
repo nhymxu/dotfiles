@@ -1,4 +1,8 @@
 [user]
-	email = ...
-	name = ...
+	email = contact@dungnt.net
+	name = Dung Nguyen
 	signingkey = ...
+# [gpg]
+#	program = gpg2
+# [commit]
+#	gpgsign = true
