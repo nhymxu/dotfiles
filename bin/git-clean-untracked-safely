@@ -1,0 +1,25 @@
+function git_clean_untracked_safely {
+  TO_REMOVE_LINES=`git clean -f -d -n | wc -l`;
+  if [ "$TO_REMOVE_LINES" -ne "0" ]; then
+    TO_REMOVE=`git clean -f -d -n`;
+
+    echo "Cleaning...";
+    printf "\n$TO_REMOVE\n\n";
+    echo "Proceed?";
+
+    select result in Yes No; do
+      if [[ "$result" == "Yes" ]]; then
+        echo "Cleaning in progress...";
+        echo "";
+        git clean -f -d;
+        echo "";
+        echo "All files and directories removed!";
+      fi
+      break;
+    done;
+  else
+    echo "Everything is clean";
+  fi;
+}
+
+git_clean_untracked_safely()
