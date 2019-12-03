@@ -15,3 +15,33 @@ alias path='echo -e ${PATH//:/\\n}'
 alias now='date +"%T"'
 alias nowtime=now
 alias nowdate='date +"%d-%m-%Y"'
+
+function pip_upgrade() {
+    pip list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip install -U
+    # pip install -U `pip list --format=columns --outdated | awk '!/Package|---/{ print $1}'`
+}
+
+function gitdeploy() {
+    if [ -z "$1" ]; then
+        echo "Usage: $0 [version or branch]";
+        return;
+    fi
+
+    echo "Fetching remote data..."
+    git fetch -v;
+    echo "Stash on hard reset repo"
+    git stash && git reset --hard $1 && git stash pop;
+    echo "Deploy $1 success"
+}
+
+command_exists () {
+    type "$1" &> /dev/null ;
+}
+
+rxvt-title() {
+  echo -n "]2;$*"
+}
+
+screen-title() {
+  echo -n "k$*\\"
+}

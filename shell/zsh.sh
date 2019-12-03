@@ -25,7 +25,7 @@ DOTFILES_SHELL_DIR=$DOTFILES_DIR/shell
         # Unknown.
 #fi
 
-
+[ -f ${DOTFILES_SHELL_DIR}/functions.sh ] && source ${DOTFILES_SHELL_DIR}/functions.sh
 
 if [[ $platform == 'linux' ]]; then
     [ -f ${DOTFILES_SHELL_DIR}/linux.sh ] && source ${DOTFILES_SHELL_DIR}/linux.sh
@@ -35,29 +35,7 @@ fi
 
 [ -f ${DOTFILES_SHELL_DIR}/alias.sh ] && source ${DOTFILES_SHELL_DIR}/alias.sh
 
-function pip_upgrade() {
-    pip list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip install -U
-    # pip install -U `pip list --format=columns --outdated | awk '!/Package|---/{ print $1}'`
-}
-
-function gitdeploy() {
-    if [ -z "$1" ]; then
-        echo "Usage: $0 [version or branch]";
-        return;
-    fi
-
-    echo "Fetching remote data..."
-    git fetch -v;
-    echo "Stash on hard reset repo"
-    git stash && git reset --hard $1 && git stash pop;
-    echo "Deploy $1 success"
-}
-
-command_exists () {
-    type "$1" &> /dev/null ;
-}
-
-source ${DOTFILES_SHELL_DIR}/history.zsh
+[ -f ${DOTFILES_SHELL_DIR}/history.zsh ] && source ${DOTFILES_SHELL_DIR}/history.zsh
 
 # Fix gpg: signing failed: Inappropriate ioctl for device
 export GPG_TTY=$(tty)
