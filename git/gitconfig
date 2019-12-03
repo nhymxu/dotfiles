@@ -36,6 +36,7 @@
 	last = log -1 --stat
 	ll = log --stat --abbrev-commit
 	fuck = "!f() { git reset --hard origin/$1; }; f"
+	nah = "!git reset --hard && git clean -df"
 [gc]
 	autoDetach = false
 [credential]
