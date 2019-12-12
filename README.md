@@ -1,12 +1,14 @@
-# dotfiles
+<h1 align="center">Dotfiles</h1>
 
-## Load zsh custom config
+## How to use
+
+### Load zsh custom config
 
 ```shell
 [ -f ~/dotfiles/shell/zsh.sh ] && source ~/dotfiles/shell/zsh.sh
 ```
 
-## Install vim
+### Install vim
 
 ```shell
 echo '
@@ -15,7 +17,7 @@ source ~/dotfiles/vim/init.vim
 helptags ~/dotfiles/vim/docs' > ~/.vimrc
 ```
 
-## Install neovim
+### Install neovim
 
 ```shell
 mkdir -p ~/.config/nvim
@@ -25,13 +27,13 @@ source ~/dotfiles/vim/init.vim
 helptags ~/dotfiles/vim/docs' > ~/.config/nvim/init.vim
 ```
 
-## Install nano
+### Install nano
 
 ```shell
 cp ~/dotfiles/nano/nanorc.sample ~/.nanorc
 ```
 
-## Install git
+### Install git
 
 ```shell
 # Install diff-so-fancy
@@ -47,7 +49,7 @@ ln -s ~/dotfiles/git/gitconfig ~/.gitconfig
 ln -s ~/dotfiles/git/gitignore ~/.gitignore_global
 ```
 
-## Homebrew
+### Homebrew
 
 Dump to Brewfile
 
@@ -55,7 +57,7 @@ Dump to Brewfile
 brew bundle dump --force --all
 ```
 
-## Curl
+### Curl
 
 ```shell
 # Remove current config file
@@ -65,3 +67,15 @@ rm -rf ~/.curlrc && rm -rf ~/.curl-format
 ln -s ~/dotfiles/curl/curlrc ~/.curlrc
 ln -s ~/dotfiles/curl/curl-format ~/.curl-format
 ```
+
+## Stuff you might wanna use
+
+- [`fzf`](https://github.com/junegunn/fzf) Fuzzy finder
+- [`ripgrep`](https://github.com/BurntSushi/ripgrep) Much faster ack
+- [`z`](https://github.com/rupa/z) Quickly jump around folders
+- [`bat`](https://github.com/sharkdp/bat) Cat with syntax highlight
+- [`lf`](https://github.com/gokcehan/lf) Ranger but faster
+- [`diff-so-fancy`](https://github.com/so-fancy/diff-so-fancy) Better git diffs
+- [`icdiff`](https://github.com/jeffkaufman/icdiff) Quick replacement for `diff`
+- [`up`](https://github.com/akavel/up) Every piper's dream
+- [`tig`](https://github.com/jonas/tig) ncurses interface for `git`
