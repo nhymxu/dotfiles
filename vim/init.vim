@@ -40,6 +40,9 @@ if has('nvim') || (v:version >= 800)
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
 endif
 
+" Trace
+Plug 'dstein64/vim-startuptime'
+
 call plug#end()
 
 " Options
