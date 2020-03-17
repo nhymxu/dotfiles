@@ -76,6 +76,16 @@ ln -s ~/dotfiles/curl/curlrc ~/.curlrc
 ln -s ~/dotfiles/curl/curl-format ~/.curl-format
 ```
 
+### Aria2
+
+```shell
+# Remove current config folder
+rm -rf ~/.aria2
+
+# Symlink config
+ln -s ~/dotfiles/aria2 ~/.aria2
+```
+
 ## Stuff you might wanna use
 
 - [`fzf`](https://github.com/junegunn/fzf) Fuzzy finder
