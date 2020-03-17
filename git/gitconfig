@@ -41,3 +41,5 @@
 	autoDetach = false
 [credential]
 	helper = store
+[tag]
+	sort = -version:refname
