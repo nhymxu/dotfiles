@@ -11,7 +11,7 @@ if [ -w ~/.zsh_history -o -w ~ ]; then
     export HISTTIMEFORMAT="%d/%m/%y %T "
 
     # Don't put duplicate lines in the history.
-    export HISTCONTROL=$HISTCONTROL${HISTCONTROL+,}ignoredups:erasedups
+    export HISTCONTROL=$HISTCONTROL${HISTCONTROL+,}ignoreboth:erasedups
 
     SAVEHIST=100000
     HISTSIZE=100000
