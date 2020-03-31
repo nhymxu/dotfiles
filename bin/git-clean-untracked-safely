@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 function git_clean_untracked_safely {
   TO_REMOVE_LINES=`git clean -f -d -n | wc -l`;
   if [ "$TO_REMOVE_LINES" -ne "0" ]; then

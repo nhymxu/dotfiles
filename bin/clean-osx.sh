@@ -5,8 +5,8 @@
 sw_vers
 
 if [ $? -ne 0 ]; then
-  echo "This script can run on a macOS only."
-  exit 1
+    echo "This script can run on a macOS only."
+    exit 1
 fi
 
 # Ask for the administrator password upfront

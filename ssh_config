@@ -1,4 +1,4 @@
-Host bitbucket.??? github.???
+Host bitbucket.??? github.??? gitlab.???
 	ControlMaster no
 
 
@@ -8,5 +8,10 @@ Host *
     IdentityFile ~/.ssh/id_rsa
     AddressFamily inet
     ControlMaster auto
-    ControlPath  ~/.ssh/sockets/%r@%h-%p
+    ControlPath ~/.ssh/sockets/%r@%h-%p
     ControlPersist 600
+    ForwardAgent no
+    ForwardX11 no
+    ForwardX11Trusted no
+    ServerAliveInterval 60
+    ServerAliveCountMax 30

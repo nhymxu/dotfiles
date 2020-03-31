@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 function git_clean_local_branches {
   OPTION="-d";
   if [[ "$1" == "-f" ]]; then
