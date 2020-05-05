@@ -69,3 +69,20 @@ log --stat --abbrev-commit
 ```shell
 !f() { git reset --hard origin/$1; }; f
 ```
+
+## Rename stash
+
+```log
+$ git stash list
+stash@{0}: On master: Pep8 format
+stash@{1}: On master: co other than master with local changes
+stash@{2}: On master: tests with deployAtEnd
+
+# Let's say I want to rename the stash@{2} adding an issue reference:
+$ git stash-rename stash@{2} NXP-13971-deployAtEnd
+
+$ git stash list
+stash@{0}: On master: NXP-13971-deployAtEnd
+stash@{1}: On master: Pep8 format
+stash@{2}: On master: co other than master with local changes
+```
