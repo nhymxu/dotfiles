@@ -17,6 +17,7 @@ Plug 'ntpeters/vim-better-whitespace' " Better whitespace highlighting for Vim
 Plug 'romainl/vim-cool' " Stop matching after search is done.
 Plug 'jiangmiao/auto-pairs' " Insert or delete brackets, parens, quotes in pair..
 Plug 'jremmen/vim-ripgrep' " Use RipGrep in Vim and display results in a quickfix list.
+Plug 'mhinz/vim-startify' " Start screen
 
 " https://github.com/brooth/far.vim
 
