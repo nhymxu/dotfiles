@@ -97,3 +97,4 @@ ln -s ~/dotfiles/aria2 ~/.aria2
 - [`icdiff`](https://github.com/jeffkaufman/icdiff) Quick replacement for `diff`
 - [`up`](https://github.com/akavel/up) Every piper's dream
 - [`tig`](https://github.com/jonas/tig) ncurses interface for `git`
+- [`tmuxp`](https://github.com/tmux-python/tmuxp) tmux session manager
