@@ -52,7 +52,7 @@ renice_ggbackup() {
         return;
     fi
     
-    for f in $(pgrep 'Backup and Sync'; pgrep 'FinderSyncAPIExtension'); do renice +$1 -p $f; done
+    for f in $(pgrep 'Backup and Sync'; pgrep 'FinderSyncAPIExtension'); do renice +${1} -p $f; done
 }
 
 restore_ggbackup () {
