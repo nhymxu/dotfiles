@@ -57,6 +57,11 @@ if [ -d "$HOME/.pyenv/bin" ] ; then
     PATH="$HOME/.pyenv/bin:$PATH"
 fi
 
+# set PATH so it includes dotfiles's private bin if it exists
+if [ -d "$DOTFILES_DIR/bin" ] ; then
+    PATH="$DOTFILES_DIR/bin:$PATH"
+fi
+
 
 
 if hash pyenv 2>/dev/null; then
