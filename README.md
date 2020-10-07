@@ -41,6 +41,14 @@ helptags ~/dotfiles/vim/docs' > ~/.config/nvim/init.vim
 cp ~/dotfiles/nano/nanorc.sample ~/.nanorc
 ```
 
+### Install micro
+
+```shell
+mkdir -p ~/.config/micro
+rm -rf ~/.config/micro/settings.json
+ln -s ~/dotfiles/editor/micro/settings.json ~/.config/micro/settings.json
+```
+
 ### Install git
 
 ```shell
