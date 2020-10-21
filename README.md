@@ -107,3 +107,4 @@ ln -s ~/dotfiles/aria2 ~/.aria2
 - [`tig`](https://github.com/jonas/tig) ncurses interface for `git`
 - [`tmuxp`](https://github.com/tmux-python/tmuxp) tmux session manager
 - [`duf`](https://github.com/muesli/duf) duf is like htop for disk usage
+- [`lfs`](https://github.com/Canop/lfs) Filesystems listing like `df -h`
