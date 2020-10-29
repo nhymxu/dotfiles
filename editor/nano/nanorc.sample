@@ -41,4 +41,4 @@ icolor cyan "^[[:space:]]*##.*$"
 
 
 ## include all existing syntax definitions
-include "~/dotfiles/nano/*.nanorc"
+include "~/dotfiles/editor/nano/*.nanorc"

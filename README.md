@@ -20,9 +20,9 @@
 
 ```shell
 echo '
-set runtimepath=~/dotfiles/vim,\$VIMRUNTIME
-source ~/dotfiles/vim/init.vim
-helptags ~/dotfiles/vim/docs' > ~/.vimrc
+set runtimepath=~/dotfiles/editor/vim,\$VIMRUNTIME
+source ~/dotfiles/editor/vim/init.vim
+helptags ~/dotfiles/editor/vim/docs' > ~/.vimrc
 ```
 
 ### Install neovim
@@ -30,15 +30,15 @@ helptags ~/dotfiles/vim/docs' > ~/.vimrc
 ```shell
 mkdir -p ~/.config/nvim
 echo '
-set runtimepath=~/dotfiles/vim,\$VIMRUNTIME
-source ~/dotfiles/vim/init.vim
-helptags ~/dotfiles/vim/docs' > ~/.config/nvim/init.vim
+set runtimepath=~/dotfiles/editor/vim,\$VIMRUNTIME
+source ~/dotfiles/editor/vim/init.vim
+helptags ~/dotfiles/editor/vim/docs' > ~/.config/nvim/init.vim
 ```
 
 ### Install nano
 
 ```shell
-cp ~/dotfiles/nano/nanorc.sample ~/.nanorc
+cp ~/dotfiles/editor/nano/nanorc.sample ~/.nanorc
 ```
 
 ### Install micro
