@@ -91,6 +91,16 @@ ln -s ~/dotfiles/curl/curlrc ~/.curlrc
 ln -s ~/dotfiles/curl/curl-format ~/.curl-format
 ```
 
+### wget
+
+```shell
+# Remove current config file
+rm -rf ~/.wgetrc
+
+# Symlink config
+ln -s ~/dotfiles/wgetrc ~/.wgetrc
+```
+
 ### Aria2
 
 ```shell
