@@ -10,6 +10,13 @@
 
 ## How to use
 
+### Load starship prompt for zsh
+
+```shell
+export STARSHIP_CONFIG=~/dotfiles/shell/framework/starship.toml
+eval "$(starship init zsh)"
+```
+
 ### Load zsh custom config
 
 ```shell
@@ -108,3 +115,4 @@ ln -s ~/dotfiles/aria2 ~/.aria2
 - [`tmuxp`](https://github.com/tmux-python/tmuxp) tmux session manager
 - [`duf`](https://github.com/muesli/duf) duf is like htop for disk usage
 - [`lfs`](https://github.com/Canop/lfs) Filesystems listing like `df -h`
+- [`starship-rs`](https://starship.rs/) The minimal, blazing-fast, and infinitely customizable prompt for any shell

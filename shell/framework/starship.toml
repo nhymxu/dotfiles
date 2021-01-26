@@ -1,0 +1,10 @@
+[git_branch]
+# symbol = "🌱 "
+
+[git_commit]
+# tag_symbol = "🔖 "
+
+[directory]
+truncation_length = 8
+truncation_symbol = "…/"
+truncate_to_repo = false
