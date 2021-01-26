@@ -1,16 +1,21 @@
 [core]
 	excludesfile = ~/.gitignore_global
 	pager = diff-so-fancy | less --tabs=4 -RFX
+
 [push]
 	default = simple
+
 [http]
+
 [color]
 	ui = true
+
 [color "diff-highlight"]
 	oldNormal = red bold
 	oldHighlight = red bold 52
 	newNormal = green bold
 	newHighlight = green bold 22
+
 [color "diff"]
 	meta = 11
 	frag = magenta bold
@@ -18,13 +23,17 @@
 	old = red bold
 	new = green bold
 	whitespace = red reverse
+
 [commit]
 	template = ~/dotfiles/git/gitmessage
+
 [pager]
 	diff = diff-so-fancy | less --tabs=4 -RFX
 	show = diff-so-fancy | less --tabs=4 -RFX
+
 [include]
     path = .gitconfig_local
+
 [alias]
 	p = !git pull --ff-only
 	fixup = !sh -c 'REV=$(git rev-parse $1) && git commit --fixup $@ && git rebase -i --autostash --autosquash $REV^' -
@@ -41,9 +50,38 @@
 	nah = "!git reset --hard && git clean -df"
 	stash-rename = "!_() { rev=$(git rev-parse $1) && git stash drop $1 || exit 1 ; git stash store -m \"$2\" $rev; }; _"
 	prune = !git gc --prune=now --aggressive
+
+	# Show verbose output about tags, branches or remotes
+	tags = tag -l
+	branches = branch --all
+	remotes = remote --verbose
+
+	# List aliases.
+	aliases = config --get-regexp alias
+
+	# Amend the currently staged files to the latest commit.
+	amend = commit --amend --reuse-message=HEAD
+
+	# Remove branches that have already been merged with main.
+	# a.k.a. ‘delete merged’
+	dm = "!git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
+
+	# Show the user email for the current repository.
+	whoami = config user.email
+
 [gc]
 	autoDetach = false
+
 [credential]
 	helper = store
+
 [tag]
 	sort = -version:refname
+
+[branch]
+	# Show most recently changed branches first.
+	sort = -committerdate
+
+[help]
+	# Automatically correct and execute mistyped commands.
+	autocorrect = 1
