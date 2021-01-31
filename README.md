@@ -10,6 +10,21 @@
 
 ## How to use
 
+### zsh plugin
+
+```shell
+source ~/.config/zsh-snap/zsh-snap/znap.zsh
+
+znap source marlonrichert/zsh-autocomplete
+znap source marlonrichert/zsh-edit
+
+znap source marlonrichert/zsh-hist
+bindkey '^[q' push-line-or-edit
+
+export ZSH_HIGHLIGHT_HIGHLIGHTERS=( main brackets )
+znap source zsh-users/zsh-syntax-highlighting
+```
+
 ### Load starship prompt for zsh
 
 ```shell
@@ -126,3 +141,4 @@ ln -s ~/dotfiles/aria2 ~/.aria2
 - [`duf`](https://github.com/muesli/duf) duf is like htop for disk usage
 - [`lfs`](https://github.com/Canop/lfs) Filesystems listing like `df -h`
 - [`starship-rs`](https://starship.rs/) The minimal, blazing-fast, and infinitely customizable prompt for any shell
+- [`zsh-snap`](https://github.com/marlonrichert/zsh-snap) zsh light-weight plugin manager
