@@ -1,15 +1,42 @@
-
-
+# ----------------------------------------------------------
+# Header - type(scope): Brief description
 # 50-character subject line
+# ----------------------------------------------------------
+#    * feat             A new feature - SemVar PATCH
+#    * fix              A bug fix - SemVar MINOR
+#    * BREAKING CHANGE  Breaking API change - SemVar MAJOR
+#    * docs             Change to documentation only
+#    * style            Change to style (whitespace, etc.)
+#    * refactor         Change not related to a bug or feat
+#    * perf             Change that affects performance
+#    * test             Change that adds/modifies tests
+#    * build            Change to build system
+#    * ci               Change to CI pipeline/workflow
+#    * chore            General tooling/config/min refactor
+# ----------------------------------------------------------
+
+# ----------------------------------------------------------
+# Body - More description, if necessary
+# ----------------------------------------------------------
+#    * Motivation behind changes, more detail into how
+#      functionality might be affected, etc.
 #
-# 72-character wrapped longer description. This should answer:
-#
+# 72-character wrapped longer description.
+# This should answer:
 # * Why was this change necessary?
 # * How does it address the problem?
 # * Are there any side effects?
-#
-# Include a link to the ticket, if any.
-#
+# ----------------------------------------------------------
+
+
+# ----------------------------------------------------------
+# Footer - Associated issues, PRs, etc.
+# ----------------------------------------------------------
+#    * Ex: Resolves Issue #207, see PR #15, etc.
+# # Include a link to the ticket, if any.
+# ----------------------------------------------------------
+
+
 # Add co-authors if you worked on this code with others:
 #
 # Co-authored-by: Full Name <email@example.com>
