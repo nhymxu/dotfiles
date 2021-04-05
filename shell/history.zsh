@@ -14,6 +14,7 @@ if [ -w ~/.zsh_history -o -w ~ ]; then
     setopt hist_ignore_space      # ignore commands that start with space
     setopt hist_verify            # show command with history expansion to user before running it
     setopt share_history          # share command history data
+    setopt hist_find_no_dups       # ignore duplicated commands history when find
 
     # Add timestamp to history file
     export HISTTIMEFORMAT="%d/%m/%y %T "
@@ -27,7 +28,7 @@ if [ -w ~/.zsh_history -o -w ~ ]; then
     # Ignore some controlling instructions
     # HISTIGNORE is a colon-delimited list of patterns which should be excluded.
     #         The '&' is a special pattern which suppresses duplicate entries.
-    export HISTIGNORE=$'[ \t]*:&:[fb]g:exit:ls:clear'
+    export HISTIGNORE=$'[ \t]*:&:[fb]g:exit:ls*:clear:composer:pip:poetry:pwd:history*'
 
     # Export hostory to a different file
     # export HISTFILE="${HOME}/.history/${CURRENT_SHELL}.history.txt"
