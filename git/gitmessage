@@ -13,6 +13,7 @@
 #    * build            Change to build system
 #    * ci               Change to CI pipeline/workflow
 #    * chore            General tooling/config/min refactor
+#    * revert           Reverting things
 # ----------------------------------------------------------
 
 # ----------------------------------------------------------
