@@ -142,3 +142,7 @@ ln -s ~/dotfiles/aria2 ~/.aria2
 - [`lfs`](https://github.com/Canop/lfs) Filesystems listing like `df -h`
 - [`starship-rs`](https://starship.rs/) The minimal, blazing-fast, and infinitely customizable prompt for any shell
 - [`zsh-snap`](https://github.com/marlonrichert/zsh-snap) zsh light-weight plugin manager
+- [`bandwhich`](https://github.com/imsnif/bandwhich) CLI utility for displaying current network utilization
+- [`sd`](https://github.com/chmln/sd) - Quick replacement for `sed`. Find & replace CLI
+- [`fd`](https://github.com/sharkdp/fd) - Quick replacement for `find`. Find entries in your filesytem
+- [`exa`](https://github.com/ogham/exa) - modern replacement for `ls`
