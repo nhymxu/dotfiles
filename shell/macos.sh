@@ -32,4 +32,17 @@ alias print-path='echo -e ${PATH//:/\\n}'
 
 # Upgrade / Update outdated casks installed. 
 #alias brew_upgrade_cask="brew upgrade $(brew outdated --cask --greedy --quiet)"
-alias brew_upgrade_cask="brew outdated --cask --greedy --quiet | xargs -n1 brew upgrade"
+alias brew_upgrade_cask="brew outdated --cask --greedy --quiet | xargs -n1 brew upgrade --cask"
+
+renice_ggbackup() {
+    if [ -z "$1" ]; then
+        for f in $(pgrep 'Backup and Sync'; pgrep 'FinderSyncAPIExtension'); do renice +20 -p $f; done
+        return;
+    fi
+    
+    for f in $(pgrep 'Backup and Sync'; pgrep 'FinderSyncAPIExtension'); do renice +${1} -p $f; done
+}
+
+restore_ggbackup () {
+    for f in $(pgrep 'Backup and Sync'; pgrep 'FinderSyncAPIExtension'); do renice 0 -p $f; done
+}

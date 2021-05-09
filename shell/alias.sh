@@ -53,16 +53,3 @@ rxvt-title() {
 screen-title() {
     echo -n "k$*\\"
 }
-
-renice_ggbackup() {
-    if [ -z "$1" ]; then
-        for f in $(pgrep 'Backup and Sync'; pgrep 'FinderSyncAPIExtension'); do renice +20 -p $f; done
-        return;
-    fi
-    
-    for f in $(pgrep 'Backup and Sync'; pgrep 'FinderSyncAPIExtension'); do renice +${1} -p $f; done
-}
-
-restore_ggbackup () {
-    for f in $(pgrep 'Backup and Sync'; pgrep 'FinderSyncAPIExtension'); do renice 0 -p $f; done
-}
