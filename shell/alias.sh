@@ -42,6 +42,15 @@ function gitdeploy() {
     echo "Deploy $1 success"
 }
 
+function dowload-m3u8() {
+    if [ -z "$1" ]; then
+        echo "Usage: $0 input_file.m3u8 output_file.mp4";
+        return;
+    fi
+
+    ffmpeg -protocol_whitelist file,http,https,tcp,tls -i $1 -c copy $2
+}
+
 command_exists () {
     type "$1" &> /dev/null ;
 }
