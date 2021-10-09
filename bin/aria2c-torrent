@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+# Command to download file via bittorrent magnet link using aria2.
+# See website and documentation at https://aria2.github.io
+# -d specifies the directory to store the downloaded file. Eg: -d ~/Downloads
+# --seed-time=0 disables seeding after download has completed
+# @param $@ the magnet-string or torrent-file
+
+aria2c --seed-time=0 $@
