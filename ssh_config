@@ -1,5 +1,5 @@
 Host bitbucket.??? github.??? gitlab.???
-	ControlMaster no
+    ControlMaster no
 
 
 Host *
