@@ -64,13 +64,13 @@ fi
 
 
 
-if hash pyenv 2>/dev/null; then
-    eval "$(pyenv init -)"
-    # eval "$(pyenv virtualenv-init -)"
-fi
+# if hash pyenv 2>/dev/null; then
+#     eval "$(pyenv init -)"
+#     # eval "$(pyenv virtualenv-init -)"
+# fi
 
-export PIPENV_VENV_IN_PROJECT=1
+# export PIPENV_VENV_IN_PROJECT=1
 
-if hash pipenv 2>/dev/null; then
-    eval "$(pipenv --completion)"
-fi
+# if hash pipenv 2>/dev/null; then
+#     eval "$(pipenv --completion)"
+# fi
