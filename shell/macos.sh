@@ -34,6 +34,8 @@ alias print-path='echo -e ${PATH//:/\\n}'
 #alias brew_upgrade_cask="brew upgrade $(brew outdated --cask --greedy --quiet)"
 alias brew_upgrade_cask="brew outdated --cask --greedy --quiet | xargs -n1 brew upgrade --cask"
 
+alias brew_upgrade_all="brew update && brew upgrade && brew upgrade --cask --greedy"
+
 renice_ggbackup() {
     if [ -z "$1" ]; then
         for f in $(pgrep 'Backup and Sync'; pgrep 'FinderSyncAPIExtension'); do renice +20 -p $f; done
@@ -46,3 +48,5 @@ renice_ggbackup() {
 restore_ggbackup () {
     for f in $(pgrep 'Backup and Sync'; pgrep 'FinderSyncAPIExtension'); do renice 0 -p $f; done
 }
+
+alias ll='ls -lah'
