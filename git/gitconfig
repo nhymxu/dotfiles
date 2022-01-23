@@ -57,7 +57,8 @@
 	remotes = remote --verbose
 
 	# List aliases.
-	aliases = config --get-regexp alias
+	# aliases = config --get-regexp alias
+	aliases = "!f() { git config --global -l | grep alias | sort; }; f"
 
 	# Amend the currently staged files to the latest commit.
 	amend = commit --amend --reuse-message=HEAD
