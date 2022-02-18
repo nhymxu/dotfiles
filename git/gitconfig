@@ -37,7 +37,7 @@
 [alias]
 	p = !git pull --ff-only
 	fixup = !sh -c 'REV=$(git rev-parse $1) && git commit --fixup $@ && git rebase -i --autostash --autosquash $REV^' -
-	cleanup = !git branch --merged | grep -v '\*\|master\|main\|develop\|dev' | xargs -n1 git branch -d
+	cleanup = "!git branch --merged | grep -v \"\\*\\|master\\|main\\|develop\\|dev\" | xargs -n1 git branch -d"
 	children = "!bash -c 'c=${1:-HEAD}; set -- $(git rev-list --all --not \"$c\"^@ --children | grep $(git rev-parse \"$c\") ); shift; echo $1' -"
 	lg = !git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit
 	lg2 = !git log --graph --abbrev-commit --decorate --date=relative --all
