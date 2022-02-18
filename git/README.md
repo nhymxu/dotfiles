@@ -27,7 +27,12 @@ Any commit or "tree-ish" should work for the argument: `HEAD~2`, `abcd123`, `fea
 ## git cleanup
 
 ```shell
-cleanup = "!git branch --merged | grep -v -P '^\\*|master|develop' | xargs -n1 -r git branch -d"
+cleanup = "!git branch --merged | grep -v -P '^\\*|master|main|develop|dev' | xargs -n1 -r git branch -d"
+```
+
+Alternative way work on macOS
+```shell
+cleanup = "!git branch --merged | grep -v '\*\|master\|main\|develop\|dev' | xargs -n1 git branch -d"
 ```
 
 This command will delete all local branches which have been merged into the current branch, except those named master and develop which it'll never delete. It's an easy way to keep your local repo clean.
