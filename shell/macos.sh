@@ -50,3 +50,8 @@ restore_ggbackup () {
 }
 
 alias ll='ls -lah'
+
+# Append NOTIF to your command to have a notification once it is done, clicking
+# on the notification will focus a terminal.
+# require terminal-notifier: brew install terminal-notifier
+alias -g NOTIF=';terminal-notifier -group endCommandNotif -activate com.apple.Terminal -ignoreDnD -sound default -message done'
