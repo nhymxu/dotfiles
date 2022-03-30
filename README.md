@@ -133,8 +133,9 @@ ln -s ~/dotfiles/aria2 ~/.aria2
 - [`z`](https://github.com/rupa/z) Quickly jump around folders
 - [`bat`](https://github.com/sharkdp/bat) Cat with syntax highlight
 - [`lf`](https://github.com/gokcehan/lf) Ranger but faster
-- [`diff-so-fancy`](https://github.com/so-fancy/diff-so-fancy) Better git diffs
+- [`diff-so-fancy`](https://github.com/so-fancy/diff-so-fancy) Better `git diff`
 - [`icdiff`](https://github.com/jeffkaufman/icdiff) Quick replacement for `diff`
+- [`delta`](https://github.com/dandavison/delta) syntax-highlighting pager for `git`, `diff`, and `grep` output
 - [`up`](https://github.com/akavel/up) Every piper's dream
 - [`tig`](https://github.com/jonas/tig) ncurses interface for `git`
 - [`tmuxp`](https://github.com/tmux-python/tmuxp) tmux session manager
