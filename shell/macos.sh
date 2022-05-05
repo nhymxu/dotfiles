@@ -17,6 +17,15 @@ alias cleanup="find . -type f -name '*.DS_Store' -ls -delete"
 # Finally, clear download history from quarantine. https://mths.be/bum
 alias emptytrash="sudo rm -rfv /Volumes/*/.Trashes; sudo rm -rfv ~/.Trash; sudo rm -rfv /private/var/log/asl/*.asl; sqlite3 ~/Library/Preferences/com.apple.LaunchServices.QuarantineEventsV* 'delete from LSQuarantineEvent'"
 
+function emptytrash2() {
+  sudo rm -rfv /Volumes/*/.Trashes/*
+  sudo rm -rfv '~/Library/Mobile Documents/*/.Trash/*'
+  sudo rm -rfv ~/.Trash/*
+  sudo rm -rfv /private/var/log/asl/*.asl
+  sudo rm -rfv ~/Library/Mobile\ Documents/**/.Trash/*
+  sqlite3 ~/Library/Preferences/com.apple.LaunchServices.QuarantineEventsV* 'delete from LSQuarantineEvent'
+} 2>/dev/null
+
 # Kill all the tabs in Chrome to free up memory
 # [C] explained: http://www.commandlinefu.com/commands/view/402/exclude-grep-from-your-grepped-output-of-ps-alias-included-in-description
 alias chromekill="ps ux | grep '[C]hrome Helper --type=renderer' | grep -v extension-process | tr -s ' ' | cut -d ' ' -f2 | xargs kill"
