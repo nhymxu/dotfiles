@@ -23,6 +23,8 @@ bindkey '^[q' push-line-or-edit
 
 export ZSH_HIGHLIGHT_HIGHLIGHTERS=( main brackets )
 znap source zsh-users/zsh-syntax-highlighting
+
+znap source wfxr/forgit
 ```
 
 ### Load starship prompt for zsh
