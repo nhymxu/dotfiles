@@ -97,3 +97,8 @@ starttransfer:  %{time_starttransfer}s\n\
 -------------------------\n\
         total:  %{time_total}s\n" "$@"
 }
+
+# working with tar archives
+alias ltar="tar -ztvf"
+alias untar="tar -zxvf"
+alias atar="tar -cvzf"
