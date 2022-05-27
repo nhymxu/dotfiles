@@ -2,7 +2,7 @@
 
 # History control. Don't bother with history if we can't write to the file,
 # like if we're using sudo.
-if [ -w ~/.zsh_history -o -w ~ ]; then
+# if [ -w ~/.zsh_history -o -w ~ ]; then
 
     # Append rather than overwrite the history on disk
     # shopt -s histappend
@@ -28,9 +28,9 @@ if [ -w ~/.zsh_history -o -w ~ ]; then
     # Ignore some controlling instructions
     # HISTIGNORE is a colon-delimited list of patterns which should be excluded.
     #         The '&' is a special pattern which suppresses duplicate entries.
-    export HISTIGNORE=$'[ \t]*:&:[fb]g:exit:ls*:clear:composer:pip:poetry:pwd:history*'
+    export HISTIGNORE=$'[ \t]*:&:[fb]g:pwd:exit:fg:bg:top:ls:uptime:df:clear:composer:pip:poetry:git:history*'
 
-    # Export hostory to a different file
+    # Export history to a different file
     # export HISTFILE="${HOME}/.history/${CURRENT_SHELL}.history.txt"
     export HISTFILE=~/.zsh_history
-fi
+#fi
