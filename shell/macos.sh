@@ -64,3 +64,8 @@ alias ll='ls -lah'
 # on the notification will focus a terminal.
 # require terminal-notifier: brew install terminal-notifier
 alias -g NOTIF=';terminal-notifier -group endCommandNotif -activate com.apple.Terminal -ignoreDnD -sound default -message done'
+
+# Disable Spotlight
+alias spotoff="sudo mdutil -a -i off"
+# Enable Spotlight
+alias spoton="sudo mdutil -a -i on"
