@@ -15,15 +15,18 @@
     setopt hist_verify            # show command with history expansion to user before running it
     setopt share_history          # share command history data
     setopt hist_find_no_dups       # ignore duplicated commands history when find
+    setopt INC_APPEND_HISTORY     # Immediate append
+    setopt HIST_IGNORE_ALL_DUPS
 
     # Add timestamp to history file
     export HISTTIMEFORMAT="%d/%m/%y %T "
 
     # Don't put duplicate lines in the history.
-    export HISTCONTROL=$HISTCONTROL${HISTCONTROL+,}ignoreboth:erasedups
+    # export HISTCONTROL=$HISTCONTROL${HISTCONTROL+,}ignoreboth:erasedups
 
-    SAVEHIST=100000
-    HISTSIZE=100000
+    export SAVEHIST=1000000
+    export HISTSIZE=1000000
+    export HISTFILESIZE=1000000
 
     # Ignore some controlling instructions
     # HISTIGNORE is a colon-delimited list of patterns which should be excluded.
