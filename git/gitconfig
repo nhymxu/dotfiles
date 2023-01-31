@@ -71,6 +71,8 @@
 	# Show the user email for the current repository.
 	whoami = config user.email
 
+	crumb = commit --allow-empty-message -nm ''
+
 [gc]
 	autoDetach = false
 

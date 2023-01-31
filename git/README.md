@@ -1,5 +1,13 @@
 # Git alias
 
+## git crumb
+
+```shell
+crumb = commit --allow-empty-message -nm ''
+```
+
+This create empty commit with empty message. Using for create fake commit to trigger CI.
+
 ## git p
 
 ```shell
@@ -143,6 +151,7 @@ by commit, etc. 'word-token' must not contain whitespace.
 ```
 
 #### Complete example
+
 ```sh
 # ----------------------------------------------------------
 # Header - type(scope): Brief description
