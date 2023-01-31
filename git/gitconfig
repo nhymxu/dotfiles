@@ -91,3 +91,6 @@
 	autocorrect = 1
 [init]
 	defaultBranch = main
+
+[merge]
+	conflictStyle = zdiff3
