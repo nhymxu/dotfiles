@@ -102,3 +102,17 @@ starttransfer:  %{time_starttransfer}s\n\
 alias ltar="tar -ztvf"
 alias untar="tar -zxvf"
 alias atar="tar -cvzf"
+
+function video_thumbnail() {
+  if [ -z "$1" ]; then
+    echo "Usage: $0 input_file.m3u8 output_file.mp4";
+    return;
+  fi
+
+  if [ -f "$1" ]; then
+    echo "Input file $1 not found";
+    return;
+  fi
+
+  ffmpeg -i $1 -frames:v 1 ${1%.*}.png
+}
