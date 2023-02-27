@@ -109,7 +109,7 @@ function video_thumbnail() {
     return;
   fi
 
-  if [ -f "$1" ]; then
+  if [ ! -f "$1" ]; then
     echo "Input file $1 not found";
     return;
   fi
