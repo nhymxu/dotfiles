@@ -116,3 +116,5 @@ function video_thumbnail() {
 
   ffmpeg -i $1 -frames:v 1 ${1%.*}.png
 }
+
+alias jobs_kill_all="jobs -p | xargs kill"
