@@ -16,6 +16,8 @@ alias now='date +"%T"'
 alias nowtime=now
 alias nowdate='date +"%d-%m-%Y"'
 
+alias icloud="cd ~/Library/Mobile\ Documents/com~apple~CloudDocs/"
+
 # IP addresses
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
 alias localip="ipconfig getifaddr en0"
