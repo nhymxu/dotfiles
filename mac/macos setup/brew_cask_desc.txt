@@ -1,0 +1,68 @@
+1password: (1Password) Password manager that keeps all passwords secure behind one password
+aldente: (AlDente) Menu bar tool to limit maximum charging percentage
+android-file-transfer: (Android File Transfer) Transfer files from and to an Android smartphone
+android-platform-tools: (Android SDK Platform-Tools) Android SDK component
+anydesk: (AnyDesk) Allows connection to a computer remotely
+appcleaner: (FreeMacSoft AppCleaner) Application uninstaller
+authy: (Authy Desktop) Two-factor authentication software
+calibre: (calibre) E-books management software
+datagrip: (DataGrip) Databases and SQL IDE
+dbeaver-community: (DBeaver Community Edition) Universal database tool and SQL client
+docker: Pack, ship and run any application as a lightweight container
+dozer: (Dozer) Tool to hide status bar icons
+filezilla: (FileZilla) [no description]
+firefox: (Mozilla Firefox) Web browser
+flux: Lightweight scripting language for querying databases
+font-dejavu-sans-mono-nerd-font: (DejaVuSansM Nerd Font (DejaVu Sans Mono)) Developer targeted fonts with a high number of glyphs
+font-fira-code: (Fira Code) Free monospaced font with programming ligatures
+font-ibm-plex: (IBM Plex) Corporate typeface for IBM
+font-iosevka: (Iosevka) Sans-serif, slab-serif, monospace and quasi‑proportional typeface family
+font-juliamono: (JuliaMono) Monospaced typeface designed for programming in Julia
+font-source-code-pro-for-powerline: (Source Code Pro for Powerline) [no description]
+gitahead: (GitAhead) [no description]
+goland: (Goland) Go (golang) IDE
+gswitch: (gSwitch) Set which graphics card to use
+hiddenbar: (Hidden Bar) Utility to hide menu bar items
+iina: (IINA) Free and open-source media player
+imageoptim: (ImageOptim) Tool to optimize images to a smaller size
+intellij-idea: (IntelliJ IDEA Ultimate) Java IDE by JetBrains
+iterm2: (iTerm2) Terminal emulator as alternative to Apple's Terminal app
+itsycal: (Itsycal) Menu bar calendar
+karabiner-elements: (Karabiner Elements) Keyboard customizer
+kid3: (Kid3) Audio tagger focusing on efficiency
+knockknock: (KnockKnock) Tool to show what is persistently installed on the computer
+lens: (Lens) Kubernetes IDE
+maccy: (Maccy) Clipboard manager
+macfuse: (macFUSE) File system integration
+marta: (Marta File Manager) Extensible two-pane file manager
+mate-translate: (Mate Translate) Select text in any app and translate it
+microsoft-edge: (Microsoft Edge) Web browser
+mongodb-compass: (MongoDB Compass) Interactive tool for analyzing MongoDB data
+monitorcontrol: (MonitorControl) Tool to control external monitor brightness & volume
+mouse-fix: (Mouse Fix) Mouse utility to add gesture functions and smooth scrolling to 3rd party mice
+ngrok: (ngrok) Reverse proxy, secure introspectable tunnels to localhost
+obsidian: (Obsidian) Knowledge base that works on top of a local folder of plain text Markdown files
+phpstorm: (JetBrains PhpStorm) PHP IDE by JetBrains
+postman: (Postman) Collaboration platform for API development
+pritunl: (Pritunl) OpenVPN client
+proxyman: (Proxyman) HTTP debugging proxy
+pycharm: (PyCharm, PyCharm Professional) IDE for professional Python development
+qlcolorcode: (QLColorCode) QuickLook plug-in that renders source code with syntax highlighting
+qlmarkdown: (sbarex-qlmarkdown) QuickLook generator for Markdown files
+qlstephen: (QLStephen) QuickLook plugin for plaintext files without an extension
+rapidapi: (RapidAPI) HTTP client that helps testing and describing APIs
+raycast: (Raycast) Control your tools with a few keystrokes
+rectangle: (Rectangle) Move and resize windows using keyboard shortcuts or snap areas
+scroll-reverser: (Scroll Reverser) Tool to reverse the direction of scrolling
+shadowsocksx-ng: (ShadowsocksX-NG) Tunneling proxy
+skype: (Skype) Video chat, voice call and instant messaging application
+sublime-merge: (Sublime Merge) Git client
+sublime-text: (Sublime Text) Text editor for code, markup and prose
+switchresx: (SwitchResX) Controls screen display settings
+teamviewer: (TeamViewer) Remote access and connectivity software focused on security
+veracrypt: (VeraCrypt) Disk encryption software focusing on security based on TrueCrypt
+visual-studio-code: (Microsoft Visual Studio Code, VS Code) Open-source code editor
+vlc: (VLC media player) Multimedia player
+wireshark: Graphical network analyzer and capture tool
+xquartz: (XQuartz) Open-source version of the X.Org X Window System
+zoom: (Zoom.us) Video communication and virtual meeting platform
