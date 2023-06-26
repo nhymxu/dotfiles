@@ -1,0 +1,5 @@
+# specify a directory to install
+cask_args appdir: '/Applications'
+
+tap "jesseduffield/lazydocker"
+brew "jesseduffield/lazydocker/lazydocker"
