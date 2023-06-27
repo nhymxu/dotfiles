@@ -1,7 +1,6 @@
 ack
 act
 age
-aria2
 autojump
 awscli
 bat
@@ -19,7 +18,6 @@ ekzhang/bore/bore
 exa
 exiftool
 fd
-ffmpeg
 findutils
 flux
 fnm
@@ -67,10 +65,7 @@ redis
 rename
 rustup-init
 sbcl
-screen
 smartmontools
-starship
-terminal-notifier
 terraform
 tesseract-lang
 testdisk
@@ -78,8 +73,6 @@ the_silver_searcher
 tiger-vnc
 tldr
 tmux
-tree
-wget
 wifi-password
 wrk
 you-get

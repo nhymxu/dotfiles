@@ -30,6 +30,7 @@ gpgconf --kill gpg-agent
 brew install starship
 
 brew install fzf
+brew install terminal-notifier
 
 #---------------
 # Browser
@@ -65,10 +66,22 @@ brew install --cask iterm2
 brew install --cask calibre
 
 #---------------
+# Multimedia
+
+brew install ffmpeg
+
+#---------------
 # Other system tools
 
 brew install --cask itsycal
 brew install --cask veracrypt
+brew install aria2
+brew install screen
+
+#---------------
+# Ultilities
+
+brew install --cask hiddenbar
 
 #------------ Remove outdated versions from the cellar.
 brew cleanup

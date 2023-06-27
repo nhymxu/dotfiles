@@ -16,9 +16,7 @@ font-iosevka
 font-juliamono
 font-source-code-pro-for-powerline
 gitahead
-goland
 gswitch
-hiddenbar
 iina
 imageoptim
 
