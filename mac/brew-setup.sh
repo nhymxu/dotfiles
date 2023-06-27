@@ -17,8 +17,12 @@ brew install coreutils
 
 brew install moreutils # Install some other useful utilities like `sponge`.
 brew install findutils # Install GNU `find`, `locate`, `updatedb`, and `xargs`, `g`-prefixed.
-brew install wget --with-iri
+brew install wget
+
 brew install gnupg
+brew install pinentry-mac
+echo "pinentry-program $HOMEBREW_PREFIX/bin/pinentry-mac" > ~/.gnupg/gpg-agent.conf
+gpgconf --kill gpg-agent
 
 #---------------
 # Shell

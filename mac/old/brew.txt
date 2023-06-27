@@ -1,9 +1,0 @@
-# Core utilities
-coreutils
-moreutils
-findutils
-
-
-# Shell
-zsh-completions 
-starship

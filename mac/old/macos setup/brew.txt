@@ -27,7 +27,7 @@ gawk
 git
 git-flow
 git-lfs
-gnupg
+
 gobject-introspection
 golangci-lint
 grep
@@ -57,7 +57,7 @@ nvm
 oci-cli
 php@7.4
 pigz
-pinentry-mac
+
 poetry
 putty
 pv
