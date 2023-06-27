@@ -29,6 +29,8 @@ gpgconf --kill gpg-agent
 
 brew install starship
 
+brew install fzf
+
 #---------------
 # Browser
 
@@ -47,6 +49,8 @@ brew install --cask phpstorm
 brew install --cask goland
 brew install --cask datagrip
 brew install --cask intellij-idea
+
+brew install asdf
 
 #---------------
 # Productivity tools
