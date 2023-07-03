@@ -32,6 +32,8 @@ brew install starship
 brew install fzf
 brew install terminal-notifier
 
+brew install diff-so-fancy
+
 #---------------
 # Browser
 
@@ -46,7 +48,7 @@ brew install --cask postman
 
 brew install --cask visual-studio-code
 brew install --cask pycharm
-brew install --cask phpstorm
+# brew install --cask phpstorm
 brew install --cask goland
 brew install --cask datagrip
 brew install --cask intellij-idea
