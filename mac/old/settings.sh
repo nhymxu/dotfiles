@@ -15,10 +15,6 @@ defaults write com.apple.Dock tilesize -int 28
 # Disable press-and-hold for keys in favor of key repeat
 defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
 
-# Set a blazingly fast keyboard repeat rate
-defaults write NSGlobalDomain KeyRepeat -int 1 # normal minimum is 2 (30 ms)
-defaults write NSGlobalDomain InitialKeyRepeat -int 10 # normal minimum is 15 (225 ms)
-
 # Disable shadow in screenshots
 defaults write com.apple.screencapture disable-shadow -bool true
 
