@@ -54,6 +54,7 @@ brew install --cask datagrip
 brew install --cask intellij-idea
 
 brew install asdf
+adf plugin-add python
 
 #---------------
 # Productivity tools
