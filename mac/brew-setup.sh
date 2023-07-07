@@ -38,7 +38,6 @@ brew install diff-so-fancy
 # Browser
 
 brew install --cask firefox
-brew install --cask microsoft-edge
 
 brew install --cask pritunl # openvpn client
 brew install --cask postman

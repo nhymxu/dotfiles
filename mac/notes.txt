@@ -3,12 +3,11 @@ Commands also provided by macOS and the commands dir, dircolors, vdir have been 
 If you need to use these commands with their normal names, you can add a "gnubin" directory to your PATH with:
   PATH="/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH"
 
-
+# Premium app
 Aldente
 Alfred 5
 CleanMyMac X
 Transmit
-
 
 # Apple Store
 Amphetamine
@@ -23,3 +22,5 @@ EVKey
 Zalo
 i4.cn
 FreeFileSync
+Microsoft Edge
+Google Chrome
