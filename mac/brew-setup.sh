@@ -55,7 +55,9 @@ brew install --cask datagrip
 brew install --cask intellij-idea
 
 brew install asdf
-adf plugin-add python
+asdf plugin-add python
+asdf global python system # using default python version is macOS pre-installed
+
 
 #---------------
 # Productivity tools
