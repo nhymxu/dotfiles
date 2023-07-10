@@ -15,7 +15,10 @@ Bear
 SingleBox
 Spark
 The Unarchiver
+
 CotEditor
+ln -s /Applications/CotEditor.app/Contents/SharedSupport/bin/cot ~/bin/cot
+
 
 # Other tool from website
 EVKey
