@@ -4,10 +4,11 @@ If you need to use these commands with their normal names, you can add a "gnubin
   PATH="/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH"
 
 # Premium app
-Aldente
+Aldente Pro
 Alfred 5
 CleanMyMac X
 Transmit
+Elmedia Player Pro
 
 # Apple Store
 Amphetamine
