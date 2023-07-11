@@ -54,6 +54,8 @@ brew install --cask goland
 brew install --cask datagrip
 brew install --cask intellij-idea
 
+brew install kubectl kubectx
+
 brew install asdf
 asdf plugin-add python
 asdf global python system # using default python version is macOS pre-installed
