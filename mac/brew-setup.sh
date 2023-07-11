@@ -48,6 +48,7 @@ brew install --cask zoom
 # Development
 
 brew install --cask visual-studio-code
+brew install --cask sublime-text
 brew install --cask pycharm
 # brew install --cask phpstorm
 brew install --cask goland
