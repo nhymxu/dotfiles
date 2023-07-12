@@ -75,6 +75,7 @@ brew install --cask iterm2
 # Office
 
 brew install --cask calibre
+brew install obsidian
 
 #---------------
 # Multimedia
