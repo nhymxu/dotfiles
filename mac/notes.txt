@@ -16,6 +16,7 @@ Bear
 SingleBox
 Spark
 The Unarchiver
+Local Send
 
 CotEditor
 ln -s /Applications/CotEditor.app/Contents/SharedSupport/bin/cot ~/bin/cot
