@@ -55,6 +55,9 @@ brew install --cask goland
 brew install --cask datagrip
 brew install --cask intellij-idea
 
+brew install --cask lens
+brew install k9s
+brew install awscli # support connect to EKS
 brew install kubectl kubectx
 
 brew install asdf
