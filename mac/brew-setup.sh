@@ -64,6 +64,10 @@ brew install asdf
 asdf plugin-add python
 asdf global python system # using default python version is macOS pre-installed
 
+# python need openssl
+# export CONFIGURE_OPTS="--with-openssl=$(brew --prefix openssl)"
+# asdf install python 3.9.17
+
 asdf plugin-add php
 brew install pkg-config bison bzip2 freetype gettext libiconv icu4c jpeg libedit libpng libxml2 libzip openssl@1.1 readline webp zlib re2c gd krb5 oniguruma   # require to build php
 
