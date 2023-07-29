@@ -18,6 +18,7 @@ brew install coreutils
 brew install moreutils # Install some other useful utilities like `sponge`.
 brew install findutils # Install GNU `find`, `locate`, `updatedb`, and `xargs`, `g`-prefixed.
 brew install wget
+brew install tree
 
 brew install gnupg
 brew install pinentry-mac
