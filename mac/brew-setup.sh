@@ -48,6 +48,8 @@ brew install --cask zoom
 #---------------
 # Development
 
+brew install orbstack
+
 brew install --cask visual-studio-code
 brew install --cask sublime-text
 brew install --cask pycharm
