@@ -31,6 +31,7 @@ gpgconf --kill gpg-agent
 brew install starship
 
 brew install fzf
+brew install ripgrep
 brew install terminal-notifier
 
 brew install diff-so-fancy
@@ -88,6 +89,7 @@ brew install --cask iterm2
 #---------------
 # Office
 
+brew install --cask gotiengviet
 brew install --cask calibre
 brew install obsidian
 
