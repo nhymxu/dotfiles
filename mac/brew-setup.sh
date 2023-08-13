@@ -61,12 +61,14 @@ brew install --cask intellij-idea
 
 brew install --cask lens
 brew install k9s
-brew install awscli # support connect to EKS
+# support connect to EKS
+brew install awscli
 brew install kubectl kubectx
 
 brew install asdf
 asdf plugin-add python
-asdf global python system # using default python version is macOS pre-installed
+# using default python version is macOS pre-installed
+asdf global python system
 
 # python need openssl
 # export CONFIGURE_OPTS="--with-openssl=$(brew --prefix openssl)"
@@ -83,7 +85,8 @@ brew install mysql-client
 # Productivity tools
 
 brew install --cask 1password 1password-cli
-brew install --cask maccy # clipboard history
+# clipboard history
+brew install --cask maccy
 brew install --cask iterm2
 
 #---------------
@@ -92,6 +95,8 @@ brew install --cask iterm2
 brew install --cask gotiengviet
 brew install --cask calibre
 brew install obsidian
+
+brew install --cask lark
 
 #---------------
 # Multimedia
