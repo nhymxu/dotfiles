@@ -239,7 +239,7 @@ task.executableURL = $.NSURL.alloc.initFileURLWithPath("/usr/bin/networkQuality"
 task.standardOutput = stdout
 task.launchAndReturnError(false)
 
-const dataOut = stdout.fileHandleForReading.readDataToEndOfFile
+const dataOut = stdout.fileHandleForReading.readDataToEndOfFileAndReturnError(false)
 const stringOut = $.NSString.alloc.initWithDataEncoding(dataOut, $.NSUTF8StringEncoding).js
 
 // Prepare JSON
@@ -605,7 +605,7 @@ Examine your internet connection via the `netquality` keyword. Analysis takes a 
 		</dict>
 	</array>
 	<key>version</key>
-	<string>2023.1</string>
+	<string>2023.2</string>
 	<key>webaddress</key>
 	<string>https://github.com/alfredapp/network-quality-workflow/</string>
 </dict>
