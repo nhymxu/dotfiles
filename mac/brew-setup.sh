@@ -36,6 +36,8 @@ brew install terminal-notifier
 
 brew install diff-so-fancy
 
+brew install tmux
+
 #---------------
 # Browser
 
