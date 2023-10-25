@@ -16,33 +16,34 @@ const fileExists = (/** @type {string} */ filePath) => Application("Finder").exi
 
 let output = "";
 /** @param {string} str */
-function logger(str) {
+function log(str) {
 	output += str + "\n";
 }
 
 //──────────────────────────────────────────────────────────────────────────────
 
 /** @type {AlfredRun} */
-// rome-ignore lint/correctness/noUnusedVariables: Alfred run
+// biome-ignore lint/correctness/noUnusedVariables: Alfred run
 function run() {
 	const vaultPath = $.getenv("vault_path");
 	const configFolder = $.getenv("config_folder");
+	const vaultConfig = `${vaultPath}/${configFolder}`;
 
 	// input parameters
-	const appTempPath = app.pathTo("home folder") + "/Library/Application Support/obsidian/";
+	const appSupportPath = app.pathTo("home folder") + "/Library/Application Support/obsidian/";
 	let obsiVer;
 	try {
 		obsiVer = app
-			.doShellScript(`cd '${appTempPath}'; ls *.asar | grep -Eo '(\\d|\\.)*'`)
+			.doShellScript(`cd '${appSupportPath}'; ls *.asar | grep -Eo '(\\d|\\.)*'`)
 			.slice(0, -1)
 			.replaceAll("\n", ";"); // multiple .asars for alpha testers
 	} catch {
 		obsiVer = ".asar file missing";
 	}
 	const macVer = app.doShellScript("sw_vers -productVersion");
-	const dotObsidian = fileExists(`${vaultPath}/${configFolder}/`) ? "exists" : "does NOT exist";
+	const dotObsidian = fileExists(`${vaultConfig}/`) ? "exists" : "does NOT exist";
 
-	const advancedUriJSON = `${vaultPath}/${configFolder}/plugins/obsidian-advanced-uri/manifest.json`;
+	const advancedUriJSON = `${vaultConfig}/plugins/obsidian-advanced-uri/manifest.json`;
 	const advancedUriVer = fileExists(advancedUriJSON)
 		? JSON.parse(readFile(advancedUriJSON)).version
 		: "Advanced URI plugin not installed.";
@@ -50,7 +51,7 @@ function run() {
 		"https://github.com/Vinzent03/obsidian-advanced-uri/releases/latest/download/manifest.json",
 	).version;
 
-	const metadataExJSON = `${vaultPath}/${configFolder}/plugins/metadata-extractor/manifest.json`;
+	const metadataExJSON = `${vaultConfig}/plugins/metadata-extractor/manifest.json`;
 	const metadataExVer = fileExists(metadataExJSON)
 		? JSON.parse(readFile(metadataExJSON)).version
 		: "Metadata Extractor plugin not installed.";
@@ -68,52 +69,57 @@ function run() {
 		"https://api.github.com/repos/chrisgrieser/shimmering-obsidian/tags",
 	)[0].name;
 
-	const workspaceData15 = fileExists(`${vaultPath}/${configFolder}/workspace`);
-	const workspaceData16 = fileExists(`${vaultPath}/${configFolder}/workspace.json`);
+	const workspaceData15 = fileExists(`${vaultConfig}/workspace`);
+	const workspaceData16 = fileExists(`${vaultConfig}/workspace.json`);
 
 	let numberOfJSONS;
 	try {
 		numberOfJSONS = parseInt(app.doShellScript(
-			`ls '${vaultPath}/${configFolder}/plugins/metadata-extractor/' | grep ".json" | grep -v "manifest" | grep -v "^data" | wc -l | tr -d " "`,
+			`ls '${vaultConfig}/plugins/metadata-extractor/' | grep ".json" | grep -v "manifest" | grep -v "^data" | wc -l | tr -d " "`,
 		))
 	} catch (_error) {
-		numberOfJSONS = 0;
+		numberOfJSONS = -1;
 	}
-	const metadataJSON = `${vaultPath}/${configFolder}/plugins/metadata-extractor/metadata.json`;
+	const metadataJSON = `${vaultConfig}/plugins/metadata-extractor/metadata.json`;
 	const metadataStrLen = fileExists(metadataJSON) ? readFile(metadataJSON).length : "no metadata.json";
+	const metadataExtConfigPath = `${vaultConfig}/plugins/metadata-extractor/data.json`;
+	const metadataExtConfig = fileExists(metadataExtConfigPath) ? readFile(`${vaultConfig}/plugins/metadata-extractor/data.json`) : "No Config Found."
 
 	//──────────────────────────────────────────────────────────────────────────────
 
-	logger("");
-	logger("-------------------------------");
-	logger("INTERNAL WORKFLOW CONFIGURATION");
-	logger("Vault Path: " + vaultPath);
-	logger("config folder: " + dotObsidian);
-	logger(`Metadata JSONs: ${numberOfJSONS}/4`);
-	if (numberOfJSONS < 4) logger("Not all metadata not found. Please run `osetup` and retry.");
-	logger("metadata.json String Length: " + metadataStrLen);
-	logger("-------------------------------");
-	logger("WORKSPACE DATA");
-	if (workspaceData15) logger("'workspace' exists");
-	if (workspaceData16) logger("'workspace.json' exists");
-	if (!workspaceData15 && !workspaceData16) logger("none exists");
-	logger("-------------------------------");
-	logger("SYSTEM");
-	logger("macOS: " + macVer);
-	logger("Alfred: " + $.getenv("alfred_version"));
-	logger("-------------------------------");
-	logger("INSTALLED VERSION");
-	logger("Obsidian: " + obsiVer);
-	logger("This Workflow: " + $.getenv("alfred_workflow_version"));
-	logger("Advanced URI Plugin: " + advancedUriVer);
-	logger("Metadata Extractor: " + metadataExVer);
-	logger("-------------------------------");
-	logger("LATEST VERSION");
-	logger(`Obsidian: ${obsiVerOnline} (Insider: ${obsiVerBetaOnline})`);
-	logger("This Workflow: " + workflowVerOnline);
-	logger("Advanced URI Plugin: " + advancedUriVerOnline);
-	logger("Metadata Extractor: " + metadataExVerOnline);
-	logger("-------------------------------");
+	log("");
+	log("-------------------------------");
+	log("INTERNAL WORKFLOW CONFIGURATION");
+	log("Vault Path: " + vaultPath);
+	log("config folder: " + dotObsidian);
+	log(`Metadata JSONs: ${numberOfJSONS}/4`);
+	if (numberOfJSONS < 4) log("Not all metadata found. Please run `osetup` and retry.");
+	log("metadata.json String Length: " + metadataStrLen);
+	log("-------------------------------");
+	log("METADATA EXTRACTOR CONFIG");
+	log(metadataExtConfig)
+	log("-------------------------------");
+	log("WORKSPACE DATA");
+	if (workspaceData15) log("'workspace' exists");
+	if (workspaceData16) log("'workspace.json' exists");
+	if (!(workspaceData15 || workspaceData16)) log("none exists");
+	log("-------------------------------");
+	log("SYSTEM");
+	log("macOS: " + macVer);
+	log("Alfred: " + $.getenv("alfred_version"));
+	log("-------------------------------");
+	log("INSTALLED VERSION");
+	log("Obsidian: " + obsiVer);
+	log("This Workflow: " + $.getenv("alfred_workflow_version"));
+	log("Advanced URI Plugin: " + advancedUriVer);
+	log("Metadata Extractor: " + metadataExVer);
+	log("-------------------------------");
+	log("LATEST VERSION");
+	log(`Obsidian: ${obsiVerOnline} (Insider: ${obsiVerBetaOnline})`);
+	log("This Workflow: " + workflowVerOnline);
+	log("Advanced URI Plugin: " + advancedUriVerOnline);
+	log("Metadata Extractor: " + metadataExVerOnline);
+	log("-------------------------------");
 
-	return output; // JXA direct return
+	return output;
 }

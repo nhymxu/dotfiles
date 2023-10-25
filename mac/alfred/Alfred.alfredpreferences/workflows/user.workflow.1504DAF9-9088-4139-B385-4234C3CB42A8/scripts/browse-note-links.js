@@ -20,7 +20,11 @@ function parentFolder(filePath) {
 	return filePath.split("/").slice(0, -1).join("/");
 }
 
-const alfredMatcher = (/** @type {string} */ str) => " " + str.replace(/[-()_/:.@]/g, " ") + " " + str + " ";
+/** @param {string} str */
+function alfredMatcher(str) {
+	const clean = str.replace(/[-()_.:#/\\;,[\]]/g, " ");
+	return [clean, str].join(" ") + " ";
+}
 const fileExists = (/** @type {string} */ filePath) => Application("Finder").exists(Path(filePath));
 
 /** @param {string} appId */
@@ -39,7 +43,7 @@ const discordReadyLinks = ["Discord", "Discord PTB", "Discord Canary"].some((dis
 //──────────────────────────────────────────────────────────────────────────────
 
 /** @type {AlfredRun} */
-// rome-ignore lint/correctness/noUnusedVariables: Alfred run
+// biome-ignore lint/correctness/noUnusedVariables: Alfred run
 function run() {
 	const vaultPath = $.getenv("vault_path");
 	const configFolder = $.getenv("config_folder");
@@ -53,23 +57,12 @@ function run() {
 	let recentJSON = `${vaultPath}/${configFolder}/workspace.json`;
 	if (!fileExists(recentJSON)) recentJSON = recentJSON.slice(0, -5); // Obsidian 0.16 uses workspace.json → https://discord.com/channels/686053708261228577/716028884885307432/1013906018578743478
 	const superIconFile = $.getenv("supercharged_icon_file");
-	const jsonArray = [];
 
 	//───────────────────────────────────────────────────────────────────────────
-	// GUARD: metadata does not exist since user has not run `osetup`
-	if (!fileExists(metadataJSON)) {
-		return JSON.stringify({
-			items: [
-				{
-					title: "⚠️ No vault metadata found.",
-					subtitle: "Please run the Alfred command `osetup` first. This only has to be done once.",
-					valid: false,
-				},
-			],
-		});
-	}
 
-	//───────────────────────────────────────────────────────────────────────────
+	// ICONS
+	// Recent Files
+	const recentFiles = fileExists(recentJSON) ? JSON.parse(readFile(recentJSON)).lastOpenFiles : [];
 
 	// Supercharged Icons File
 	let superIconList = [];
@@ -79,36 +72,7 @@ function run() {
 			.filter((line) => line.length !== 0);
 	}
 
-	//───────────────────────────────────────────────────────────────────────────
-
-	// create input note JSON
-	const inputPath = $.getenv("inputPath");
-
-	const metaJSON = JSON.parse(readFile(metadataJSON));
-	const inputNoteJSON = metaJSON.filter((/** @type {{ relativePath: string}} */ note) =>
-		note.relativePath.includes(inputPath),
-	)[0];
-
-	// create list of links and backlinks and merge them
-	let bothLinksList = [];
-	let linkList = [];
-	let backlinkList = [];
-	if (inputNoteJSON.links) {
-		linkList = inputNoteJSON.links
-			.filter((/** @type {{ relativePath: string; }} */ line) => line.relativePath)
-			.map((/** @type {{ relativePath: string; }} */ item) => item.relativePath);
-		bothLinksList.push(...linkList);
-	}
-	if (inputNoteJSON.backlinks) {
-		backlinkList = inputNoteJSON.backlinks.map(
-			(/** @type {{ relativePath: string; }} */ item) => item.relativePath,
-		);
-		bothLinksList.push(...backlinkList);
-	}
-	bothLinksList = [...new Set(bothLinksList)]; // only unique items
-
-	//──────────────────────────────────────────────────────────────────────────────
-	// BOOKMARKS & STARS
+	// bookmarks & stars
 	let stars = [];
 	const bookmarks = [];
 	if (fileExists(starredJSON)) {
@@ -134,30 +98,46 @@ function run() {
 	}
 	const starsAndBookmarks = [...new Set([...stars, ...bookmarks])];
 
-	//──────────────────────────────────────────────────────────────────────────────
+	//───────────────────────────────────────────────────────────────────────────
 
-	const recentFiles = fileExists(recentJSON) ? JSON.parse(readFile(recentJSON)).lastOpenFiles : [];
+	// create input note JSON
+	const jsonArray = [];
+	const inputPath = $.getenv("inputPath");
+
+	const metaJSON = JSON.parse(readFile(metadataJSON));
+	const inputNoteJSON = metaJSON.filter((/** @type {{ relativePath: string}} */ note) =>
+		note.relativePath.includes(inputPath),
+	)[0];
+
+	// create list of links and backlinks and merge them
+	let bothLinksList = [];
+	let linkList = [];
+	let backlinkList = [];
+	if (inputNoteJSON.links) {
+		linkList = inputNoteJSON.links
+			.filter((/** @type {{ relativePath: string; }} */ line) => line.relativePath)
+			.map((/** @type {{ relativePath: string; }} */ item) => item.relativePath);
+		bothLinksList.push(...linkList);
+	}
+	if (inputNoteJSON.backlinks) {
+		backlinkList = inputNoteJSON.backlinks.map(
+			(/** @type {{ relativePath: string; }} */ item) => item.relativePath,
+		);
+		bothLinksList.push(...backlinkList);
+	}
+	bothLinksList = [...new Set(bothLinksList)]; // only unique items
 
 	// get external links
-	const externalLinkList = [];
-	readFile(vaultPath + "/" + inputPath)
+	const externalLinkList = readFile(vaultPath + "/" + inputPath)
 		.match(externalLinkRegex)
 		.map((mdlink) => {
 			const [title, url] = mdlink.split("](");
-			externalLinkList.push({
+			return {
 				title: title.slice(1),
 				url: url.slice(0, -1),
-			});
+			};
 		});
-
-	// guard clause if no links of any sort (should only occur with "ol" command though)
-	if (!bothLinksList.length && !externalLinkList.length) {
-		jsonArray.push({
-			title: "No links recognized in the file.",
-			subtitle: "Press [Esc] to abort.",
-		});
-		return JSON.stringify({ items: jsonArray });
-	}
+	console.log("🪓 externalLinkList:", JSON.stringify(externalLinkList));
 
 	//───────────────────────────────────────────────────────────────────────────
 	// create JSON for Script Filter
@@ -240,19 +220,12 @@ function run() {
 
 	// add external Links to Script-Filter JSON
 	externalLinkList.forEach((link) => {
-		const title = link[0];
-		const url = link[1];
+		const title = link.title;
+		const url = link.url;
 
 		// URLs discord ready
-		let isDiscordReady;
-		let shareURL;
-		if (discordReadyLinks) {
-			shareURL = "<" + url + ">";
-			isDiscordReady = " (discord ready)";
-		} else {
-			isDiscordReady = "";
-			shareURL = url;
-		}
+		const isDiscordReady = discordReadyLinks ? " (discord ready)" : "";
+		const shareURL = discordReadyLinks ? "<" + url + ">" : url;
 
 		const modifierInvalid = {
 			valid: false,
