@@ -4,5 +4,7 @@
 <dict>
 	<key>autoUpdate</key>
 	<true/>
+	<key>showInPalette</key>
+	<true/>
 </dict>
 </plist>
