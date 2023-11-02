@@ -105,6 +105,7 @@ brew install --cask lark
 # Multimedia
 
 brew install ffmpeg
+brew install youtube-dl
 
 #---------------
 # Other system tools
