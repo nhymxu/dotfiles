@@ -4,6 +4,8 @@
 <dict>
 	<key>bundleid</key>
 	<string>timer.workflow</string>
+	<key>category</key>
+	<string>Productivity</string>
 	<key>connections</key>
 	<dict>
 		<key>0CFDEE92-9951-4E7E-8620-D385EA1AE8E3</key>
@@ -953,6 +955,10 @@ function run(argv) {
 				<false/>
 				<key>focusedappvariablename</key>
 				<string></string>
+				<key>hotkey</key>
+				<integer>0</integer>
+				<key>hotmod</key>
+				<integer>0</integer>
 				<key>leftcursor</key>
 				<false/>
 				<key>modsmode</key>
@@ -1151,8 +1157,6 @@ function run(argv) {
 			<integer>3</integer>
 		</dict>
 		<dict>
-			<key>config</key>
-			<dict/>
 			<key>type</key>
 			<string>alfred.workflow.utility.junction</string>
 			<key>uid</key>
@@ -1505,6 +1509,10 @@ function run(argv) {
 				<false/>
 				<key>focusedappvariablename</key>
 				<string></string>
+				<key>hotkey</key>
+				<integer>0</integer>
+				<key>hotmod</key>
+				<integer>0</integer>
 				<key>leftcursor</key>
 				<false/>
 				<key>modsmode</key>
@@ -1682,6 +1690,10 @@ function run(argv) {
 				<false/>
 				<key>focusedappvariablename</key>
 				<string></string>
+				<key>hotkey</key>
+				<integer>0</integer>
+				<key>hotmod</key>
+				<integer>0</integer>
 				<key>leftcursor</key>
 				<false/>
 				<key>modsmode</key>
@@ -1799,8 +1811,6 @@ function run(argv) {
 			<integer>1</integer>
 		</dict>
 		<dict>
-			<key>config</key>
-			<dict/>
 			<key>type</key>
 			<string>alfred.workflow.utility.hidealfred</string>
 			<key>uid</key>
@@ -2313,8 +2323,6 @@ function run(argv) {
 			<integer>1</integer>
 		</dict>
 		<dict>
-			<key>config</key>
-			<dict/>
 			<key>type</key>
 			<string>alfred.workflow.utility.hidealfred</string>
 			<key>uid</key>
@@ -2594,7 +2602,7 @@ console.log(JSON.stringify(argv));
 						<key>matchmode</key>
 						<integer>5</integer>
 						<key>matchstring</key>
-						<string>1</string>
+						<string></string>
 						<key>outputlabel</key>
 						<string>Pomodoro</string>
 						<key>uid</key>
@@ -2702,7 +2710,7 @@ console.log(JSON.stringify(argv));
 						<key>matchmode</key>
 						<integer>5</integer>
 						<key>matchstring</key>
-						<string>1</string>
+						<string></string>
 						<key>outputlabel</key>
 						<string>fire</string>
 						<key>uid</key>

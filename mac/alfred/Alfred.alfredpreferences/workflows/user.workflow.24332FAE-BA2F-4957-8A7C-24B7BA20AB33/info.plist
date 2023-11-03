@@ -4,6 +4,8 @@
 <dict>
 	<key>bundleid</key>
 	<string>com.paulrudy.ToggleDoNotDisturb</string>
+	<key>category</key>
+	<string>Tools</string>
 	<key>connections</key>
 	<dict>
 		<key>0FF02387-6375-4B82-8DE2-5E624F259777</key>
@@ -335,6 +337,8 @@ Script from: https://gist.github.com/Zettt/fd9979100d4603e548d6</string>
 			<integer>80</integer>
 		</dict>
 	</dict>
+	<key>userconfigurationconfig</key>
+	<array/>
 	<key>variablesdontexport</key>
 	<array/>
 	<key>version</key>

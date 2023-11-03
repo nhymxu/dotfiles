@@ -4,6 +4,8 @@
 <dict>
 	<key>bundleid</key>
 	<string>com.alfredapp.vitor.networkquality</string>
+	<key>category</key>
+	<string>Internet</string>
 	<key>connections</key>
 	<dict>
 		<key>325E35A2-6404-4314-975D-116B8063FBD6</key>
@@ -482,8 +484,6 @@ JSON.stringify({ variables: { full_info: lines.join("\n") }, items: sfItems })</
 			<integer>1</integer>
 		</dict>
 		<dict>
-			<key>config</key>
-			<dict/>
 			<key>type</key>
 			<string>alfred.workflow.utility.hidealfred</string>
 			<key>uid</key>

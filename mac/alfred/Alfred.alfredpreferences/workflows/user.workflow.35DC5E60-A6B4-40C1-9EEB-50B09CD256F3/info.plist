@@ -4,6 +4,8 @@
 <dict>
 	<key>bundleid</key>
 	<string>com.macitbetter.betterzip.alfred</string>
+	<key>category</key>
+	<string>Tools</string>
 	<key>connections</key>
 	<dict>
 		<key>070037CF-5104-494D-AD16-5E0E8FC34F2D</key>
@@ -128,6 +130,56 @@
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>concurrently</key>
+				<true/>
+				<key>escaping</key>
+				<integer>68</integer>
+				<key>script</key>
+				<string>import ScriptingBridge
+import time
+import urllib
+import os
+import sys
+
+preset = os.environ['preset'].decode('utf-8')
+items = os.environ['items'].decode('utf-8').split('\t')
+
+BetterZip = ScriptingBridge.SBApplication.applicationWithBundleIdentifier_(os.environ['bundleId'])
+archives = BetterZip.queuedArchive_withPreset_withOptions_showUi_(items, preset, {}, True)</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>3</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>070037CF-5104-494D-AD16-5E0E8FC34F2D</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>acceptsmulti</key>
+				<integer>1</integer>
+				<key>filetypes</key>
+				<array/>
+				<key>name</key>
+				<string>Compress with BetterZip</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.action</string>
+			<key>uid</key>
+			<string>AB137610-5935-4FEF-823F-6F1E671D70F0</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>alfredfiltersresults</key>
 				<true/>
 				<key>alfredfiltersresultsmatchmode</key>
@@ -191,50 +243,20 @@ print (json.dumps({'items':items}))
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>concurrently</key>
-				<true/>
-				<key>escaping</key>
-				<integer>68</integer>
-				<key>script</key>
-				<string>import ScriptingBridge
-import time
-import urllib
-import os
-import sys
-
-preset = os.environ['preset'].decode('utf-8')
-items = os.environ['items'].decode('utf-8').split('\t')
-
-BetterZip = ScriptingBridge.SBApplication.applicationWithBundleIdentifier_(os.environ['bundleId'])
-archives = BetterZip.queuedArchive_withPreset_withOptions_showUi_(items, preset, {}, True)</string>
-				<key>scriptargtype</key>
-				<integer>0</integer>
-				<key>scriptfile</key>
+				<key>argument</key>
 				<string></string>
-				<key>type</key>
-				<integer>3</integer>
+				<key>passthroughargument</key>
+				<false/>
+				<key>variables</key>
+				<dict>
+					<key>items</key>
+					<string>{query}</string>
+				</dict>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.action.script</string>
+			<string>alfred.workflow.utility.argument</string>
 			<key>uid</key>
-			<string>070037CF-5104-494D-AD16-5E0E8FC34F2D</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>acceptsmulti</key>
-				<true/>
-				<key>filetypes</key>
-				<array/>
-				<key>name</key>
-				<string>Compress with BetterZip</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.trigger.action</string>
-			<key>uid</key>
-			<string>AB137610-5935-4FEF-823F-6F1E671D70F0</string>
+			<string>8C7ACF45-58D2-4434-9369-F899B37EF64A</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
@@ -261,28 +283,8 @@ archives = BetterZip.queuedArchive_withPreset_withOptions_showUi_(items, preset,
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>argument</key>
-				<string></string>
-				<key>passthroughargument</key>
-				<false/>
-				<key>variables</key>
-				<dict>
-					<key>items</key>
-					<string>{query}</string>
-				</dict>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.utility.argument</string>
-			<key>uid</key>
-			<string>8C7ACF45-58D2-4434-9369-F899B37EF64A</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>acceptsmulti</key>
-				<true/>
+				<integer>1</integer>
 				<key>filetypes</key>
 				<array>
 					<string>+public.archive</string>
@@ -508,6 +510,8 @@ print (json.dumps({'items':items}))</string>
 			<integer>340</integer>
 		</dict>
 	</dict>
+	<key>userconfigurationconfig</key>
+	<array/>
 	<key>variables</key>
 	<dict>
 		<key>bundleId</key>

@@ -4,6 +4,8 @@
 <dict>
 	<key>bundleid</key>
 	<string></string>
+	<key>category</key>
+	<string>Tools</string>
 	<key>connections</key>
 	<dict>
 		<key>0375395E-532B-474F-9424-C6C124C8877D</key>
@@ -84,6 +86,8 @@
 				<string>[{"imagefile":"c26bb21554e5e21a81cf7576f85bf1149d2bc023.png","title":"Amphetamine on","arg":"on","subtitle":"turn on"},{"imagefile":"8de20541180719b96ae0b818dcedbcef74d63ec7.png","title":"Amphetamine off","arg":"off","subtitle":"turn off"}]</string>
 				<key>keyword</key>
 				<string>am</string>
+				<key>matchmode</key>
+				<integer>0</integer>
 				<key>runningsubtext</key>
 				<string></string>
 				<key>subtext</key>
@@ -170,6 +174,26 @@ end alfred_script</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>applescript</key>
+				<string>on alfred_script(q)
+  tell application "Amphetamine"
+	start new session with options {duration:q, interval:minutes, displaySleepAllowed:false}
+  end tell
+  "Screen will be active for " &amp; q &amp; " minutes."
+end alfred_script</string>
+				<key>cachescript</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.applescript</string>
+			<key>uid</key>
+			<string>0375395E-532B-474F-9424-C6C124C8877D</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>lastpathcomponent</key>
 				<false/>
 				<key>onlyshowifquerypopulated</key>
@@ -185,26 +209,6 @@ end alfred_script</string>
 			<string>alfred.workflow.output.notification</string>
 			<key>uid</key>
 			<string>E86F2400-5DA6-41CD-A0CB-9EB1798E0AA7</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>applescript</key>
-				<string>on alfred_script(q)
-  tell application "Amphetamine"
-	start new session with options {duration:q, interval:minutes, displaySleepAllowed:false}
-  end tell
-  "Screen will be active for " &amp; q &amp; " minutes."
-end alfred_script</string>
-				<key>cachescript</key>
-				<false/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.applescript</string>
-			<key>uid</key>
-			<string>0375395E-532B-474F-9424-C6C124C8877D</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
@@ -256,6 +260,8 @@ end alfred_script</string>
 			<integer>250</integer>
 		</dict>
 	</dict>
+	<key>userconfigurationconfig</key>
+	<array/>
 	<key>webaddress</key>
 	<string>https://shisaq.github.io</string>
 </dict>

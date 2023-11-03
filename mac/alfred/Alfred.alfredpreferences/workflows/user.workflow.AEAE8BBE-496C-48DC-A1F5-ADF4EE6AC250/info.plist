@@ -4,6 +4,8 @@
 <dict>
 	<key>bundleid</key>
 	<string>com.fniephaus.brightness</string>
+	<key>category</key>
+	<string>Tools</string>
 	<key>connections</key>
 	<dict>
 		<key>07FD9812-C0F5-4E42-8CB5-A3670C4109E7</key>
@@ -37,6 +39,8 @@
 				<false/>
 				<key>alfredfiltersresultsmatchmode</key>
 				<integer>0</integer>
+				<key>argumenttreatemptyqueryasnil</key>
+				<false/>
 				<key>argumenttrimmode</key>
 				<integer>0</integer>
 				<key>argumenttype</key>
@@ -75,7 +79,7 @@
 			<key>uid</key>
 			<string>07FD9812-C0F5-4E42-8CB5-A3670C4109E7</string>
 			<key>version</key>
-			<integer>2</integer>
+			<integer>3</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -120,6 +124,8 @@
 			<real>10</real>
 		</dict>
 	</dict>
+	<key>userconfigurationconfig</key>
+	<array/>
 	<key>variables</key>
 	<dict>
 		<key>brightness_levels</key>

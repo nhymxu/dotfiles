@@ -4,6 +4,8 @@
 <dict>
 	<key>bundleid</key>
 	<string>com.chrisbro.bear</string>
+	<key>category</key>
+	<string>Productivity</string>
 	<key>connections</key>
 	<dict>
 		<key>1A741966-5341-40BC-996D-68EAB30F62AA</key>
@@ -110,12 +112,14 @@
 			<dict>
 				<key>browser</key>
 				<string></string>
+				<key>skipqueryencode</key>
+				<false/>
+				<key>skipvarencode</key>
+				<false/>
 				<key>spaces</key>
 				<string></string>
 				<key>url</key>
 				<string>bear://x-callback-url/open-note?id={query}</string>
-				<key>utf8</key>
-				<true/>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.action.openurl</string>
@@ -362,6 +366,8 @@ To install, download a released alfred-bear.alfredworkflow and double-click to o
 			<integer>310</integer>
 		</dict>
 	</dict>
+	<key>userconfigurationconfig</key>
+	<array/>
 	<key>variablesdontexport</key>
 	<array/>
 	<key>version</key>
