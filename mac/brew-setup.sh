@@ -67,6 +67,8 @@ brew install k9s
 brew install awscli
 brew install kubectl kubectx
 
+brew install xo/xo/usql
+
 brew install asdf
 asdf plugin-add python
 # using default python version is macOS pre-installed
