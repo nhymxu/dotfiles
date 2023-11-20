@@ -122,5 +122,11 @@ brew install screen
 
 brew install --cask hiddenbar
 
+#---------------
+# Fonts
+
+brew tap homebrew/cask-fonts
+brew install --cask font-victor-mono
+
 #------------ Remove outdated versions from the cellar.
 brew cleanup
