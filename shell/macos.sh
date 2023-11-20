@@ -39,18 +39,20 @@ alias shell-reload="exec ${SHELL} -l"
 # Print each PATH entry on a separate line
 alias print-path='echo -e ${PATH//:/\\n}'
 
-# Upgrade / Update outdated casks installed. 
+# Upgrade / Update outdated casks installed.
 #alias brew_upgrade_cask="brew upgrade $(brew outdated --cask --greedy --quiet)"
 alias brew_upgrade_cask="brew outdated --cask --greedy --quiet | xargs -n1 brew upgrade --cask"
 
 alias brew_upgrade_all="brew update && brew upgrade && brew upgrade --cask --greedy"
+
+alias update='sudo softwareupdate -i -a; brew update; brew upgrade; brew upgrade --cask --greedy; brew cleanup'
 
 renice_ggbackup() {
     if [ -z "$1" ]; then
         for f in $(pgrep 'Backup and Sync'; pgrep 'FinderSyncAPIExtension'); do renice +20 -p $f; done
         return;
     fi
-    
+
     for f in $(pgrep 'Backup and Sync'; pgrep 'FinderSyncAPIExtension'); do renice +${1} -p $f; done
 }
 
@@ -69,3 +71,12 @@ alias -g NOTIF=';terminal-notifier -group endCommandNotif -activate com.apple.Te
 alias spotoff="sudo mdutil -a -i off"
 # Enable Spotlight
 alias spoton="sudo mdutil -a -i on"
+
+# Canonical hex dump; some systems have this symlinked
+command -v hd > /dev/null || alias hd="hexdump -C"
+
+# macOS has no `md5sum`, so use `md5` as a fallback
+command -v md5sum > /dev/null || alias md5sum="md5"
+
+# macOS has no `sha1sum`, so use `shasum` as a fallback
+command -v sha1sum > /dev/null || alias sha1sum="shasum"
