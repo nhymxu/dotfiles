@@ -3,9 +3,20 @@
 	pager = diff-so-fancy | less --tabs=4 -RFX
 	autocrlf = input
 
+	# Make `git rebase` safer on macOS.
+	# More info: <http://www.git-tower.com/blog/make-git-rebase-safe-on-osx/>
+	trustctime = false
+
+	# Speed up commands involving untracked files such as `git status`.
+	# https://git-scm.com/docs/git-update-index#_untracked_cache
+	untrackedCache = true
+
 [push]
 	default = simple
 	autoSetupRemote = true
+
+	# Make `git push` push relevant annotated tags when pushing branches out.
+	followTags = true
 
 [http]
 
@@ -90,8 +101,21 @@
 [help]
 	# Automatically correct and execute mistyped commands.
 	autocorrect = 1
+
 [init]
 	defaultBranch = main
 
 [merge]
+	# Include summaries of merged commits in newly created merge commit messages
+	log = true
+
+	# Use diff style which includes merge base
 	conflictStyle = zdiff3
+
+[diff]
+	# Detect copies as well as renames.
+	renames = copies
+
+[diff "bin"]
+	# Use `hexdump` to diff binary files.
+	textconv = hexdump -v -C
