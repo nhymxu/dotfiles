@@ -116,6 +116,7 @@ brew install --cask itsycal
 brew install --cask veracrypt
 brew install aria2
 brew install screen
+brew install m-cli
 
 #---------------
 # Ultilities
