@@ -151,3 +151,5 @@ function listening() {
         echo "Usage: listening [pattern]"
     fi
 }
+
+alias docker-clean="docker system prune -f"
