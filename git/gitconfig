@@ -47,6 +47,12 @@
 [include]
     path = .gitconfig_local
 
+[includeIf "gitdir/i:~/work/cpl/"]
+	path = ~/.gitconfig-work
+
+[includeIf "gitdir/i:~/workspace/cpl/"]
+	path = ~/.gitconfig-work
+
 [alias]
 	p = !git pull --ff-only
 	fixup = !sh -c 'REV=$(git rev-parse $1) && git commit --fixup $@ && git rebase -i --autostash --autosquash $REV^' -
