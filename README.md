@@ -13,6 +13,9 @@
 ### zsh plugin
 
 ```shell
+[[ -r ~/.config/zsh-snap/znap.zsh ]] ||
+    git clone --depth 1 -- https://github.com/marlonrichert/zsh-snap.git ~/.config/zsh-snap
+
 source ~/.config/zsh-snap/zsh-snap/znap.zsh
 
 znap source Aloxaf/fzf-tab
