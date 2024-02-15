@@ -55,6 +55,14 @@ children = "!bash -c 'c=${1:-HEAD}; set -- $(git rev-list --all --not \"$c\"^@ -
 
 Git commits are directly tied to their parents, making it easy to navigate backwards through the history. But what if you've checked out some random commit and want to move forwards instead? `git children` will identify all known commits which have the current `HEAD` as their parent!
 
+## git nah
+
+The ultimate nah alias goes above and beyond the simple git reset --hard, and does a few more things:
+
+- Do a --hard reset
+- Run clean -df to clean up directories and files
+- Run rebase --abort if you have a rebase in progress
+
 ## git lg
 
 ```shell
@@ -173,10 +181,10 @@ docs: Update README with contributing instructions
 # ----------------------------------------------------------
 # Body - More detailed description, if necessary
 # ----------------------------------------------------------
-#   * Motivation behind changes, more detail into how 
+#   * Motivation behind changes, more detail into how
 # functionality might be affected, etc.
 # ----------------------------------------------------------
-Adds a CONTRIBUTING.md with PR best practices, code style 
+Adds a CONTRIBUTING.md with PR best practices, code style
 guide, and code of conduct for contributors.
 
 # ----------------------------------------------------------
