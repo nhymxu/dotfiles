@@ -15,6 +15,8 @@
 ```shell
 source ~/.config/zsh-snap/zsh-snap/znap.zsh
 
+znap source Aloxaf/fzf-tab
+
 znap source marlonrichert/zsh-autocomplete
 znap source marlonrichert/zsh-edit
 
