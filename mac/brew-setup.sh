@@ -123,6 +123,7 @@ brew install m-cli
 #---------------
 # Ultilities
 
+brew install eget  # easy pre-built binary installation
 brew install --cask hiddenbar
 
 #---------------
