@@ -33,6 +33,7 @@ brew install starship
 brew install fzf
 brew install ripgrep
 brew install terminal-notifier
+brew install the_silver_searcher
 
 brew install diff-so-fancy
 

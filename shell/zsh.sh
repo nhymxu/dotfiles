@@ -74,3 +74,7 @@ fi
 # if hash pipenv 2>/dev/null; then
 #     eval "$(pipenv --completion)"
 # fi
+
+if command -v ag > /dev/null 2>&1; then
+    export FZF_DEFAULT_COMMAND='ag --hidden -g ""'
+fi
