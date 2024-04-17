@@ -3,18 +3,20 @@
 # 50-character subject line
 # ----------------------------------------------------------
 #    * feat             A new feature - SemVar PATCH
-#    * fix              A bug fix - SemVar MINOR
-#    * BREAKING CHANGE  Breaking API change - SemVar MAJOR
+#    * fix               A bug fix - SemVar MINOR
 #    * docs             Change to documentation only
-#    * style            Change to style (whitespace, etc.)
-#    * refactor         Change not related to a bug or feat
-#    * perf             Change that affects performance
+#    * style            Change to style (whitespace, etc.). Do not affect the code’s functionality (e.g., formatting).
+#    * refactor         Change not related to a bug or feat. Code modifications without changing its behavior
+#    * perf             Change that affects performance. Performance improvements
 #    * test             Change that adds/modifies tests
-#    * build            Change to build system
+#    * build            Change to build system. Related to build processes or tools
 #    * ci               Change to CI pipeline/workflow
-#    * chore            General tooling/config/min refactor
+#    * chore            General tooling/config/min refactor. Regular maintenance or administrative tasks
+#
+#    * BREAKING CHANGE  Breaking API change - SemVar MAJOR
 #    * revert           Reverting things
 # ----------------------------------------------------------
+
 
 # ----------------------------------------------------------
 # Body - More description, if necessary
