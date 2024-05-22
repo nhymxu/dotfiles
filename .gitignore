@@ -2,3 +2,6 @@ vim/plugged
 *.zwc
 
 .vscode
+
+# alfred chatgpt
+mac/alfred/Alfred.alfredpreferences/workflows/user.workflow.9FA15761-18C0-4CC9-8791-0C7DBCE57352/prefs.plist
