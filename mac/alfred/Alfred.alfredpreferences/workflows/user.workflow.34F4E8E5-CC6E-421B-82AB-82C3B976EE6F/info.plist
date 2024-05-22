@@ -978,6 +978,8 @@ echo '{
 				<integer>1</integer>
 				<key>scriptfile</key>
 				<string></string>
+				<key>skipuniversalaction</key>
+				<true/>
 				<key>subtext</key>
 				<string>Include or exclude vaults from results</string>
 				<key>title</key>
@@ -1001,7 +1003,10 @@ echo '{
 		</dict>
 		<dict>
 			<key>config</key>
-			<dict/>
+			<dict>
+				<key>unstackview</key>
+				<false/>
+			</dict>
 			<key>type</key>
 			<string>alfred.workflow.utility.hidealfred</string>
 			<key>uid</key>
@@ -1239,6 +1244,8 @@ echo '{
 				<integer>1</integer>
 				<key>scriptfile</key>
 				<string></string>
+				<key>skipuniversalaction</key>
+				<true/>
 				<key>subtext</key>
 				<string>Include or exclude accounts from results</string>
 				<key>title</key>
@@ -1280,7 +1287,10 @@ echo '{
 		</dict>
 		<dict>
 			<key>config</key>
-			<dict/>
+			<dict>
+				<key>unstackview</key>
+				<false/>
+			</dict>
 			<key>type</key>
 			<string>alfred.workflow.utility.hidealfred</string>
 			<key>uid</key>
@@ -1549,6 +1559,8 @@ echo '{
 				<integer>1</integer>
 				<key>scriptfile</key>
 				<string></string>
+				<key>skipuniversalaction</key>
+				<true/>
 				<key>subtext</key>
 				<string>Show your 1Password items</string>
 				<key>title</key>
@@ -2096,6 +2108,8 @@ echo "${new_items_hash}" &gt; "${items_hash_file}"</string>
 				<integer>2</integer>
 				<key>keyword</key>
 				<string>!1pdiagnostic</string>
+				<key>skipuniversalaction</key>
+				<true/>
 				<key>subtext</key>
 				<string>Result will be copied to the clipboard</string>
 				<key>text</key>
@@ -2337,11 +2351,11 @@ Interact with your 1Password items via the `1p` keyword.
 
 ![Alfred search for 1p](images/about/1p.png)
 
-* &lt;kbd&gt;↩&lt;/kbd&gt;: Open and Fill.
-* &lt;kbd&gt;⌘&lt;/kbd&gt;&lt;kbd&gt;↩&lt;/kbd&gt;: View in 1Password.
-* &lt;kbd&gt;⌥&lt;/kbd&gt;&lt;kbd&gt;↩&lt;/kbd&gt;: Copy Password.
-* &lt;kbd&gt;⌃&lt;/kbd&gt;&lt;kbd&gt;↩&lt;/kbd&gt;: Copy Username.
-* &lt;kbd&gt;⇧&lt;/kbd&gt;&lt;kbd&gt;↩&lt;/kbd&gt;: Copy One-Time Password
+* &lt;kbd&gt;↩&lt;/kbd&gt; Open and Fill.
+* &lt;kbd&gt;⌘&lt;/kbd&gt;&lt;kbd&gt;↩&lt;/kbd&gt; View in 1Password.
+* &lt;kbd&gt;⌥&lt;/kbd&gt;&lt;kbd&gt;↩&lt;/kbd&gt; Copy Username.
+* &lt;kbd&gt;⌃&lt;/kbd&gt;&lt;kbd&gt;↩&lt;/kbd&gt; Copy Password.
+* &lt;kbd&gt;⇧&lt;/kbd&gt;&lt;kbd&gt;↩&lt;/kbd&gt; Copy One-Time Password
 
 Uncommon but useful actions, such as toggling vaults, can be accessed with `:1pextras`.
 
@@ -3030,7 +3044,7 @@ Changes come into effect on next cache update.</string>
 				<key>required</key>
 				<false/>
 				<key>text</key>
-				<string>Check for 1Password modifications and offer to update data</string>
+				<string>Check for 1Password modifications and offer to update</string>
 			</dict>
 			<key>description</key>
 			<string></string>
@@ -3042,10 +3056,8 @@ Changes come into effect on next cache update.</string>
 			<string>auto_refresh</string>
 		</dict>
 	</array>
-	<key>variablesdontexport</key>
-	<array/>
 	<key>version</key>
-	<string>2023.11</string>
+	<string>2024.1</string>
 	<key>webaddress</key>
 	<string>https://github.com/alfredapp/1password-workflow/</string>
 </dict>

@@ -5,7 +5,7 @@ app.includeStandardAdditions = true;
 
 /** @param {string} str */
 function alfredMatcher(str) {
-	const clean = str.replace(/[-()_.:#/\\;,[\]]/g, " ");
+	const clean = str.replace(/[^\w\s]+/g, " ");
 	return [clean, str].join(" ") + " ";
 }
 
@@ -18,23 +18,31 @@ function run() {
 	/** @type AlfredItem[] */
 	const externalLinks = app
 		// PERF considered `rg`, but `grep` alone is actually surprisingly fast
-		// already, making `grep` potentially a better choice since it does not
-		// add a dependency
-		.doShellScript(`cd "${vaultPath}" && grep -Eoh "\\[[^[]*?\\]\\(http[^)]*\\)" ./**/*.md`)
+		// already, making `grep` a better choice since it does not add a dependency
+		.doShellScript(`cd "${vaultPath}" && grep "\\[[^[]*?\\]\\(http[^)]*\\)" \
+		--include=\\*.md --recursive --line-number --only-matching --extended-regexp .`)
 		.split("\r")
-		.map((mdlink) => {
-			const [_, title, url] = mdlink.match(/\[([^[]*)\]\((.*)\)/);
+		.map((line) => {
+			const [filename, lnum, ...mdLink] = line.split(":");
+			const [_, title, url] = mdLink.join(":").match(/\[([^[]*)\]\((.*)\)/);
+
 			return {
 				title: title,
-				subtitle: url,
+				subtitle: `${filename.slice(0, 30)}  ·  ${url.slice(8)}`,
 				arg: url,
-				match: alfredMatcher(title) + alfredMatcher(url),
-				uid: mdlink,
+				match: alfredMatcher(title) + alfredMatcher(filename) + alfredMatcher(url),
+				uid: line,
 				mods: {
-					cmd: { arg: mdlink },
+					cmd: { arg: filename + ":" + lnum },
 				},
 			};
 		});
 
-	return JSON.stringify({ items: externalLinks });
+	return JSON.stringify({
+		items: externalLinks,
+		cache: {
+			seconds: 300,
+			loosereload: true,
+		},
+	});
 }

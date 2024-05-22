@@ -1,0 +1,4 @@
+### Changelog
+- **fix**: `o` search broken
+- **chore**: Updated documentation index
+- **fix**: bug-report template

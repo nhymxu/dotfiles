@@ -1,22 +1,20 @@
 #!/usr/bin/env osascript -l JavaScript
-
 ObjC.import("stdlib");
 const app = Application.currentApplication();
 app.includeStandardAdditions = true;
-
 //──────────────────────────────────────────────────────────────────────────────
 
 /** @param {string} str */
 function alfredMatcher(str) {
 	if (!str) return "";
 	const clean = str.replace(/[-()_.:#/\\;,[\]]/g, " ");
-	const camelCaseSeperated = str.replace(/([A-Z])/g, " $1");
-	return [clean, camelCaseSeperated, str].join(" ") + " ";
+	const camelCaseSeparated = str.replace(/([A-Z])/g, " $1");
+	return [clean, camelCaseSeparated, str].join(" ") + " ";
 }
 
 /** @param {string} url */
 function onlineJSON(url) {
-	return JSON.parse(app.doShellScript('curl -s "' + url + '"'));
+	return JSON.parse(app.doShellScript(`curl -sL "${url}"`));
 }
 
 /** @param {number} num */
@@ -37,17 +35,11 @@ function readFile(path) {
 	return ObjC.unwrap(str);
 }
 
-/** @param {string} filepath @param {string} text */
-function writeToFile(filepath, text) {
-	const str = $.NSString.alloc.initWithUTF8String(text);
-	str.writeToFileAtomicallyEncodingError(filepath, true, $.NSUTF8StringEncoding, null);
-}
-
 /** @param {string} appId */
 function SafeApplication(appId) {
 	try {
 		return Application(appId);
-	} catch (_error) {
+	} catch {
 		return null;
 	}
 }
@@ -55,42 +47,11 @@ const discordReadyLinks = ["Discord", "Discord PTB", "Discord Canary"].some((dis
 	SafeApplication(discordApp)?.frontmost(),
 );
 
-function ensureCacheFolderExists() {
-	const finder = Application("Finder");
-	const cacheDir = $.getenv("alfred_workflow_cache");
-	if (!finder.exists(Path(cacheDir))) {
-		console.log("Cache Dir does not exist and is created.");
-		const cacheDirBasename = $.getenv("alfred_workflow_bundleid");
-		const cacheDirParent = cacheDir.slice(0, -cacheDirBasename.length);
-		finder.make({
-			new: "folder",
-			at: Path(cacheDirParent),
-			withProperties: { name: cacheDirBasename },
-		});
-	}
-}
-
-/** @param {string} path */
-function cacheIsOutdated(path) {
-	const cacheAgeThresholdHours = 24;
-	ensureCacheFolderExists();
-	const cacheObj = Application("System Events").aliases[path];
-	if (!cacheObj.exists()) return true;
-	const cacheAgeHours = (+new Date() - cacheObj.creationDate()) / 1000 / 60 / 60;
-	return cacheAgeHours > cacheAgeThresholdHours;
-}
-
 //──────────────────────────────────────────────────────────────────────────────
 
 /** @type {AlfredRun} */
 // biome-ignore lint/correctness/noUnusedVariables: Alfred run
 function run() {
-	// PERF cache results
-	const cachePath = $.getenv("alfred_workflow_cache") + "/plugin-cache.json";
-	if (!cacheIsOutdated(cachePath)) return readFile(cachePath);
-
-	//───────────────────────────────────────────────────────────────────────────
-
 	const vaultPath = $.getenv("vault_path");
 	const configFolder = $.getenv("config_folder");
 	const vaultNameEnc = encodeURIComponent(vaultPath.replace(/.*\//, ""));
@@ -101,7 +62,12 @@ function run() {
 	const downloadsJSON = onlineJSON(
 		"https://raw.githubusercontent.com/obsidianmd/obsidian-releases/master/community-plugin-stats.json",
 	);
-	const installedPlugins = app.doShellScript(`ls -1 "${vaultPath}/${configFolder}/plugins/"`).split("\r");
+	const installedPlugins = app
+		// checking for `main.js` instead of folders, to ensure that empty
+		// leftover folders are not picked up as installed plugins
+		.doShellScript(`find "${vaultPath}/${configFolder}/plugins" -name "main.js"`)
+		.split("\r")
+		.map((f) => f.replace(/.*\/(.*)\/main\.js/, "$1")); // path to plugin-id (= folder name)
 
 	const themeJSON = onlineJSON(
 		"https://raw.githubusercontent.com/obsidianmd/obsidian-releases/master/community-css-themes.json",
@@ -109,37 +75,33 @@ function run() {
 	const installedThemes = app.doShellScript(
 		`find '${vaultPath}/${configFolder}/themes/' -name '*.css' || true`,
 	);
-	const currentTheme = app.doShellScript(
-		`grep "cssTheme" "${vaultPath}/${configFolder}/appearance.json" | head -n1 | cut -d'"' -f4 || true`,
-	);
+	const currentTheme = JSON.parse(
+		readFile(`${vaultPath}/${configFolder}/appearance.json`),
+	)?.cssTheme;
 
-	const deprecated = JSON.parse(readFile("./data/deprecated-plugins.json"));
-	const deprecatedPlugins = [...deprecated.sherlocked, ...deprecated.dysfunct, ...deprecated.deprecated];
+	const depre = JSON.parse(readFile("./data/deprecated-plugins.json"));
+	const deprecatedPlugins = [...depre.sherlocked, ...depre.dysfunct, ...depre.deprecated];
 
 	//───────────────────────────────────────────────────────────────────────────
 
 	// add PLUGINS to the JSON
 	const plugins = pluginJSON.map(
-		(/** @type {{ id: any; name: any; description: string; author: any; repo: any; }} */ plugin) => {
-			const id = plugin.id;
-			const name = plugin.name;
-			const description = plugin.description
+		(
+			/** @type {{ id: string; name: string; description: string; author: string; repo: string; }} */ plugin,
+		) => {
+			let { id, name, description, author, repo } = plugin;
+			description = plugin.description
 				.replaceAll('\\"', "'") // to deal with escaped '"' in descriptions
 				.replace(/\. *$/, ""); // trailing dot in description looks weird with the styling done here later in the item subtitle
-			const author = plugin.author;
-			const repo = plugin.repo;
 
 			const githubURL = "https://github.com/" + repo;
 			const openURI = `obsidian://show-plugin?vault=${vaultNameEnc}&id=${id}`;
-			const discordUrl = `> **${name}**: ${description} <https://obsidian.md/plugins?id=${id}>`;
-			let isDiscordReady, shareURL;
-			if (discordReadyLinks) {
-				shareURL = discordUrl;
-				isDiscordReady = " (discord ready)";
-			} else {
-				shareURL = "https://obsidian.md/plugins?id=" + id;
-				isDiscordReady = "";
-			}
+			// Discord accepts simple markdown, the enclosing, the enclosing `<>`
+			// remove the preview
+			const discordUrl = `> [${name}](<https://obsidian.md/plugins?id=${id}>): ${description}`;
+
+			const isDiscordReady = discordReadyLinks ? " (discord ready)" : "";
+			const shareURL = isDiscordReady ? discordUrl : `https://obsidian.md/plugins?id=${id}`;
 
 			// Download Numbers
 			let downloadsStr = "";
@@ -158,22 +120,26 @@ function run() {
 			}
 
 			// Better matching for some plugins
-			const URImatcher = name.includes("URI") ? "URL" : "";
-			const matcher = `plugin ${URImatcher} ${alfredMatcher(name)} ${alfredMatcher(author)} ${alfredMatcher(
-				id,
-			)} ${alfredMatcher(description)}`;
+			const uriMatcher = name.includes("URI") ? "URL" : "";
+			// biome-ignore format: less readable
+			const matcher = `plugin ${uriMatcher} ${alfredMatcher(name)} ${alfredMatcher(author)} ${alfredMatcher(id)} ${alfredMatcher(description)}`;
 			const subtitle = downloadsStr + subtitleIcons + description + "  ·  by " + author;
+
+			// needs lowercasing https://github.com/chrisgrieser/shimmering-obsidian/commit/9642fc3d36f9b59cedadbd24991dd4b65078132f#r139057296
+			const obsiStatsUrl =
+				"https://www.moritzjung.dev/obsidian-stats/plugins/" + plugin.id.toLowerCase();
 
 			// create json for Alfred
 			/** @type {AlfredItem} */
 			const alfredItem = {
 				title: name + icons,
 				subtitle: subtitle,
-				arg: openURI,
+				arg: githubURL,
 				uid: id,
 				match: matcher,
 				mods: {
-					cmd: { arg: githubURL },
+					fn: { arg: obsiStatsUrl },
+					cmd: { arg: openURI },
 					ctrl: { arg: id },
 					"cmd+alt": {
 						arg: discordUrl,
@@ -193,28 +159,21 @@ function run() {
 	// add THEMES to the JSON
 	const themes = themeJSON.map(
 		(
-			/** @type {{ name: any; author: any; repo: any; branch: any; screenshot: string; modes: string | string[]; }} */ theme,
+			/** @type {{ name: string; author: string; repo: string; branch: string; screenshot: string; modes: string | string[]; }} */ theme,
 		) => {
-			const name = theme.name;
-			const author = theme.author;
-			const repo = theme.repo;
-			const branch = theme.branch ? theme.branch : "master";
+			let { name, author, repo, branch, screenshot } = theme;
+			const id = repo.split("/")[1];
+			branch = branch || "master";
 
 			const rawGitHub = `https://raw.githubusercontent.com/${repo}/${branch}/`;
-			const screenshotURL = rawGitHub + theme.screenshot;
+			const screenshotURL = rawGitHub + screenshot;
 			const githubURL = "https://github.com/" + repo;
 			const nameEncoded = encodeURIComponent(name);
 			const openURI = `obsidian://show-theme?vault=${vaultNameEnc}&name=${nameEncoded}`;
 			const discordUrl = `> **${name}**: <${openURI}>`;
 
-			let isDiscordReady, shareURL;
-			if (discordReadyLinks) {
-				shareURL = discordUrl;
-				isDiscordReady = " (discord ready)";
-			} else {
-				shareURL = `obsidian://show-theme?name=${nameEncoded}`;
-				isDiscordReady = "";
-			}
+			const isDiscordReady = discordReadyLinks ? " (discord ready)" : "";
+			const shareURL = isDiscordReady ? discordUrl : `obsidian://show-theme?name=${nameEncoded}`;
 
 			let modes = "";
 			let installedIcon = "";
@@ -223,20 +182,23 @@ function run() {
 			if (currentTheme === name) installedIcon = " ⭐️";
 			else if (installedThemes.includes(name)) installedIcon = " ✅";
 
-			// create json for Alfred
+			// needs lowercasing https://github.com/chrisgrieser/shimmering-obsidian/commit/9642fc3d36f9b59cedadbd24991dd4b65078132f#r139057296
+			const obsiStatsUrl = "https://www.moritzjung.dev/obsidian-stats/themes/" + id.toLowerCase();
+
 			/** @type {AlfredItem} */
 			return {
 				title: name + installedIcon,
 				subtitle: `${modes}  by ${author}`,
 				match: `theme ${alfredMatcher(author)} ${alfredMatcher(name)}`,
-				arg: openURI,
+				arg: githubURL,
 				uid: repo,
 				quicklookurl: screenshotURL,
 				icon: { path: "icons/css.png" },
 				mods: {
 					ctrl: { valid: false },
-					cmd: { arg: githubURL },
+					cmd: { arg: openURI },
 					shift: { arg: repo },
+					fn: { arg: obsiStatsUrl },
 					"cmd+alt": {
 						arg: discordUrl,
 						subtitle: "⌘⌥: Copy Link (discord ready)",
@@ -250,8 +212,11 @@ function run() {
 		},
 	);
 
-	const alfredResponse = JSON.stringify({ items: [...plugins, ...themes] });
-	writeToFile(cachePath, alfredResponse);
-
-	return alfredResponse;
+	return JSON.stringify({
+		items: [...plugins, ...themes],
+		cache: {
+			seconds: 3600 * 3, // 3 hours, bit quicker to catch new plugin admissions
+			loosereload: true,
+		},
+	});
 }

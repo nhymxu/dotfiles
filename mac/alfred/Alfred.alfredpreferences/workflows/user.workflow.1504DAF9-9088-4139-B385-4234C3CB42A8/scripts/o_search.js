@@ -1,8 +1,8 @@
 #!/usr/bin/env osascript -l JavaScript
 ObjC.import("stdlib");
-ObjC.import("Foundation");
 const app = Application.currentApplication();
 app.includeStandardAdditions = true;
+//──────────────────────────────────────────────────────────────────────────────
 
 /** @param {string} path */
 function readFile(path) {
@@ -18,10 +18,11 @@ function parentFolder(filePath) {
 }
 
 /** @param {string} str */
-function alfredMatcher(str) {
-	const clean = str.replace(/[-()_.:#/\\;,[\]]/g, " ");
-	const camelCaseSeperated = str.replace(/([A-Z])/g, " $1");
-	return [clean, camelCaseSeperated, str].join(" ") + " ";
+function camelCaseMatch(str) {
+	const subwords = str.replace(/[-_./]/g, " ");
+	const fullword = str.replace(/[-_./]/g, "");
+	const camelCaseSeparated = str.replace(/([A-Z])/g, " $1");
+	return [subwords, camelCaseSeparated, fullword, str].join(" ") + " ";
 }
 
 const fileExists = (/** @type {string} */ filePath) => Application("Finder").exists(Path(filePath));
@@ -42,6 +43,10 @@ function run() {
 	const bookmarkJSON = `${vaultConfig}/bookmarks.json`;
 	const excludeFilterJSON = `${vaultConfig}/app.json`;
 	const superIconFile = $.getenv("supercharged_icon_file");
+	const removeEmojis = $.getenv("remove_emojis") === "1";
+	// exclude cssclass: private
+	const censorChar = $.getenv("censor_char");
+	const privacyModeOn = $.getenv("privacy_mode") === "1";
 
 	let recentJSON = `${vaultConfig}/workspace.json`;
 	if (!fileExists(recentJSON)) recentJSON = recentJSON.slice(0, -5); // Obsidian 0.16 uses workspace.json → https://discord.com/channels/686053708261228577/716028884885307432/1013906018578743478
@@ -49,7 +54,6 @@ function run() {
 	const excludeFilter = fileExists(excludeFilterJSON)
 		? JSON.parse(readFile(excludeFilterJSON)).userIgnoreFilters
 		: [];
-
 	const recentFiles = fileExists(recentJSON) ? JSON.parse(readFile(recentJSON)).lastOpenFiles : [];
 	let canvasArray = fileExists(canvasJSON) ? JSON.parse(readFile(canvasJSON)) : [];
 
@@ -71,17 +75,23 @@ function run() {
 	//──────────────────────────────────────────────────────────────────────────────
 	// BOOKMARKS & STARS
 
-	let stars = [];
-	const bookmarks = [];
+	/** @typedef {Object} Bookmark
+	 * @property {string} type
+	 * @property {string} path
+	 * @property {Bookmark[]} items
+	 */
+
+	/** @type {string[]} */ let stars = [];
+	/** @type {string[]} */ const bookmarks = [];
 	if (fileExists(starredJSON)) {
 		stars = JSON.parse(readFile(starredJSON))
 			.items.filter((/** @type {{ type: string; }} */ item) => item.type === "file")
-			.map((/** @type {{ path: any; }} */ item) => item.path);
+			.map((/** @type {{ path: string; }} */ item) => item.path);
 	}
 
 	/**
-	 * @param {object[]} input
-	 * @param {object[]} collector
+	 * @param {Bookmark[]} input
+	 * @param {string[]} collector
 	 */
 	function bmFlatten(input, collector) {
 		for (const item of input) {
@@ -98,16 +108,17 @@ function run() {
 
 	//──────────────────────────────────────────────────────────────────────────────
 	// ICONS
+	/** @type {string[]} */
 	let superIconList = [];
 	if (superIconFile && fileExists(superIconFile)) {
 		superIconList = readFile(superIconFile)
 			.split("\n")
-			.filter((line) => line.length !== 0);
+			.filter((line) => line.length > 0);
 	}
 
 	//──────────────────────────────────────────────────────────────────────────────
 	// DETERMINE PATH TO SEARCH
-	let currentFolder;
+	let currentFolder = "";
 	let pathToSearch;
 	// either searches the vault, or a subfolder of the vault
 	try {
@@ -140,17 +151,19 @@ function run() {
 	}
 
 	/**
-	 * @param {object[]} array
+	 * @param {(string|{relativePath: string})[]} items if folder, object list otherwise
 	 * @param {boolean} isFolder
+	 * @return {(string|{relativePath: string})[]}
 	 */
-	function applyExcludeFilter(array, isFolder) {
-		if (!excludeFilter || excludeFilter.length === 0 || array.length === 0) return array;
-		return array.filter((item) => {
+	function applyExcludeFilter(items, isFolder) {
+		if (!excludeFilter || excludeFilter.length === 0 || items.length === 0) return items;
+		return items.filter((item) => {
 			let include = true;
-			if (isFolder) item += "/";
+			// @ts-expect-error
+			const path = isFolder ? item + "/" : item.relativePath;
 			for (const filter of excludeFilter) {
 				const isRegexFilter = filter.startsWith("/");
-				const relPath = isFolder ? item.slice(vaultPath.length + 1) : item.relativePath;
+				const relPath = isFolder ? path.slice(vaultPath.length + 1) : path;
 				if (isRegexFilter && relPath.includes(filter)) include = false;
 				if (!isRegexFilter && relPath.startsWith(filter)) include = false;
 			}
@@ -158,6 +171,7 @@ function run() {
 		});
 	}
 
+	// @ts-expect-error
 	folderArray = applyExcludeFilter(folderArray, true);
 	canvasArray = applyExcludeFilter(canvasArray, false);
 	fileArray = applyExcludeFilter(fileArray, false);
@@ -170,12 +184,9 @@ function run() {
 		headingIgnore[i] = shouldIgnore;
 	}
 
-	// exclude cssclass: private
-	const censorChar = $.getenv("censor_char");
-	const privacyModeOn = $.getenv("privacy_mode") === "1";
-
 	//──────────────────────────────────────────────────────────────────────────────
 	// CONSTRUCTION OF JSON FOR ALFRED
+	/** @type {AlfredItem[]} */
 	const resultsArr = [];
 
 	// FILES
@@ -202,7 +213,7 @@ function run() {
 		if (isBookmarked) emoji += "🔖 ";
 		if (isRecent) emoji += "🕑 ";
 		if (filename.toLowerCase().includes("kanban")) iconpath = "icons/kanban.png";
-		if ($.getenv("remove_emojis") === "1") emoji = "";
+		if (removeEmojis) emoji = "";
 
 		let superchargedIcon = "";
 		let superchargedIcon2 = "";
@@ -215,15 +226,6 @@ function run() {
 			}
 		}
 
-		// check link existence of file
-		const hasLinks = Boolean(
-			file.links?.some((/** @type {{ relativePath: string; }} */ link) => link.relativePath) ||
-				file.backlinks,
-		); // no relativePath => unresolved link
-		const linksSubtitle = hasLinks
-			? "⇧: Browse Links in Note"
-			: "⛔ Note without Outgoing Links or Backlinks";
-
 		// censor note?
 		const isPrivateNote = file.frontmatter?.cssclass?.includes("private");
 		const applyCensoring = isPrivateNote && privacyModeOn;
@@ -232,16 +234,13 @@ function run() {
 		// Notes (file names)
 		resultsArr[insertVia]({
 			title: emoji + superchargedIcon + displayName + superchargedIcon2,
-			match: alfredMatcher(filename) + tagMatcher + " filename name title" + additionalMatcher,
+			match: camelCaseMatch(filename) + tagMatcher + " filename name title" + additionalMatcher,
 			subtitle: "▸ " + parentFolder(relativePath),
 			arg: relativePath,
 			quicklookurl: absolutePath,
 			type: "file:skipcheck",
 			uid: relativePath,
 			icon: { path: iconpath },
-			mods: {
-				shift: { valid: hasLinks, subtitle: linksSubtitle },
-			},
 		});
 
 		// Aliases
@@ -250,16 +249,13 @@ function run() {
 				const displayAlias = applyCensoring ? alias.replace(/./g, censorChar) : alias;
 				resultsArr[insertVia]({
 					title: emoji + superchargedIcon + displayAlias + superchargedIcon2,
-					match: alfredMatcher(alias) + "alias",
+					match: camelCaseMatch(alias) + "alias",
 					subtitle: "↪ " + displayName,
 					arg: relativePath,
 					quicklookurl: absolutePath,
 					type: "file:skipcheck",
 					uid: alias + "_" + relativePath,
 					icon: { path: "icons/alias.png" },
-					mods: {
-						shift: { valid: hasLinks, subtitle: linksSubtitle },
-					},
 				});
 			}
 		}
@@ -271,7 +267,7 @@ function run() {
 			const hLevel = heading.level;
 			if (headingIgnore[hLevel]) continue; // skips iteration if heading has been configured as ignore
 			const headingIconpath = `icons/headings/h${hLevel}.png`;
-			const matchStr = [`h${hLevel}`, alfredMatcher(hName), alfredMatcher(filename)].join(" ");
+			const matchStr = camelCaseMatch(hName) + `h${hLevel}`;
 			const displayHeading = applyCensoring ? hName.replace(/./g, censorChar) : hName;
 
 			resultsArr[insertVia]({
@@ -284,11 +280,7 @@ function run() {
 				icon: { path: headingIconpath },
 				mods: {
 					alt: { arg: relativePath },
-					shift: {
-						valid: hasLinks,
-						subtitle: linksSubtitle,
-						arg: relativePath,
-					},
+					shift: { arg: relativePath },
 				},
 			});
 		}
@@ -298,7 +290,6 @@ function run() {
 	for (const canvas of canvasArray) {
 		const name = canvas.basename;
 		const relativePath = canvas.relativePath;
-		const denyForCanvas = { valid: false, subtitle: "⛔ Cannot do that with a canvas." };
 		const isBookmarked = starsAndBookmarks.includes(relativePath);
 		const isRecent = recentFiles.includes(relativePath);
 
@@ -313,15 +304,15 @@ function run() {
 
 		resultsArr[insertMode]({
 			title: name,
-			match: alfredMatcher(name) + "canvas" + additionalMatcher,
+			match: camelCaseMatch(name) + "canvas" + additionalMatcher,
 			subtitle: "▸ " + parentFolder(relativePath),
 			arg: relativePath,
 			type: "file:skipcheck",
 			icon: { path: "icons/canvas.png" },
 			uid: relativePath,
 			mods: {
-				shift: denyForCanvas,
-				fn: denyForCanvas,
+				shift: { valid: false, subtitle: "⛔ Cannot do that with a canvas." },
+				fn: { valid: false, subtitle: "⛔ Cannot do that with a canvas." },
 			},
 		});
 	}
@@ -335,7 +326,7 @@ function run() {
 
 		resultsArr.push({
 			title: name,
-			match: alfredMatcher(name) + " folder ",
+			match: camelCaseMatch(name) + "folder",
 			subtitle: "▸ " + parentFolder(relativePath) + "   [↵: Browse]",
 			arg: relativePath,
 			type: "file:skipcheck",
@@ -378,5 +369,7 @@ function run() {
 		});
 	}
 
+	// INFO not using Alfred's caching mechanism, as it breaks browsing folders
+	// see https://github.com/chrisgrieser/shimmering-obsidian/issues/176
 	return JSON.stringify({ items: resultsArr });
 }
