@@ -26,10 +26,10 @@ function camelCaseMatch(str) {
 function run() {
 	const currentVault = $.getenv("vault_path");
 	const vaultNameEnc = encodeURIComponent(currentVault.replace(/.*\//, ""));
-	const vaultListJson =
-		app.pathTo("home folder") + "/Library/Application Support/obsidian/obsidian.json";
 
 	// get vault paths
+	const vaultListJson =
+		app.pathTo("home folder") + "/Library/Application Support/obsidian/obsidian.json";
 	const vaultList = JSON.parse(readFile(vaultListJson)).vaults;
 	const vaultPaths = [];
 	for (const hash in vaultList) vaultPaths.push(vaultList[hash].path);
@@ -42,19 +42,24 @@ function run() {
 		// visual: icons & shorter path
 		let currentIcon = "";
 		if (currentVault === vaultPath) currentIcon = "✅ ";
-		if (vaultName.toLowerCase().includes("development")) currentIcon += "⚙️ ";
 		if (vaultName === "Obsidian Sandbox") currentIcon += "🏖 ";
-		const shortPath = vaultPath.replace(/\/Users\/[^/]*/, "~").slice(0, -(vaultName.length + 1));
+		const tildePath = vaultPath.replace(/\/Users\/[^/]*/, "~");
+		const shortParentPath = tildePath.slice(0, -(vaultName.length + 1));
+
+		const shiftArg =
+			currentVault === vaultPath
+				? { valid: false, subtitle: "⛔️ Already controlling this vault." }
+				: { arg: tildePath };
 
 		return {
 			title: currentIcon + vaultName,
-			subtitle: shortPath,
+			subtitle: shortParentPath,
 			arg: vaultURI,
 			match: camelCaseMatch(vaultName),
 			mods: {
 				alt: { arg: vaultPath },
-				cmd: { arg: vaultPath },
 				ctrl: { arg: vaultPath },
+				shift: shiftArg,
 			},
 			uid: vaultURI,
 		};
@@ -67,8 +72,8 @@ function run() {
 		icon: { path: "icons/settings.png" },
 		mods: {
 			alt: { valid: false, subtitle: "⛔️" },
-			cmd: { valid: false, subtitle: "⛔️" },
 			ctrl: { valid: false, subtitle: "⛔️" },
+			shift: { valid: false, subtitle: "⛔️" },
 		},
 		// no UID, so it's always at the bottom
 	});

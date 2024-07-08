@@ -128,19 +128,6 @@
 				<false/>
 			</dict>
 		</array>
-		<key>21AA977D-B161-4D09-BC2C-C8A26504140F</key>
-		<array>
-			<dict>
-				<key>destinationuid</key>
-				<string>10873427-2384-4E8F-8D59-A9D1EB95EFC2</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-				<key>vitoclose</key>
-				<false/>
-			</dict>
-		</array>
 		<key>23310407-0757-4547-AC30-83A9AF365D9D</key>
 		<array>
 			<dict>
@@ -259,6 +246,19 @@
 			<dict>
 				<key>destinationuid</key>
 				<string>A5ADC808-2010-447C-9B0A-B4C14C3801EB</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>2D4BA51D-6800-4FC8-AD72-926C8167987B</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>76EF97C3-981D-466E-BA90-47D34129BE96</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -521,7 +521,7 @@
 				<key>modifiers</key>
 				<integer>1048576</integer>
 				<key>modifiersubtext</key>
-				<string>⌘: Open in New Tab</string>
+				<string>⌘: Open in New {var:open_note_in_new}</string>
 				<key>vitoclose</key>
 				<false/>
 			</dict>
@@ -564,6 +564,19 @@
 				<false/>
 			</dict>
 		</array>
+		<key>4EDC4109-AB66-4380-88C8-400F76EF7874</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>C2BF1FF2-F76A-4580-8D08-51DA0694D3F2</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 		<key>4F356F57-A6AA-4277-B742-27DC8EE84450</key>
 		<array>
 			<dict>
@@ -582,16 +595,6 @@
 			<dict>
 				<key>destinationuid</key>
 				<string>76EF97C3-981D-466E-BA90-47D34129BE96</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-				<key>vitoclose</key>
-				<false/>
-			</dict>
-			<dict>
-				<key>destinationuid</key>
-				<string>128F4E9D-FB3F-475D-9000-21AE4B38569D</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -765,7 +768,7 @@
 				<key>modifiers</key>
 				<integer>1048576</integer>
 				<key>modifiersubtext</key>
-				<string>⌘: Open in New Tab</string>
+				<string>⌘: Open in new {var:open_note_in_new}</string>
 				<key>vitoclose</key>
 				<false/>
 			</dict>
@@ -1027,7 +1030,18 @@
 		<key>76BE7619-FDB9-4324-81C7-6570B534A123</key>
 		<array/>
 		<key>76EF97C3-981D-466E-BA90-47D34129BE96</key>
-		<array/>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>F0F119BB-A0B3-49A6-964E-DFE5D7CAD2FF</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 		<key>7954C22E-D0FB-4539-87D1-D62DF328DBB2</key>
 		<array>
 			<dict>
@@ -1188,7 +1202,7 @@
 				<key>modifiers</key>
 				<integer>1048576</integer>
 				<key>modifiersubtext</key>
-				<string>⌘: Open in New Tab</string>
+				<string>⌘: Open in New {var:open_note_in_new}</string>
 				<key>vitoclose</key>
 				<false/>
 			</dict>
@@ -1243,32 +1257,6 @@
 			<dict>
 				<key>destinationuid</key>
 				<string>B9AC24F9-316C-4D05-903D-7ED21EA0A3C8</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-				<key>vitoclose</key>
-				<false/>
-			</dict>
-		</array>
-		<key>9888408F-4081-4003-8D82-85FF20EB8138</key>
-		<array>
-			<dict>
-				<key>destinationuid</key>
-				<string>0E7DC543-BCFD-4F7B-864B-C4BBF40DD8BB</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-				<key>vitoclose</key>
-				<false/>
-			</dict>
-		</array>
-		<key>994FC5F6-BF71-4B6D-8E8B-794A453AC62D</key>
-		<array>
-			<dict>
-				<key>destinationuid</key>
-				<string>21AA977D-B161-4D09-BC2C-C8A26504140F</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -1335,7 +1323,7 @@
 				<key>modifiers</key>
 				<integer>1048576</integer>
 				<key>modifiersubtext</key>
-				<string>⌘: Open in New Tab</string>
+				<string>⌘: Open in New {var:open_note_in_new}</string>
 				<key>vitoclose</key>
 				<false/>
 			</dict>
@@ -1619,6 +1607,8 @@
 				<false/>
 			</dict>
 		</array>
+		<key>C2BF1FF2-F76A-4580-8D08-51DA0694D3F2</key>
+		<array/>
 		<key>C5E65176-674E-4553-A255-37A40EB99342</key>
 		<array>
 			<dict>
@@ -1746,6 +1736,19 @@
 				<false/>
 			</dict>
 		</array>
+		<key>D7853046-09BE-4679-B4FC-DB918A36331E</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>2D4BA51D-6800-4FC8-AD72-926C8167987B</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 		<key>DBA6DBFB-3701-4BFC-B72C-406BF62DF384</key>
 		<array>
 			<dict>
@@ -1806,17 +1809,17 @@
 			</dict>
 			<dict>
 				<key>destinationuid</key>
-				<string>0E7DC543-BCFD-4F7B-864B-C4BBF40DD8BB</string>
+				<string>4EDC4109-AB66-4380-88C8-400F76EF7874</string>
 				<key>modifiers</key>
-				<integer>1048576</integer>
+				<integer>131072</integer>
 				<key>modifiersubtext</key>
-				<string>⌘: Open Root in Terminal</string>
+				<string>⇧: Control this vault</string>
 				<key>vitoclose</key>
 				<false/>
 			</dict>
 			<dict>
 				<key>destinationuid</key>
-				<string>9888408F-4081-4003-8D82-85FF20EB8138</string>
+				<string>0E7DC543-BCFD-4F7B-864B-C4BBF40DD8BB</string>
 				<key>modifiers</key>
 				<integer>262144</integer>
 				<key>modifiersubtext</key>
@@ -2192,6 +2195,19 @@ tesseract "$temp_image" stdout -l $ocr_languages 2&gt;&amp;1</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>unstackview</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.hidealfred</string>
+			<key>uid</key>
+			<string>F0F119BB-A0B3-49A6-964E-DFE5D7CAD2FF</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>externaltriggerid</key>
 				<string>open-relative-path-in-obsidian</string>
 				<key>passinputasargument</key>
@@ -2237,19 +2253,6 @@ tesseract "$temp_image" stdout -l $ocr_languages 2&gt;&amp;1</string>
 			<string>alfred.workflow.utility.conditional</string>
 			<key>uid</key>
 			<string>B5F538F8-D47B-47E8-A7C8-5C9C149A58CC</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>unstackview</key>
-				<false/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.utility.hidealfred</string>
-			<key>uid</key>
-			<string>128F4E9D-FB3F-475D-9000-21AE4B38569D</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
@@ -2352,51 +2355,35 @@ tesseract "$temp_image" stdout -l $ocr_languages 2&gt;&amp;1</string>
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>0</integer>
-				<key>script</key>
-				<string></string>
-				<key>scriptargtype</key>
-				<integer>1</integer>
-				<key>scriptfile</key>
-				<string>scripts/reveal-or-open.sh</string>
-				<key>type</key>
-				<integer>8</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>65A519DF-2E95-46AA-BD21-64E5ECE9759D</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>availableviaurlhandler</key>
 				<false/>
 				<key>triggerid</key>
-				<string>reveal-in-finder</string>
+				<string>open-in-new</string>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.trigger.external</string>
 			<key>uid</key>
-			<string>7BA55F56-BE3A-483A-9CA6-CEE173CF2357</string>
+			<string>D7853046-09BE-4679-B4FC-DB918A36331E</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>unstackview</key>
-				<false/>
+				<key>argument</key>
+				<string></string>
+				<key>passthroughargument</key>
+				<true/>
+				<key>variables</key>
+				<dict>
+					<key>open_mode</key>
+					<string>{var:open_note_in_new}</string>
+				</dict>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.utility.hidealfred</string>
+			<string>alfred.workflow.utility.argument</string>
 			<key>uid</key>
-			<string>4B017801-8C1B-40FF-972D-EA7CA117420C</string>
+			<string>2D4BA51D-6800-4FC8-AD72-926C8167987B</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
@@ -2453,6 +2440,44 @@ tesseract "$temp_image" stdout -l $ocr_languages 2&gt;&amp;1</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string></string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string>scripts/reveal-or-open.sh</string>
+				<key>type</key>
+				<integer>8</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>65A519DF-2E95-46AA-BD21-64E5ECE9759D</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>availableviaurlhandler</key>
+				<false/>
+				<key>triggerid</key>
+				<string>reveal-in-finder</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.external</string>
+			<key>uid</key>
+			<string>7BA55F56-BE3A-483A-9CA6-CEE173CF2357</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>conditions</key>
 				<array>
 					<dict>
@@ -2479,6 +2504,38 @@ tesseract "$temp_image" stdout -l $ocr_languages 2&gt;&amp;1</string>
 			<string>alfred.workflow.utility.conditional</string>
 			<key>uid</key>
 			<string>27BE592C-7FFD-4F99-8501-204EB94A4138</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>unstackview</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.hidealfred</string>
+			<key>uid</key>
+			<string>4B017801-8C1B-40FF-972D-EA7CA117420C</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>externaltriggerid</key>
+				<string>append-to-scratchpad</string>
+				<key>passinputasargument</key>
+				<true/>
+				<key>passvariables</key>
+				<true/>
+				<key>workflowbundleid</key>
+				<string>self</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.callexternaltrigger</string>
+			<key>uid</key>
+			<string>FB086126-9F30-4945-BECD-2AC877385CC2</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
@@ -2555,19 +2612,21 @@ return hook;
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>externaltriggerid</key>
-				<string>append-to-scratchpad</string>
-				<key>passinputasargument</key>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>keyword</key>
+				<string>oo</string>
+				<key>subtext</key>
+				<string>'{var:scratchpad_append_prefix}{query}'</string>
+				<key>text</key>
+				<string>Append to Scratchpad</string>
+				<key>withspace</key>
 				<true/>
-				<key>passvariables</key>
-				<true/>
-				<key>workflowbundleid</key>
-				<string>self</string>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.output.callexternaltrigger</string>
+			<string>alfred.workflow.input.keyword</string>
 			<key>uid</key>
-			<string>FB086126-9F30-4945-BECD-2AC877385CC2</string>
+			<string>EE4720A7-4048-4A92-B0AA-8F811AE57C1E</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
@@ -2611,20 +2670,39 @@ return hook;
 			<key>config</key>
 			<dict>
 				<key>argumenttype</key>
-				<integer>0</integer>
+				<integer>1</integer>
 				<key>keyword</key>
 				<string>oo</string>
 				<key>subtext</key>
-				<string>'{var:scratchpad_append_prefix}{query}'</string>
+				<string>{var:scratchpad_note_path}</string>
 				<key>text</key>
-				<string>Append to Scratchpad</string>
+				<string>Open Scratchpad</string>
 				<key>withspace</key>
 				<true/>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.input.keyword</string>
 			<key>uid</key>
-			<string>EE4720A7-4048-4A92-B0AA-8F811AE57C1E</string>
+			<string>60A87101-8D59-46BF-BCAE-A9195D6A034E</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>externaltriggerid</key>
+				<string>open-relative-path-in-obsidian</string>
+				<key>passinputasargument</key>
+				<true/>
+				<key>passvariables</key>
+				<true/>
+				<key>workflowbundleid</key>
+				<string>self</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.callexternaltrigger</string>
+			<key>uid</key>
+			<string>30FE564E-5E90-4F98-87D8-EAEB63CECFB3</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
@@ -2723,13 +2801,51 @@ return hook;
 			<key>config</key>
 			<dict>
 				<key>argument</key>
-				<string></string>
+				<string>{var:scratchpad_note_path}</string>
 				<key>passthroughargument</key>
-				<true/>
+				<false/>
+				<key>variables</key>
+				<dict/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.argument</string>
+			<key>uid</key>
+			<string>3CC54A98-B297-4BE8-8F53-22C52A7247B6</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>lastpathcomponent</key>
+				<false/>
+				<key>onlyshowifquerypopulated</key>
+				<false/>
+				<key>removeextension</key>
+				<false/>
+				<key>text</key>
+				<string>{var:appendedText}</string>
+				<key>title</key>
+				<string>✅ Appended</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.notification</string>
+			<key>uid</key>
+			<string>1E497866-1199-4947-BC1A-AC23ADDD6C82</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argument</key>
+				<string>{var:append_prefix}{query}</string>
+				<key>passthroughargument</key>
+				<false/>
 				<key>variables</key>
 				<dict>
 					<key>appendedText</key>
-					<string>{var:prefix}{query}</string>
+					<string>{var:append_prefix}{query}</string>
 				</dict>
 			</dict>
 			<key>type</key>
@@ -2763,33 +2879,12 @@ return hook;
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>lastpathcomponent</key>
-				<false/>
-				<key>onlyshowifquerypopulated</key>
-				<false/>
-				<key>removeextension</key>
-				<false/>
-				<key>text</key>
-				<string>{var:appendedText}</string>
-				<key>title</key>
-				<string>✅ Appended</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.output.notification</string>
-			<key>uid</key>
-			<string>1E497866-1199-4947-BC1A-AC23ADDD6C82</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>argumenttype</key>
 				<integer>0</integer>
 				<key>subtext</key>
 				<string>to note: {var:relative_path}</string>
 				<key>text</key>
-				<string>Append: '{query}'</string>
+				<string>Append: '{var:append_prefix}{query}'</string>
 				<key>withspace</key>
 				<false/>
 			</dict>
@@ -2850,46 +2945,6 @@ return hook;
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>argumenttype</key>
-				<integer>1</integer>
-				<key>keyword</key>
-				<string>oo</string>
-				<key>subtext</key>
-				<string>{var:scratchpad_note_path}</string>
-				<key>text</key>
-				<string>Open Scratchpad</string>
-				<key>withspace</key>
-				<true/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.input.keyword</string>
-			<key>uid</key>
-			<string>60A87101-8D59-46BF-BCAE-A9195D6A034E</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>externaltriggerid</key>
-				<string>open-relative-path-in-obsidian</string>
-				<key>passinputasargument</key>
-				<true/>
-				<key>passvariables</key>
-				<true/>
-				<key>workflowbundleid</key>
-				<string>self</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.output.callexternaltrigger</string>
-			<key>uid</key>
-			<string>30FE564E-5E90-4F98-87D8-EAEB63CECFB3</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>argument</key>
 				<string></string>
 				<key>passthroughargument</key>
@@ -2906,40 +2961,6 @@ return hook;
 			<string>alfred.workflow.utility.argument</string>
 			<key>uid</key>
 			<string>A5BA80AA-D2FF-43BC-AE70-4C34D0BB4E20</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>argument</key>
-				<string>{var:scratchpad_note_path}</string>
-				<key>passthroughargument</key>
-				<false/>
-				<key>variables</key>
-				<dict/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.utility.argument</string>
-			<key>uid</key>
-			<string>3CC54A98-B297-4BE8-8F53-22C52A7247B6</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>argument</key>
-				<string>{clipboard}</string>
-				<key>passthroughargument</key>
-				<false/>
-				<key>variables</key>
-				<dict/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.utility.argument</string>
-			<key>uid</key>
-			<string>88723AC0-4348-4B23-AFD7-FEFE6C532A94</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
@@ -3037,44 +3058,19 @@ return hook;
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>availableviaurlhandler</key>
+				<key>argument</key>
+				<string>{clipboard}</string>
+				<key>passthroughargument</key>
 				<false/>
-				<key>triggerid</key>
-				<string>open-in-new-tab</string>
+				<key>variables</key>
+				<dict/>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.trigger.external</string>
+			<string>alfred.workflow.utility.argument</string>
 			<key>uid</key>
-			<string>994FC5F6-BF71-4B6D-8E8B-794A453AC62D</string>
+			<string>88723AC0-4348-4B23-AFD7-FEFE6C532A94</string>
 			<key>version</key>
 			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>68</integer>
-				<key>script</key>
-				<string>tell application "Obsidian" to open location "obsidian://advanced-uri?commandid=workspace%253Anew-tab"
-
-delay 0.2 # delay for detault new tab plugin
-
-return "{query}"</string>
-				<key>scriptargtype</key>
-				<integer>0</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>type</key>
-				<integer>6</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>21AA977D-B161-4D09-BC2C-C8A26504140F</string>
-			<key>version</key>
-			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -3863,7 +3859,7 @@ set parameter to do shell script "echo " &amp; quoted form of (system attribute 
 			<key>config</key>
 			<dict>
 				<key>externaltriggerid</key>
-				<string>open-in-new-tab</string>
+				<string>open-in-new</string>
 				<key>passinputasargument</key>
 				<true/>
 				<key>passvariables</key>
@@ -4281,9 +4277,9 @@ set parameter to do shell script "echo " &amp; quoted form of (system attribute 
 				<key>keyword</key>
 				<string>osetup</string>
 				<key>subtext</key>
-				<string>Obsidian will restart afterwards</string>
+				<string>for the vault: "{var:vault_path}"</string>
 				<key>text</key>
-				<string>Initial Setup for Shimmering Obsidian</string>
+				<string>Initial Setup</string>
 				<key>withspace</key>
 				<true/>
 			</dict>
@@ -4495,7 +4491,7 @@ set parameter to do shell script "echo " &amp; quoted form of (system attribute 
 			<key>config</key>
 			<dict>
 				<key>externaltriggerid</key>
-				<string>open-in-new-tab</string>
+				<string>open-in-new</string>
 				<key>passinputasargument</key>
 				<true/>
 				<key>passvariables</key>
@@ -4597,7 +4593,7 @@ set parameter to do shell script "echo " &amp; quoted form of (system attribute 
 			<key>config</key>
 			<dict>
 				<key>externaltriggerid</key>
-				<string>open-in-new-tab</string>
+				<string>open-in-new</string>
 				<key>passinputasargument</key>
 				<true/>
 				<key>passvariables</key>
@@ -5121,6 +5117,27 @@ curl -sL "https://raw.githubusercontent.com/chrisgrieser/shimmering-obsidian/mai
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>argumenttype</key>
+				<integer>1</integer>
+				<key>keyword</key>
+				<string>oupdate</string>
+				<key>subtext</key>
+				<string></string>
+				<key>text</key>
+				<string>🔁 Manually Refresh Metadata</string>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>4F356F57-A6AA-4277-B742-27DC8EE84450</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>lastpathcomponent</key>
 				<false/>
 				<key>onlyshowifquerypopulated</key>
@@ -5174,27 +5191,6 @@ curl -sL "https://raw.githubusercontent.com/chrisgrieser/shimmering-obsidian/mai
 			<string>alfred.workflow.output.playsound</string>
 			<key>uid</key>
 			<string>2FD866C2-DDB1-4C2D-A420-3A580FBC60D2</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>argumenttype</key>
-				<integer>1</integer>
-				<key>keyword</key>
-				<string>oupdate</string>
-				<key>subtext</key>
-				<string></string>
-				<key>text</key>
-				<string>🔁 Manually Refresh Metadata</string>
-				<key>withspace</key>
-				<true/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.input.keyword</string>
-			<key>uid</key>
-			<string>4F356F57-A6AA-4277-B742-27DC8EE84450</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
@@ -5671,6 +5667,50 @@ curl -sL "https://raw.githubusercontent.com/chrisgrieser/shimmering-obsidian/mai
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>lastpathcomponent</key>
+				<false/>
+				<key>onlyshowifquerypopulated</key>
+				<false/>
+				<key>removeextension</key>
+				<false/>
+				<key>text</key>
+				<string>{query}</string>
+				<key>title</key>
+				<string>✅ Now controlling</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.notification</string>
+			<key>uid</key>
+			<string>4EDC4109-AB66-4380-88C8-400F76EF7874</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string></string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string>./scripts/change-vault-setting.js</string>
+				<key>type</key>
+				<integer>8</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>C2BF1FF2-F76A-4580-8D08-51DA0694D3F2</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>path</key>
 				<string></string>
 			</dict>
@@ -5678,16 +5718,6 @@ curl -sL "https://raw.githubusercontent.com/chrisgrieser/shimmering-obsidian/mai
 			<string>alfred.workflow.action.browseinterminal</string>
 			<key>uid</key>
 			<string>0E7DC543-BCFD-4F7B-864B-C4BBF40DD8BB</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict/>
-			<key>type</key>
-			<string>alfred.workflow.utility.junction</string>
-			<key>uid</key>
-			<string>9888408F-4081-4003-8D82-85FF20EB8138</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
@@ -5896,7 +5926,7 @@ curl -sL "https://raw.githubusercontent.com/chrisgrieser/shimmering-obsidian/mai
 		</dict>
 	</array>
 	<key>readme</key>
-	<string>## 1️⃣ Setting up this workflow for the first time (required)
+	<string>## 1️⃣ Setting up this workflow for the first time
 1. Install the Obsidian plugins [Advanced URI](https://obsidian.md/plugins?id=obsidian-advanced-uri) &amp; [Metadata Extractor](https://obsidian.md/plugins?id=metadata-extractor). Enable both plugins.
 2. Set your vault path in the configuration to the left.
 3. Run the Alfred Command `osetup`. Obsidian will then restart.
@@ -5953,7 +5983,7 @@ curl -sL "https://raw.githubusercontent.com/chrisgrieser/shimmering-obsidian/mai
 			<key>xpos</key>
 			<real>1495</real>
 			<key>ypos</key>
-			<real>470</real>
+			<real>610</real>
 		</dict>
 		<key>07C4D3F5-5CBC-4BAF-9004-B506BEF11C23</key>
 		<dict>
@@ -6034,9 +6064,9 @@ curl -sL "https://raw.githubusercontent.com/chrisgrieser/shimmering-obsidian/mai
 			<key>note</key>
 			<string>opens in default Terminal</string>
 			<key>xpos</key>
-			<real>250</real>
+			<real>270</real>
 			<key>ypos</key>
-			<real>6010</real>
+			<real>6110</real>
 		</dict>
 		<key>0F72D532-AAE1-48A3-85FC-A819F196DC3E</key>
 		<dict>
@@ -6066,15 +6096,6 @@ curl -sL "https://raw.githubusercontent.com/chrisgrieser/shimmering-obsidian/mai
 			<real>245</real>
 			<key>ypos</key>
 			<real>5595</real>
-		</dict>
-		<key>128F4E9D-FB3F-475D-9000-21AE4B38569D</key>
-		<dict>
-			<key>colorindex</key>
-			<integer>6</integer>
-			<key>xpos</key>
-			<real>1685</real>
-			<key>ypos</key>
-			<real>180</real>
 		</dict>
 		<key>164B20C3-4277-490E-9EB2-DCE923784B89</key>
 		<dict>
@@ -6126,20 +6147,9 @@ curl -sL "https://raw.githubusercontent.com/chrisgrieser/shimmering-obsidian/mai
 			<key>colorindex</key>
 			<integer>9</integer>
 			<key>xpos</key>
-			<real>2480</real>
+			<real>2485</real>
 			<key>ypos</key>
-			<real>730</real>
-		</dict>
-		<key>21AA977D-B161-4D09-BC2C-C8A26504140F</key>
-		<dict>
-			<key>colorindex</key>
-			<integer>9</integer>
-			<key>note</key>
-			<string>open new tab</string>
-			<key>xpos</key>
-			<real>1740</real>
-			<key>ypos</key>
-			<real>980</real>
+			<real>840</real>
 		</dict>
 		<key>23310407-0757-4547-AC30-83A9AF365D9D</key>
 		<dict>
@@ -6198,6 +6208,17 @@ curl -sL "https://raw.githubusercontent.com/chrisgrieser/shimmering-obsidian/mai
 			<real>355</real>
 			<key>ypos</key>
 			<real>3985</real>
+		</dict>
+		<key>2D4BA51D-6800-4FC8-AD72-926C8167987B</key>
+		<dict>
+			<key>colorindex</key>
+			<integer>6</integer>
+			<key>note</key>
+			<string>set location where to open</string>
+			<key>xpos</key>
+			<real>1640</real>
+			<key>ypos</key>
+			<real>305</real>
 		</dict>
 		<key>2FD76964-F91F-4EEB-B136-70238A407628</key>
 		<dict>
@@ -6304,7 +6325,7 @@ curl -sL "https://raw.githubusercontent.com/chrisgrieser/shimmering-obsidian/mai
 			<key>xpos</key>
 			<real>1880</real>
 			<key>ypos</key>
-			<real>675</real>
+			<real>815</real>
 		</dict>
 		<key>3CC54A98-B297-4BE8-8F53-22C52A7247B6</key>
 		<dict>
@@ -6382,7 +6403,7 @@ DOUBLE CLICK THIS to set Hotkey. Suggested Hotkey: cmd + shift + 2</string>
 			<key>xpos</key>
 			<real>1870</real>
 			<key>ypos</key>
-			<real>335</real>
+			<real>475</real>
 		</dict>
 		<key>4D2CDFC0-FABC-4A89-AB61-3BEB278DE479</key>
 		<dict>
@@ -6431,7 +6452,16 @@ DOUBLE CLICK THIS to set Hotkey. Suggested Hotkey: cmd + shift + 2</string>
 			<key>xpos</key>
 			<real>1741</real>
 			<key>ypos</key>
-			<real>790</real>
+			<real>930</real>
+		</dict>
+		<key>4EDC4109-AB66-4380-88C8-400F76EF7874</key>
+		<dict>
+			<key>colorindex</key>
+			<integer>9</integer>
+			<key>xpos</key>
+			<real>275</real>
+			<key>ypos</key>
+			<real>5995</real>
 		</dict>
 		<key>4F356F57-A6AA-4277-B742-27DC8EE84450</key>
 		<dict>
@@ -6473,7 +6503,7 @@ takes RELATIVE path (with or without heading) and opens it correctly</string>
 			<key>xpos</key>
 			<real>1490</real>
 			<key>ypos</key>
-			<real>770</real>
+			<real>910</real>
 		</dict>
 		<key>52C6C47D-3998-4DF9-B9A4-04E586CC8380</key>
 		<dict>
@@ -6489,7 +6519,7 @@ takes RELATIVE path (with or without heading) and opens it correctly</string>
 			<key>colorindex</key>
 			<integer>9</integer>
 			<key>xpos</key>
-			<real>250</real>
+			<real>270</real>
 			<key>ypos</key>
 			<real>5885</real>
 		</dict>
@@ -6567,7 +6597,7 @@ takes RELATIVE path (with or without heading) and opens it correctly</string>
 			<key>xpos</key>
 			<real>2315</real>
 			<key>ypos</key>
-			<real>685</real>
+			<real>825</real>
 		</dict>
 		<key>5F6CE94A-26BF-4826-8A67-2E02353646DB</key>
 		<dict>
@@ -6620,7 +6650,7 @@ takes RELATIVE path (with or without heading) and opens it correctly</string>
 			<key>xpos</key>
 			<real>1680</real>
 			<key>ypos</key>
-			<real>305</real>
+			<real>445</real>
 		</dict>
 		<key>65F857FA-3AC7-4FF7-8F59-083ADF0CDADE</key>
 		<dict>
@@ -6721,7 +6751,7 @@ takes RELATIVE path (with or without heading) and opens it correctly</string>
 			<key>note</key>
 			<string>open note / heading</string>
 			<key>xpos</key>
-			<real>1675</real>
+			<real>1710</real>
 			<key>ypos</key>
 			<real>35</real>
 		</dict>
@@ -6763,7 +6793,7 @@ DOUBLE CLICK THIS to set Hotkey.</string>
 			<key>xpos</key>
 			<real>1495</real>
 			<key>ypos</key>
-			<real>305</real>
+			<real>445</real>
 		</dict>
 		<key>7D288B7C-5CB7-4A0E-B99D-3A2D9186DEC5</key>
 		<dict>
@@ -6841,7 +6871,7 @@ DOUBLE CLICK THIS to set Hotkey.</string>
 			<key>xpos</key>
 			<real>1885</real>
 			<key>ypos</key>
-			<real>875</real>
+			<real>1015</real>
 		</dict>
 		<key>89E2FCF0-5A14-4078-8D1F-C0FCAC339F63</key>
 		<dict>
@@ -6895,7 +6925,7 @@ DOUBLE CLICK THIS to set Hotkey.</string>
 			<key>xpos</key>
 			<real>1845</real>
 			<key>ypos</key>
-			<real>470</real>
+			<real>610</real>
 		</dict>
 		<key>92A31C69-A00D-4696-8552-B6092758941D</key>
 		<dict>
@@ -6915,25 +6945,7 @@ DOUBLE CLICK THIS to set Hotkey.</string>
 			<key>xpos</key>
 			<real>2040</real>
 			<key>ypos</key>
-			<real>710</real>
-		</dict>
-		<key>9888408F-4081-4003-8D82-85FF20EB8138</key>
-		<dict>
-			<key>colorindex</key>
-			<integer>9</integer>
-			<key>xpos</key>
-			<real>170</real>
-			<key>ypos</key>
-			<real>6040</real>
-		</dict>
-		<key>994FC5F6-BF71-4B6D-8E8B-794A453AC62D</key>
-		<dict>
-			<key>colorindex</key>
-			<integer>6</integer>
-			<key>xpos</key>
-			<real>1490</real>
-			<key>ypos</key>
-			<real>980</real>
+			<real>850</real>
 		</dict>
 		<key>99CFB472-ADBD-4D50-9A4E-70BCE3B09355</key>
 		<dict>
@@ -7004,7 +7016,7 @@ DOUBLE CLICK THIS to set Hotkey.</string>
 			<key>xpos</key>
 			<real>1645</real>
 			<key>ypos</key>
-			<real>800</real>
+			<real>940</real>
 		</dict>
 		<key>A6F41657-5917-4CD1-A28F-7C4B2519781B</key>
 		<dict>
@@ -7040,9 +7052,9 @@ DOUBLE CLICK THIS to set Hotkey.</string>
 			<key>colorindex</key>
 			<integer>9</integer>
 			<key>xpos</key>
-			<real>2480</real>
+			<real>2485</real>
 			<key>ypos</key>
-			<real>610</real>
+			<real>720</real>
 		</dict>
 		<key>B0AB019E-6AC5-494E-9F31-F818F9BFEE21</key>
 		<dict>
@@ -7133,7 +7145,7 @@ DOUBLE CLICK THIS to set Hotkey. Suggested Hotkey: cmd + shift + 1</string>
 			<key>xpos</key>
 			<real>2105</real>
 			<key>ypos</key>
-			<real>680</real>
+			<real>820</real>
 		</dict>
 		<key>BF0363F9-98FD-4C0C-A592-BAD4319D51E2</key>
 		<dict>
@@ -7151,7 +7163,7 @@ DOUBLE CLICK THIS to set Hotkey. Suggested Hotkey: cmd + shift + 1</string>
 			<key>colorindex</key>
 			<integer>9</integer>
 			<key>xpos</key>
-			<real>250</real>
+			<real>270</real>
 			<key>ypos</key>
 			<real>5775</real>
 		</dict>
@@ -7175,7 +7187,7 @@ DOUBLE CLICK THIS to set Hotkey. Suggested Hotkey: cmd + shift + 1</string>
 			<key>xpos</key>
 			<real>1680</real>
 			<key>ypos</key>
-			<real>470</real>
+			<real>610</real>
 		</dict>
 		<key>C029ADE5-A2BF-4B0B-A849-3298F05959F8</key>
 		<dict>
@@ -7187,6 +7199,17 @@ DOUBLE CLICK THIS to set Hotkey. Suggested Hotkey: cmd + shift + 1</string>
 			<real>30</real>
 			<key>ypos</key>
 			<real>1150</real>
+		</dict>
+		<key>C2BF1FF2-F76A-4580-8D08-51DA0694D3F2</key>
+		<dict>
+			<key>colorindex</key>
+			<integer>9</integer>
+			<key>note</key>
+			<string>switch vault to control</string>
+			<key>xpos</key>
+			<real>435</real>
+			<key>ypos</key>
+			<real>5995</real>
 		</dict>
 		<key>C53137FD-2FD6-430E-8855-F4DC3164786D</key>
 		<dict>
@@ -7286,6 +7309,15 @@ DOUBLE CLICK THIS to set Hotkey. Suggested Hotkey: cmd + shift + 1</string>
 			<key>ypos</key>
 			<real>3460</real>
 		</dict>
+		<key>D7853046-09BE-4679-B4FC-DB918A36331E</key>
+		<dict>
+			<key>colorindex</key>
+			<integer>6</integer>
+			<key>xpos</key>
+			<real>1490</real>
+			<key>ypos</key>
+			<real>275</real>
+		</dict>
 		<key>D967483C-9C29-4D50-912B-0D6FA38D25ED</key>
 		<dict>
 			<key>colorindex</key>
@@ -7302,7 +7334,7 @@ DOUBLE CLICK THIS to set Hotkey. Suggested Hotkey: cmd + shift + 1</string>
 			<key>xpos</key>
 			<real>1850</real>
 			<key>ypos</key>
-			<real>740</real>
+			<real>880</real>
 		</dict>
 		<key>DD45D94E-9E2C-4477-9E37-66338FDCF4D0</key>
 		<dict>
@@ -7371,7 +7403,7 @@ DOUBLE CLICK THIS to set Hotkey. Suggested Hotkey: cmd + shift + 1</string>
 			<key>xpos</key>
 			<real>1565</real>
 			<key>ypos</key>
-			<real>645</real>
+			<real>785</real>
 		</dict>
 		<key>E5C2C637-CB7C-4C29-8829-6DD7F2901728</key>
 		<dict>
@@ -7487,6 +7519,15 @@ DOUBLE CLICK THIS to set Hotkey. Suggested Hotkey: cmd + shift + 1</string>
 			<key>ypos</key>
 			<real>210</real>
 		</dict>
+		<key>F0F119BB-A0B3-49A6-964E-DFE5D7CAD2FF</key>
+		<dict>
+			<key>colorindex</key>
+			<integer>6</integer>
+			<key>xpos</key>
+			<real>1860</real>
+			<key>ypos</key>
+			<real>65</real>
+		</dict>
 		<key>F117FF8C-E6E5-4B0E-9FCE-DDB0A6476CAB</key>
 		<dict>
 			<key>colorindex</key>
@@ -7541,7 +7582,7 @@ DOUBLE CLICK THIS to set Hotkey. Suggested Hotkey: cmd + shift + 1</string>
 			<key>xpos</key>
 			<real>2245</real>
 			<key>ypos</key>
-			<real>710</real>
+			<real>850</real>
 		</dict>
 	</dict>
 	<key>userconfigurationconfig</key>
@@ -7620,9 +7661,9 @@ DOUBLE CLICK THIS to set Hotkey. Suggested Hotkey: cmd + shift + 1</string>
 				<string>enabled</string>
 			</dict>
 			<key>description</key>
-			<string>While enabled, all Notes with the cssclass "private" will be censored. This setting is meant to be enabled temporarily when sharing the screen.</string>
+			<string>While enabled, all notes with the cssclass "private" will be censored. This setting is meant to be enabled temporarily when sharing the screen.</string>
 			<key>label</key>
-			<string>Privacy Mode</string>
+			<string>Privacy mode</string>
 			<key>type</key>
 			<string>checkbox</string>
 			<key>variable</key>
@@ -7639,7 +7680,7 @@ DOUBLE CLICK THIS to set Hotkey. Suggested Hotkey: cmd + shift + 1</string>
 				<string></string>
 			</dict>
 			<key>description</key>
-			<string>Reduces the number of emojis used throughout the workflow. (This does not apply to emojis you have explicitly added yourself with the Supercharged Icons feature further below.)</string>
+			<string>Reduces the number of emojis used throughout the workflow. (This does not apply to emojis you have explicitly added yourself with the "Supercharged icons" feature further below.)</string>
 			<key>label</key>
 			<string>Remove emojis</string>
 			<key>type</key>
@@ -7662,7 +7703,7 @@ DOUBLE CLICK THIS to set Hotkey. Suggested Hotkey: cmd + shift + 1</string>
 			<key>description</key>
 			<string>Heading Levels to Ignore for the main search `o`. Example: `h4 h5 h6` will only show h1, h2 and h3.</string>
 			<key>label</key>
-			<string>Ignore Heading Levels</string>
+			<string>Ignore heading levels</string>
 			<key>type</key>
 			<string>textfield</string>
 			<key>variable</key>
@@ -7679,9 +7720,9 @@ DOUBLE CLICK THIS to set Hotkey. Suggested Hotkey: cmd + shift + 1</string>
 				<string></string>
 			</dict>
 			<key>description</key>
-			<string>When appending to a note (`fn + ↵`), the note will automatically be opened afterwards. Also applies to the Scratchpad feature.</string>
+			<string>When appending to a note (`fn ↵`), the note will automatically be opened afterwards. Also applies to the Scratchpad feature.</string>
 			<key>label</key>
-			<string>Open Note after Appending</string>
+			<string>Open note after appending</string>
 			<key>type</key>
 			<string>checkbox</string>
 			<key>variable</key>
@@ -7705,9 +7746,9 @@ DOUBLE CLICK THIS to set Hotkey. Suggested Hotkey: cmd + shift + 1</string>
 				</array>
 			</dict>
 			<key>description</key>
-			<string>When appending via `fn + ↵`, should the clipboard be appended or should there be a prompt for text to append</string>
+			<string>When appending via `fn ↵`, whether to prompt for text or to append the clipboard content.</string>
 			<key>label</key>
-			<string>Appending Content</string>
+			<string>Appending content</string>
 			<key>type</key>
 			<string>popupbutton</string>
 			<key>variable</key>
@@ -7726,13 +7767,43 @@ DOUBLE CLICK THIS to set Hotkey. Suggested Hotkey: cmd + shift + 1</string>
 				<false/>
 			</dict>
 			<key>description</key>
-			<string>String to insert before content appended to a note via the Alfred-based Quick-Switchers (`fn + ↵`).</string>
+			<string>Text to insert before text appended via `fn ↵`. Supports Alfred's "Dynamic Placeholders" to insert things like a date.</string>
 			<key>label</key>
-			<string>Appending Prefix</string>
+			<string>Appending prefix</string>
 			<key>type</key>
 			<string>textfield</string>
 			<key>variable</key>
 			<string>append_prefix</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>default</key>
+				<string>tab</string>
+				<key>pairs</key>
+				<array>
+					<array>
+						<string>tab</string>
+						<string>tab</string>
+					</array>
+					<array>
+						<string>window</string>
+						<string>window</string>
+					</array>
+					<array>
+						<string>split</string>
+						<string>split</string>
+					</array>
+				</array>
+			</dict>
+			<key>description</key>
+			<string>where`⌘⏎` should open the note</string>
+			<key>label</key>
+			<string>Open in new</string>
+			<key>type</key>
+			<string>popupbutton</string>
+			<key>variable</key>
+			<string>open_note_in_new</string>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -7752,9 +7823,9 @@ DOUBLE CLICK THIS to set Hotkey. Suggested Hotkey: cmd + shift + 1</string>
 				</array>
 			</dict>
 			<key>description</key>
-			<string>when using `control+return`</string>
+			<string>when using `⌃⏎`</string>
 			<key>label</key>
-			<string>Type of Link to Copy</string>
+			<string>Type of link to copy</string>
 			<key>type</key>
 			<string>popupbutton</string>
 			<key>variable</key>
@@ -7773,32 +7844,11 @@ DOUBLE CLICK THIS to set Hotkey. Suggested Hotkey: cmd + shift + 1</string>
 			<key>description</key>
 			<string>Merge Nested Tags for the tag-search `ot`. Example: `#inbox/to-read` and `#inbox/later` would both be subsumed under `#inbox`.</string>
 			<key>label</key>
-			<string>Merge Nested Tags</string>
+			<string>Merge nested tags</string>
 			<key>type</key>
 			<string>checkbox</string>
 			<key>variable</key>
 			<string>merge_nested_tags</string>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>default</key>
-				<string></string>
-				<key>placeholder</key>
-				<string>/Templates/Template Note.md</string>
-				<key>required</key>
-				<false/>
-				<key>trim</key>
-				<true/>
-			</dict>
-			<key>description</key>
-			<string>Vault-relative path to the template note to use when creating new notes with the `on` command or when browsing a folder via `o`. Any `{{title}}` placeholders in the template will be replaced with the name of the file. (Be aware that the template will be ignored when you use Folder Templates from the Templater Plugin.)</string>
-			<key>label</key>
-			<string>New Note Template</string>
-			<key>type</key>
-			<string>textfield</string>
-			<key>variable</key>
-			<string>template_note_path</string>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -7826,6 +7876,27 @@ DOUBLE CLICK THIS to set Hotkey. Suggested Hotkey: cmd + shift + 1</string>
 			<dict>
 				<key>default</key>
 				<string></string>
+				<key>placeholder</key>
+				<string>/Templates/Template Note.md</string>
+				<key>required</key>
+				<false/>
+				<key>trim</key>
+				<true/>
+			</dict>
+			<key>description</key>
+			<string>Vault-relative path to the template note to use when creating new notes with the `on` command or when browsing a folder via `o`. Any `{{title}}` placeholders in the template will be replaced with the name of the file. (Be aware that the template will be ignored when you use Folder Templates from the Templater Plugin.)</string>
+			<key>label</key>
+			<string>New note template</string>
+			<key>type</key>
+			<string>textfield</string>
+			<key>variable</key>
+			<string>template_note_path</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>default</key>
+				<string></string>
 				<key>filtermode</key>
 				<integer>2</integer>
 				<key>placeholder</key>
@@ -7836,7 +7907,7 @@ DOUBLE CLICK THIS to set Hotkey. Suggested Hotkey: cmd + shift + 1</string>
 			<key>description</key>
 			<string>To append/prepend icons to your search results, similar to the Supercharged Links Plugin. Consult the documentation for further information.</string>
 			<key>label</key>
-			<string>Supercharged Icons</string>
+			<string>Supercharged icons</string>
 			<key>type</key>
 			<string>filepicker</string>
 			<key>variable</key>
@@ -7857,7 +7928,7 @@ DOUBLE CLICK THIS to set Hotkey. Suggested Hotkey: cmd + shift + 1</string>
 			<key>description</key>
 			<string>Vault-relative path to your Scratchpad Note. When you append `#foobar`, the text will be appended to the section with the heading "foobar".</string>
 			<key>label</key>
-			<string>Scratchpad Note Path</string>
+			<string>Scratchpad note path</string>
 			<key>type</key>
 			<string>textfield</string>
 			<key>variable</key>
@@ -7876,9 +7947,9 @@ DOUBLE CLICK THIS to set Hotkey. Suggested Hotkey: cmd + shift + 1</string>
 				<false/>
 			</dict>
 			<key>description</key>
-			<string>String to insert before content appended to the Scratchpad.</string>
+			<string>Text to insert before content appended to the Scratchpad. Supports Alfred's "Dynamic Placeholders" to insert things like a date.</string>
 			<key>label</key>
-			<string>Scratchpad Append Prefix</string>
+			<string>Scratchpad append prefix</string>
 			<key>type</key>
 			<string>textfield</string>
 			<key>variable</key>
@@ -7899,7 +7970,7 @@ DOUBLE CLICK THIS to set Hotkey. Suggested Hotkey: cmd + shift + 1</string>
 			<key>description</key>
 			<string>Set language codes for Tesseract, e.g., `eng+deu` for English and German. You can find out the code for your language(s) here: https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions.html</string>
 			<key>label</key>
-			<string>OCR Languages</string>
+			<string>OCR languages</string>
 			<key>type</key>
 			<string>textfield</string>
 			<key>variable</key>
@@ -7920,7 +7991,7 @@ DOUBLE CLICK THIS to set Hotkey. Suggested Hotkey: cmd + shift + 1</string>
 			<key>description</key>
 			<string>String to insert before OCR'ed content.</string>
 			<key>label</key>
-			<string>OCR Screenshot Prefix</string>
+			<string>OCR screenshot prefix</string>
 			<key>type</key>
 			<string>textfield</string>
 			<key>variable</key>
@@ -7941,7 +8012,7 @@ DOUBLE CLICK THIS to set Hotkey. Suggested Hotkey: cmd + shift + 1</string>
 			<key>description</key>
 			<string>Markdown file where the ORC'ed text will be saved to. When empty, will save/append to the file `{vault-path}/OCR-Screenshots.md`. Can be a markdown file outside your note and be used independently from Obsidian.</string>
 			<key>label</key>
-			<string>OCR Screenshot Note</string>
+			<string>OCR screenshot note</string>
 			<key>type</key>
 			<string>filepicker</string>
 			<key>variable</key>
@@ -7962,7 +8033,7 @@ DOUBLE CLICK THIS to set Hotkey. Suggested Hotkey: cmd + shift + 1</string>
 			<key>description</key>
 			<string>Folder where the image screenshots should be saved to. When empty, will save the images in `{vault-path}/screenshots/`.</string>
 			<key>label</key>
-			<string>Screenshot Path</string>
+			<string>Screenshot path</string>
 			<key>type</key>
 			<string>filepicker</string>
 			<key>variable</key>
@@ -7979,9 +8050,9 @@ DOUBLE CLICK THIS to set Hotkey. Suggested Hotkey: cmd + shift + 1</string>
 				<string></string>
 			</dict>
 			<key>description</key>
-			<string>Open mote after screenshot or OCR screenshot. (Disable this to be able to take screenshots in quick succession without opening Obsidian.)</string>
+			<string>Open note after screenshot or OCR screenshot. (Disable this to be able to take screenshots in quick succession without opening Obsidian.)</string>
 			<key>label</key>
-			<string>Open after Screenshot / OCR Screenshot</string>
+			<string>Open after (OCR) screenshot</string>
 			<key>type</key>
 			<string>checkbox</string>
 			<key>variable</key>
@@ -8002,7 +8073,7 @@ DOUBLE CLICK THIS to set Hotkey. Suggested Hotkey: cmd + shift + 1</string>
 			<key>description</key>
 			<string>Folder where the backups done by the `obackup` command should be saved. Recommended to be a folder outside your vault.</string>
 			<key>label</key>
-			<string>Backup Destination</string>
+			<string>Backup destination</string>
 			<key>type</key>
 			<string>filepicker</string>
 			<key>variable</key>
@@ -8036,7 +8107,7 @@ DOUBLE CLICK THIS to set Hotkey. Suggested Hotkey: cmd + shift + 1</string>
 		<string>▉</string>
 	</dict>
 	<key>version</key>
-	<string>4.7.3</string>
+	<string>4.9.2</string>
 	<key>webaddress</key>
 	<string>https://chris-grieser.de/</string>
 </dict>
