@@ -44,6 +44,7 @@ alias print-path='echo -e ${PATH//:/\\n}'
 alias brew_upgrade_cask="brew outdated --cask --greedy --quiet | xargs -n1 brew upgrade --cask"
 
 alias brew_upgrade_all="brew update && brew upgrade && brew upgrade --cask --greedy"
+alias brew-outdated="brew outdated --fetch-HEAD"
 
 alias update='sudo softwareupdate -i -a; brew update; brew upgrade; brew upgrade --cask --greedy; brew cleanup'
 
@@ -80,3 +81,9 @@ command -v md5sum > /dev/null || alias md5sum="md5"
 
 # macOS has no `sha1sum`, so use `shasum` as a fallback
 command -v sha1sum > /dev/null || alias sha1sum="shasum"
+
+brewpackages (){
+  brew list --formula | xargs -n1 -P8 -I {} \
+    sh -c "brew info {} | egrep '[0-9]* files, ' | sed 's/^.*[0-9]* files, \(.*\)).*$/{} \1/'" | \
+    sort -h -r -k2 - | column -t
+}
