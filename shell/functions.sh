@@ -90,3 +90,9 @@ fi
 if [ -z $LANG ]; then
   export LANG=en_US
 fi
+
+setopt_if_exists() {
+  if [[ "${options[$1]+1}" ]]; then
+    setopt "$1"
+  fi
+}
