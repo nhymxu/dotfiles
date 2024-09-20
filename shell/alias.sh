@@ -108,6 +108,66 @@ function extract() {
   fi
 }
 
+function extract2() {
+    local file="$1";
+    if [ -z "$file" ]; then
+        printf "\033[1;31mNo file specified\n\033[0m" 1>&2;
+        return 1;
+    fi;
+    if [ ! -f "$file" ]; then
+        printf "\033[1;31mFile '%s' not found\n\033[0m" "$file" 1>&2;
+        return 1;
+    fi;
+    local ext="${file#*.}";
+    local extractor;
+    local options="";
+    case "$ext" in
+        tar.bz2 | tbz2 | tar)
+            extractor="tar";
+            options="xvf"
+        ;;
+        tar.gz | tgz)
+            extractor="tar";
+            options="xzvf"
+        ;;
+        tar.xz)
+            extractor="tar";
+            options="Jxvf"
+        ;;
+        bz2)
+            extractor="bunzip2"
+        ;;
+        rar)
+            extractor="unar";
+            options="-d"
+        ;;
+        gz)
+            extractor="gunzip"
+        ;;
+        zip)
+            extractor="unzip"
+        ;;
+        xz)
+            extractor="unxz"
+        ;;
+        7z)
+            extractor="7z";
+            options="x"
+        ;;
+        Z)
+            extractor="uncompress"
+        ;;
+        *)
+            printf "\033[1;31mUnsupported file type: %s\n\033[0m" "$file" 1>&2;
+            return 1
+        ;;
+    esac;
+    if ! "$extractor" $options "$file"; then
+        printf "\033[1;31mError extracting '%s'\n\033[0m" "$file" 1>&2;
+        return 1;
+    fi
+}
+
 # Test timing for various stages of an HTTP connection to a domain
 function curl_time() {
   curl -so /dev/null -w "\
