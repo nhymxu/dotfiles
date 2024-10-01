@@ -153,4 +153,4 @@ ln -s ~/dotfiles/aria2 ~/.aria2
 - [`bandwhich`](https://github.com/imsnif/bandwhich) CLI utility for displaying current network utilization
 - [`sd`](https://github.com/chmln/sd) - Quick replacement for `sed`. Find & replace CLI
 - [`fd`](https://github.com/sharkdp/fd) - Quick replacement for `find`. Find entries in your filesytem
-- [`exa`](https://github.com/ogham/exa) - modern replacement for `ls`
+- [`eza`](https://github.com/eza-community/eza) - modern replacement for `ls`
