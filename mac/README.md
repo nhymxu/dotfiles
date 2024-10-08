@@ -17,3 +17,14 @@ export HOMEBREW_CASK_OPTS="--appdir=~/Applications"
 Store on `mac/workflows`
 
 Automator Quick Actions are saved into /Users/username/Library/Services. By default, Workflows are saved in the Workflows folder in the local library, or anywhere you specifically request they be saved. However, Calendar, Folder, and Image Capture workflows are stored in the respective folders in Workflows/Applications. Printer plug-ins get saved in the local Library's PDF Services folder.
+
+## Battery control
+
+Open source
+
+- https://github.com/actuallymentor/battery
+- https://github.com/mhaeuser/Battery-Toolkit
+
+Close source
+
+https://apphousekitchen.com/
