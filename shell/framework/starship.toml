@@ -1,7 +1,9 @@
 # Get editor completions based on the config schema
 "$schema" = 'https://starship.rs/config-schema.json'
 
+add_newline = false
 command_timeout = 1000
+scan_timeout = 1000
 
 [git_branch]
 # symbol = "🌱 "
@@ -13,3 +15,13 @@ command_timeout = 1000
 truncation_length = 8
 truncation_symbol = "…/"
 truncate_to_repo = false
+
+[aws]
+disabled = true
+style = "bold #ffb86c"
+
+[battery]
+disabled = true
+
+[bun]
+disabled = true
