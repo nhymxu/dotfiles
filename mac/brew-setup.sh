@@ -20,6 +20,8 @@ brew install findutils # Install GNU `find`, `locate`, `updatedb`, and `xargs`, 
 brew install wget
 brew install tree
 
+brew install mas # command-line interface for the Mac App Store
+
 brew install gnupg
 brew install pinentry-mac
 echo "pinentry-program $HOMEBREW_PREFIX/bin/pinentry-mac" > ~/.gnupg/gpg-agent.conf

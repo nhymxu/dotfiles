@@ -46,7 +46,13 @@ alias brew_upgrade_cask="brew outdated --cask --greedy --quiet | xargs -n1 brew 
 alias brew_upgrade_all="brew update && brew upgrade && brew upgrade --cask --greedy"
 alias brew-outdated="brew outdated --fetch-HEAD"
 
-alias update='sudo softwareupdate -i -a; brew update; brew upgrade; brew upgrade --cask --greedy; brew cleanup'
+brewpackages (){
+  brew list --formula | xargs -n1 -P8 -I {} \
+    sh -c "brew info {} | egrep '[0-9]* files, ' | sed 's/^.*[0-9]* files, \(.*\)).*$/{} \1/'" | \
+    sort -h -r -k2 - | column -t
+}
+
+alias update='sudo softwareupdate -i -a; mas upgrade; brew update; brew upgrade; brew upgrade --cask --greedy; brew cleanup'
 
 renice_ggbackup() {
     if [ -z "$1" ]; then
@@ -81,9 +87,3 @@ command -v md5sum > /dev/null || alias md5sum="md5"
 
 # macOS has no `sha1sum`, so use `shasum` as a fallback
 command -v sha1sum > /dev/null || alias sha1sum="shasum"
-
-brewpackages (){
-  brew list --formula | xargs -n1 -P8 -I {} \
-    sh -c "brew info {} | egrep '[0-9]* files, ' | sed 's/^.*[0-9]* files, \(.*\)).*$/{} \1/'" | \
-    sort -h -r -k2 - | column -t
-}
