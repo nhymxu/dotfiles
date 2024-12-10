@@ -52,7 +52,8 @@ brewpackages (){
     sort -h -r -k2 - | column -t
 }
 
-alias update='sudo softwareupdate -i -a; mas upgrade; brew update; brew upgrade; brew upgrade --cask --greedy; brew cleanup'
+# sudo softwareupdate -i -a
+alias update='mas upgrade; brew update; brew upgrade; brew upgrade --cask --greedy; brew cleanup'
 
 renice_ggbackup() {
     if [ -z "$1" ]; then
