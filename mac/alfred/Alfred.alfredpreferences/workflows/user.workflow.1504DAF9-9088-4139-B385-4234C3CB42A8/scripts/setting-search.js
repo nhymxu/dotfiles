@@ -1,10 +1,7 @@
 #!/usr/bin/env osascript -l JavaScript
-
 ObjC.import("stdlib");
-ObjC.import("Foundation");
 const app = Application.currentApplication();
 app.includeStandardAdditions = true;
-
 //──────────────────────────────────────────────────────────────────────────────
 
 /** @param {string} path */
@@ -27,65 +24,85 @@ function run() {
 
 	const standardSettings = JSON.parse(readFile("./data/settings-database.json"));
 
-	const installedPlugins = app.doShellScript(`ls -1 "${vaultPath}/${configFolder}/plugins/"`).split("\r");
-	const enabledComPlugins = JSON.parse(readFile(`${vaultPath}/${configFolder}/community-plugins.json`));
+	const installedPlugins = app
+		.doShellScript(`ls -1 "${vaultPath}/${configFolder}/plugins/"`)
+		.split("\r");
+	const enabledComPlugins = JSON.parse(
+		readFile(`${vaultPath}/${configFolder}/community-plugins.json`),
+	);
 
-	const corePluginsWithSettings = JSON.parse(readFile("./data/core-plugins-with-settings-database.json"));
-	const enabledCorePlugins = JSON.parse(readFile(`${vaultPath}/${configFolder}/core-plugins.json`));
+	const corePluginsWithSettings = JSON.parse(
+		readFile("./data/core-plugins-with-settings-database.json"),
+	);
+	const enabledCorePlugins = JSON.parse(
+		readFile(`${vaultPath}/${configFolder}/core-plugins.json`),
+	);
 
 	const deprecated = JSON.parse(readFile("./data/deprecated-plugins.json"));
-	const deprecatedPlugins = [...deprecated.sherlocked, ...deprecated.dysfunct, ...deprecated.deprecated];
+	const deprecatedPlugins = [
+		...deprecated.sherlocked,
+		...deprecated.dysfunct,
+		...deprecated.deprecated,
+	];
 
 	//──────────────────────────────────────────────────────────────────────────────
 	const settings = [];
 
-	enabledCorePlugins.forEach((/** @type {string} */ pluginID) => {
+	for (const [pluginID, enabled] of Object.entries(enabledCorePlugins)) {
+		if (!enabled) continue;
 		const hasSettings = corePluginsWithSettings
 			.map((/** @type {{ id: string; }} */ p) => p.id)
 			.includes(pluginID);
-		if (!hasSettings) return;
+		if (!hasSettings) continue;
 
 		const pluginName = corePluginsWithSettings.filter(
 			(/** @type {{ id: string; }} */ item) => item.id === pluginID,
 		)[0].title;
 
-		const URI = uriStart + "&settingid=" + pluginID;
+		const uri = uriStart + "&settingid=" + pluginID;
+		const invalid = { valid: false, subtitle: "Not available for core plugins." };
 
 		settings.push({
 			title: pluginName,
 			uid: pluginID,
 			match: pluginName,
-			arg: URI,
+			arg: uri,
 			icon: { path: "icons/plugin.png" },
 			mods: {
-				alt: { valid: false },
-				cmd: { valid: false },
-				fn: { valid: false },
+				alt: invalid,
+				cmd: invalid,
+				fn: invalid,
+				shift: invalid,
 				ctrl: {
 					arg: pluginID,
 					subtitle: "⌃: Copy plugin ID '" + pluginID + "'",
 				},
 			},
 		});
-	});
+	}
 
-	standardSettings.forEach((/** @type {{ id: string; title: string; match: string; }} */ setting) => {
-		let URI = uriStart + "&settingid=" + setting.id;
-		if (setting.id === "updateplugins") URI = uriStart + "&updateplugins=true";
+	standardSettings.forEach(
+		(/** @type {{ id: string; title: string; match: string; }} */ setting) => {
+			let uri = uriStart + "&settingid=" + setting.id;
+			if (setting.id === "updateplugins") uri = uriStart + "&updateplugins=true";
 
-		settings.push({
-			title: setting.title,
-			match: setting.match,
-			uid: setting.id,
-			arg: URI,
-			mods: {
-				alt: { valid: false },
-				cmd: { valid: false },
-				ctrl: { valid: false },
-				fn: { valid: false },
-			},
-		});
-	});
+			const invalid = { valid: false, subtitle: "Not available for settings." };
+
+			settings.push({
+				title: setting.title,
+				match: setting.match,
+				uid: setting.id,
+				arg: uri,
+				mods: {
+					alt: invalid,
+					cmd: invalid,
+					shift: invalid,
+					ctrl: invalid,
+					fn: invalid,
+				},
+			});
+		},
+	);
 
 	installedPlugins.forEach((pluginFolder) => {
 		const pluginFolderPath = `${vaultPath}/${configFolder}/plugins/${pluginFolder}`;
@@ -102,7 +119,7 @@ function run() {
 		}
 		const name = manifest.name;
 		const pluginID = manifest.id;
-		const URI = `${uriStart}&settingid=${pluginID}`;
+		const uri = `${uriStart}&settingid=${pluginID}`;
 
 		// toggling
 		const pluginEnabled = enabledComPlugins.includes(pluginID);
@@ -126,14 +143,13 @@ function run() {
 			title: name + icons,
 			uid: pluginID,
 			subtitle: subtitleIcons + settingSubtitle,
-			arg: URI,
+			arg: uri,
 			icon: { path: "icons/plugin.png" },
 			mods: {
 				alt: { arg: pluginFolderPath },
 				cmd: { arg: pluginFolderPath },
 				shift: {
 					arg: toggleURI,
-					valid: true,
 					subtitle: toggleSubtitle,
 				},
 				ctrl: {

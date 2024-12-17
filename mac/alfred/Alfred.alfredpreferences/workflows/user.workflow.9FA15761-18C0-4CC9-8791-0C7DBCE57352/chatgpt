@@ -70,7 +70,7 @@ function startStream(apiEndpoint, apiKey, apiOrgHeader, model, systemPrompt, con
 
   task.executableURL = $.NSURL.fileURLWithPath("/usr/bin/curl")
   task.arguments = [
-    `${apiEndpoint}/v1/chat/completions`,
+    apiEndpoint,
     "--speed-limit", "0", "--speed-time", "5", // Abort stalled connection after a few seconds
     "--silent", "--no-buffer",
     "--header", "Content-Type: application/json",
@@ -107,7 +107,7 @@ function readStream(streamFile, chatFile, pidStreamFile) {
         deleteFile(pidStreamFile)
 
         return JSON.stringify({
-          response: `[${errorMessage}]  \n(${(new Date).toUTCString()})`, // Surround in square brackets to look like other messages
+          response: `[${errorMessage}]`, // Surround in square brackets to look like other errors
           behaviour: { response: "replacelast" }
         })
       }
@@ -127,9 +127,9 @@ function readStream(streamFile, chatFile, pidStreamFile) {
   // Parse streaming response
   const chunks = streamString
     .split("\n") // Split into lines
+    .filter(item => item) // Remove empty lines
     .map(item => item.replace(/^data: /, "")) // Remove extraneous "data: "
-    .filter(item => item.startsWith("{")) // Only grab lines which could be expected JSON
-    .map(item => JSON.parse(item)) // Parse as JSON
+    .flatMap(item => { try { return JSON.parse(item) } catch { return [] } }) // Parse as JSON
 
   const responseText = chunks.map(item => item["choices"][0]?.["delta"]["content"]).join("")
 
@@ -162,7 +162,7 @@ function readStream(streamFile, chatFile, pidStreamFile) {
   const finishReason = chunks.slice(-1)[0]["choices"][0]["finish_reason"]
 
   // If reponse is not finished, continue loop
-  if (finishReason === null) return JSON.stringify({
+  if (!finishReason) return JSON.stringify({
     rerun: 0.1,
     variables: { streaming_now: true },
     response: responseText,
@@ -197,7 +197,9 @@ function run(argv) {
   const maxContext = parseInt(envVar("max_context"))
   const apiKey = envVar("openai_api_key")
   const apiOrgHeader = envVar("openai_org_id") ? ["--header", `OpenAI-Organization: ${envVar("openai_org_id")}`] : []
-  const apiEndpoint = envVar("chatgpt_api_endpoint") || "https://api.openai.com"
+  const apiEndpointInit = envVar("chatgpt_api_endpoint") || "https://api.openai.com/v1/chat/completions"
+  const apiEndpointInitHasPath = apiEndpointInit.replace(/^https?:\/\//, "").includes("/")
+  const apiEndpoint = apiEndpointInitHasPath ? apiEndpointInit : `${apiEndpointInit}/v1/chat/completions`
   const systemPrompt = envVar("system_prompt")
   const model = envVar("chatgpt_model_override") ? envVar("chatgpt_model_override") : envVar("gpt_model")
   const chatFile = `${envVar("alfred_workflow_data")}/chat.json`

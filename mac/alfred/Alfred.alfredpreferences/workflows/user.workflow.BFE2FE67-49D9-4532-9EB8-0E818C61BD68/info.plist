@@ -237,7 +237,7 @@
 const task = $.NSTask.alloc.init
 const stdout = $.NSPipe.pipe
 
-task.executableURL = $.NSURL.alloc.initFileURLWithPath("/usr/bin/networkQuality")
+task.executableURL = $.NSURL.fileURLWithPath("/usr/bin/networkQuality")
 task.standardOutput = stdout
 task.launchAndReturnError(false)
 
@@ -260,6 +260,8 @@ JSON.stringify({ variables: { full_info: lines.join("\n") }, items: sfItems })</
 				<integer>1</integer>
 				<key>scriptfile</key>
 				<string></string>
+				<key>skipuniversalaction</key>
+				<true/>
 				<key>subtext</key>
 				<string></string>
 				<key>title</key>
@@ -484,6 +486,11 @@ JSON.stringify({ variables: { full_info: lines.join("\n") }, items: sfItems })</
 			<integer>1</integer>
 		</dict>
 		<dict>
+			<key>config</key>
+			<dict>
+				<key>unstackview</key>
+				<false/>
+			</dict>
 			<key>type</key>
 			<string>alfred.workflow.utility.hidealfred</string>
 			<key>uid</key>
@@ -605,7 +612,7 @@ Examine your internet connection via the `netquality` keyword. Analysis takes a 
 		</dict>
 	</array>
 	<key>version</key>
-	<string>2023.3</string>
+	<string>2024.1</string>
 	<key>webaddress</key>
 	<string>https://github.com/alfredapp/network-quality-workflow/</string>
 </dict>

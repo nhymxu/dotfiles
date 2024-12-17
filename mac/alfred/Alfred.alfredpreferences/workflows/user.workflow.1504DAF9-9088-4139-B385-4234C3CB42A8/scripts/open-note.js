@@ -4,9 +4,13 @@ const app = Application.currentApplication();
 app.includeStandardAdditions = true;
 //──────────────────────────────────────────────────────────────────────────────
 
-function noObsiWinOpen() {
-	const obsiWins = Application("System Events").applicationProcesses.byName("Obsidian").windows();
-	return obsiWins.length === 0;
+const fileExists = (/** @type {string} */ filePath) => Application("Finder").exists(Path(filePath));
+
+/** @param {string} path */
+function readFile(path) {
+	const data = $.NSFileManager.defaultManager.contentsAtPath(path);
+	const str = $.NSString.alloc.initWithDataEncoding(data, $.NSUTF8StringEncoding);
+	return ObjC.unwrap(str);
 }
 
 //──────────────────────────────────────────────────────────────────────────────
@@ -17,6 +21,16 @@ function run(argv) {
 	const vaultPath = $.getenv("vault_path");
 	const vaultNameEnc = encodeURIComponent(vaultPath.replace(/.*\//, ""));
 
+	// VALIDATE that `Advanced URI` is installed and enabled
+	const configFolder = $.getenv("config_folder");
+	const aUriInstalled = fileExists(`${vaultPath}/${configFolder}/plugins/obsidian-advanced-uri`);
+	const pluginList = readFile(`${vaultPath}/${configFolder}/community-plugins.json`);
+	const aUriEnabled = JSON.parse(pluginList).includes("obsidian-advanced-uri");
+	if (!aUriInstalled || !aUriEnabled) {
+		return '"Advanced URI" plugin not installed or not enabled.';
+	}
+
+	// determine input
 	const input = (argv[0] || "").trim(); // trim to remove trailing \n
 	const relativePath = (input.split("#")[0] || "").split(":")[0] || "";
 	const heading = input.split("#")[1];
@@ -36,23 +50,18 @@ function run(argv) {
 		lineNum ? "&line=" + encodeURIComponent(lineNum) : "",
 		openMode ? "&openmode=" + openMode : "",
 	];
-	const urlScheme = urlComponents.join("");
+	const uri = urlComponents.join("");
 
 	// OPEN FILE
-	// delay opening URI scheme until Obsidian is running, URIs do not open
-	// reliably when vault is not open. (also applies to Obsidian core's URIs)
-	// cannot use "window exists" condition as check, since windows already exist
-	// before Obsidian is able to accept URIs
-	const vaultStartUpDelay = 2; // CONFIG
+	// - Delay opening URI scheme until Obsidian is running, URIs do not open
+	//   reliably when vault is not open. (also applies to Obsidian core's URIs)
+	// - Do not count windows, since it requires somewhat the macOS accessibility
+	//   perrmission, which often appears to be bit buggy (see #191).
 	if (!Application("Obsidian").running()) {
 		Application("Obsidian").launch();
-		delay(vaultStartUpDelay);
-	} else if (noObsiWinOpen()) {
-		// open correct vault first
-		app.openLocation("obsidian://open?vault=" + vaultNameEnc);
-		// less delay, since Obsidian process is already running
-		delay(vaultStartUpDelay - 0.5);
+		delay(1.5);
 	}
-	app.openLocation(urlScheme);
+	app.openLocation(uri);
+	console.log("URI opened:", uri);
 	return;
 }

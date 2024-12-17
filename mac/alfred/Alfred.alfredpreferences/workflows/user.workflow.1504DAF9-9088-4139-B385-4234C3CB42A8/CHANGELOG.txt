@@ -1,2 +1,0 @@
-### Changelog
-- **chore**: minor tweaks to note appending
