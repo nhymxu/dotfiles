@@ -217,3 +217,24 @@ alias docker-clean="docker system prune -f"
 # Reload zshrc file to apply changes.
 # Allows you to not need to restart terminal for changes to .zshrc to be applied
 alias reload='source ~/.zshrc'
+
+function asdf-alias() {
+    local plugin_name=$1
+    local version=$2
+    local target_version=$3
+
+    if [ -z "$plugin_name" ] || [ -z "$version" ] || [ -z "$target_version" ]; then
+        echo "Usage example:";
+        echo "  Create 3.12 version using 3.12.8";
+        echo "      asdf-alias python 3.12.8 3.12";
+        return;
+    fi
+
+    mkdir -p ~/.asdf/installs/$plugin_name/$target_version
+
+    folder_list=(bin include lib share)
+    for i in "${folder_list[@]}"
+    do
+        ln -s ~/.asdf/installs/$plugin_name/$version/$i ~/.asdf/installs/$plugin_name/$target_version/$i
+    done
+}
