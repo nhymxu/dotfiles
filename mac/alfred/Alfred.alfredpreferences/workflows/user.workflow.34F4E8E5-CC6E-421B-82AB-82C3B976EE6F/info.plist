@@ -1960,9 +1960,10 @@ echo '{
   const query = itemID + "=" + itemID
 
   const url = $.NSProcessInfo.processInfo.environment.objectForKey("url").js
+  if (url === undefined) throw "Item does not have a configured website URL"
   const urlObject = $.NSURL.URLWithString(url)
 
-  if (urlObject.query.js === undefined) return url + "?" + query
+  if (urlObject.query.js === undefined) return url + "?" + query 
   return url + "&amp;" + query
 }</string>
 				<key>scriptargtype</key>
@@ -3299,7 +3300,7 @@ Changes come into effect on next cache update.</string>
 	<key>variablesdontexport</key>
 	<array/>
 	<key>version</key>
-	<string>2024.3</string>
+	<string>2025.1</string>
 	<key>webaddress</key>
 	<string>https://github.com/alfredapp/1password-workflow/</string>
 </dict>
