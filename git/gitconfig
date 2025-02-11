@@ -125,3 +125,5 @@
 
 [includeIf "gitdir/i:~/workspace/cpl/"]
 	path = ~/.gitconfig-work
+[pack]
+	usePathWalk = true
