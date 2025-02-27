@@ -11,6 +11,11 @@
 	# https://git-scm.com/docs/git-update-index#_untracked_cache
 	untrackedCache = true
 
+[fetch]
+	prune = true
+	pruneTags = true
+	all = true
+
 [push]
 	default = simple
 	autoSetupRemote = true
@@ -19,6 +24,9 @@
 	followTags = true
 
 [http]
+
+[column]
+	ui = always
 
 [color]
 	ui = true
@@ -38,7 +46,17 @@
 	whitespace = red reverse
 
 [commit]
+	verbose = true
 	template = ~/dotfiles/git/gitmessage
+
+[rerere]
+	enabled = true
+	autoupdate = true
+
+[rebase]
+	autoSquash = true
+	autoStash = true
+	updateRefs = true
 
 [pager]
 	diff = diff-so-fancy | less --tabs=4 -RFX
@@ -97,7 +115,9 @@
 
 [help]
 	# Automatically correct and execute mistyped commands.
-	autocorrect = 1
+	# autocorrect = 1
+	# show the suggestion and prompt for confirmation to run the command
+	autocorrect = prompt
 
 [init]
 	defaultBranch = main
@@ -112,6 +132,10 @@
 [diff]
 	# Detect copies as well as renames.
 	renames = copies
+	# renames = true
+	algorithm = histogram
+	colorMoved = plain
+	mnemonicPrefix = true
 
 [diff "bin"]
 	# Use `hexdump` to diff binary files.
