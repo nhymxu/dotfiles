@@ -16,6 +16,9 @@
 	pruneTags = true
 	all = true
 
+[pull]
+	rebase = true
+
 [push]
 	default = simple
 	autoSetupRemote = true
@@ -26,7 +29,7 @@
 [http]
 
 [column]
-	ui = always
+	ui = auto
 
 [color]
 	ui = true
