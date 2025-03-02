@@ -239,3 +239,20 @@ function asdf-alias() {
         ln -s ~/.asdf/installs/$plugin_name/$version/$i ~/.asdf/installs/$plugin_name/$target_version/$i
     done
 }
+
+function asdf-shell() {
+    local plugin_name=$1
+    local version=$2
+
+    if [ -z "$plugin_name" ] || [ -z "$version" ]; then
+        echo "Usage example:";
+        echo "  Using Python 3.12 in the current shell session";
+        echo "      asdf-shell python 3.12";
+        return;
+    fi
+
+    local plugin_name_formated=$(echo $plugin_name | tr '[:lower:]' '[:upper:]')
+    # local plugin_name_formated=$(echo "$plugin_name" | awk '{print toupper($0)}')
+
+    export "ASDF_${plugin_name_formated}_VERSION"="$version"
+}
