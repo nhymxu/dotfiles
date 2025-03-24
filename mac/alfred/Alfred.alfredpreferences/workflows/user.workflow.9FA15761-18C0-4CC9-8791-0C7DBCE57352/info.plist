@@ -1528,12 +1528,13 @@ function markdownChat(messages, ignoreLastInterrupted = true) {
       return `${accumulator}${current["content"]}\n\n`
 
     if (current["role"] === "user") {
+      const userMessage = `## You\n\n${current["content"]}\n\n## Assistant`
       const userTwice = allMessages[index + 1]?.["role"] === "user" // "user" role twice in a row
       const lastMessage = index === allMessages.length - 1 // "user is last message
 
       return userTwice || (lastMessage &amp;&amp; !ignoreLastInterrupted) ?
-        `${accumulator}### ${current["content"]}\n\n[Answer Interrupted]\n\n` :
-        `${accumulator}### ${current["content"]}\n\n`
+        `${accumulator}${userMessage}\n\n[Answer Interrupted]\n\n` :
+        `${accumulator}${userMessage}\n\n`
     }
 
     // Ignore any other role
@@ -2425,20 +2426,16 @@ Query DALL·E via the `dalle` keyword.
 				<key>pairs</key>
 				<array>
 					<array>
-						<string>GPT-4o</string>
-						<string>gpt-4o</string>
-					</array>
-					<array>
 						<string>GPT-4o mini</string>
 						<string>gpt-4o-mini</string>
 					</array>
 					<array>
-						<string>GPT-4</string>
-						<string>gpt-4</string>
+						<string>GPT-4o</string>
+						<string>gpt-4o</string>
 					</array>
 					<array>
-						<string>GPT-4 Turbo</string>
-						<string>gpt-4-turbo</string>
+						<string>o1 mini</string>
+						<string>o1-mini</string>
 					</array>
 				</array>
 			</dict>
@@ -2475,6 +2472,31 @@ Query DALL·E via the `dalle` keyword.
 			<string>slider</string>
 			<key>variable</key>
 			<string>max_context</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>defaultvalue</key>
+				<integer>10</integer>
+				<key>markercount</key>
+				<integer>6</integer>
+				<key>maxvalue</key>
+				<integer>30</integer>
+				<key>minvalue</key>
+				<integer>5</integer>
+				<key>onlystoponmarkers</key>
+				<true/>
+				<key>showmarkers</key>
+				<true/>
+			</dict>
+			<key>description</key>
+			<string>How many seconds to wait before giving up connection.</string>
+			<key>label</key>
+			<string>Timeout</string>
+			<key>type</key>
+			<string>slider</string>
+			<key>variable</key>
+			<string>timeout_seconds</string>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -2693,7 +2715,7 @@ Query DALL·E via the `dalle` keyword.
 		<string>https://api.openai.com</string>
 	</dict>
 	<key>version</key>
-	<string>2024.19</string>
+	<string>2025.2</string>
 	<key>webaddress</key>
 	<string>https://github.com/alfredapp/openai-workflow/</string>
 </dict>

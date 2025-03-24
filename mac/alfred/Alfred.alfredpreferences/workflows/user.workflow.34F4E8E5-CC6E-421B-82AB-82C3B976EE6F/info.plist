@@ -34,29 +34,6 @@
 				<false/>
 			</dict>
 		</array>
-		<key>1B9901B6-D704-4CF2-8287-7B72C401C470</key>
-		<array>
-			<dict>
-				<key>destinationuid</key>
-				<string>97090C7E-0127-4909-A2CA-D78C9DC0355F</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-				<key>vitoclose</key>
-				<false/>
-			</dict>
-			<dict>
-				<key>destinationuid</key>
-				<string>1D21086A-0AED-4EA6-BD28-E6971528277C</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-				<key>vitoclose</key>
-				<false/>
-			</dict>
-		</array>
 		<key>2032CDC0-7BD4-4671-8A03-2BEB9F84B3D3</key>
 		<array>
 			<dict>
@@ -76,7 +53,7 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>1B9901B6-D704-4CF2-8287-7B72C401C470</string>
+				<string>44322D7B-6B6D-47D8-B383-A1D114D6601C</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -158,6 +135,33 @@
 				<integer>0</integer>
 				<key>modifiersubtext</key>
 				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>44322D7B-6B6D-47D8-B383-A1D114D6601C</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>97090C7E-0127-4909-A2CA-D78C9DC0355F</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>sourceoutputuid</key>
+				<string>BA892098-6B49-437B-A650-62256CF781FB</string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>1D21086A-0AED-4EA6-BD28-E6971528277C</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>sourceoutputuid</key>
+				<string>BA892098-6B49-437B-A650-62256CF781FB</string>
 				<key>vitoclose</key>
 				<false/>
 			</dict>
@@ -426,7 +430,7 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>1B9901B6-D704-4CF2-8287-7B72C401C470</string>
+				<string>44322D7B-6B6D-47D8-B383-A1D114D6601C</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -610,7 +614,7 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>1B9901B6-D704-4CF2-8287-7B72C401C470</string>
+				<string>44322D7B-6B6D-47D8-B383-A1D114D6601C</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -944,7 +948,7 @@ fi</string>
 				<integer>102</integer>
 				<key>script</key>
 				<string>readonly items_hash_file="${alfred_workflow_data}/items_hash.txt"
-readonly old_items_hash="$(/bin/cat "${items_hash_file}")"
+readonly old_items_hash="$(&lt; "${items_hash_file}")"
 readonly new_items_hash="$(/usr/bin/sqlite3 "${HOME}/Library/Group Containers/2BUA8C4S2C.com.1password/Library/Application Support/1Password/Data/1password.sqlite" 'SELECT * FROM item_overviews;' | md5)"
 
 [[ -n "${items_hash_file}" ]] || exit 1
@@ -1633,10 +1637,18 @@ Keep it running and try again.</string>
 				<key>runningsubtext</key>
 				<string>Getting items…</string>
 				<key>script</key>
-				<string>readonly file="${alfred_workflow_data}/items.json"
+				<string># If workflow preferences changed, request item update
+if [[ -f './prefs.plist' ]] &amp;&amp; ! /usr/bin/cmp -s './prefs.plist' "${alfred_workflow_data}/prefs.plist"; then
+  /bin/mkdir -p "${alfred_workflow_data}"
+  /bin/cp './prefs.plist' "${alfred_workflow_data}/prefs.plist"
+  ./1password.js 'data_update_detected'
+fi
 
-if [[ -f "${file}" ]]; then
-  cat "${file}"
+# Read items file if present and exit early
+readonly items_file="${alfred_workflow_data}/items.json"
+
+if [[ -f "${items_file}" ]]; then
+  &lt; "${items_file}"
   exit 0
 fi
 
@@ -1647,6 +1659,7 @@ if [[ -f "${prefs_file}" ]]; then
   /usr/libexec/PlistBuddy -c 'Delete :enabled' "${prefs_file}" 2&gt; /dev/null
 fi
 
+# Request initial build
 echo '{
   "rerun": 0.1,
   "items": [{
@@ -2456,11 +2469,33 @@ fi</string>
 		</dict>
 		<dict>
 			<key>config</key>
-			<dict/>
+			<dict>
+				<key>conditions</key>
+				<array>
+					<dict>
+						<key>inputstring</key>
+						<string>{var:copy_notifications}</string>
+						<key>matchcasesensitive</key>
+						<false/>
+						<key>matchmode</key>
+						<integer>5</integer>
+						<key>matchstring</key>
+						<string></string>
+						<key>outputlabel</key>
+						<string>Notification</string>
+						<key>uid</key>
+						<string>BA892098-6B49-437B-A650-62256CF781FB</string>
+					</dict>
+				</array>
+				<key>elselabel</key>
+				<string></string>
+				<key>hideelse</key>
+				<true/>
+			</dict>
 			<key>type</key>
-			<string>alfred.workflow.utility.junction</string>
+			<string>alfred.workflow.utility.conditional</string>
 			<key>uid</key>
-			<string>1B9901B6-D704-4CF2-8287-7B72C401C470</string>
+			<string>44322D7B-6B6D-47D8-B383-A1D114D6601C</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
@@ -2595,13 +2630,6 @@ To report a problem, run `!1pdiagnostic`.</string>
 			<key>ypos</key>
 			<real>440</real>
 		</dict>
-		<key>1B9901B6-D704-4CF2-8287-7B72C401C470</key>
-		<dict>
-			<key>xpos</key>
-			<real>2100</real>
-			<key>ypos</key>
-			<real>1215</real>
-		</dict>
 		<key>1D21086A-0AED-4EA6-BD28-E6971528277C</key>
 		<dict>
 			<key>xpos</key>
@@ -2682,6 +2710,13 @@ To report a problem, run `!1pdiagnostic`.</string>
 			<real>1070</real>
 			<key>ypos</key>
 			<real>1060</real>
+		</dict>
+		<key>44322D7B-6B6D-47D8-B383-A1D114D6601C</key>
+		<dict>
+			<key>xpos</key>
+			<real>2100</real>
+			<key>ypos</key>
+			<real>1215</real>
 		</dict>
 		<key>4AFED243-84FB-4005-B115-FFD8635E6737</key>
 		<dict>
@@ -3211,8 +3246,7 @@ To report a problem, run `!1pdiagnostic`.</string>
 				</array>
 			</dict>
 			<key>description</key>
-			<string>Actions to perform when pressing modifier keys.
-Changes come into effect on next cache update.</string>
+			<string>Actions to perform when pressing modifier keys.</string>
 			<key>label</key>
 			<string>⇧↩</string>
 			<key>type</key>
@@ -3285,6 +3319,25 @@ Changes come into effect on next cache update.</string>
 				<key>required</key>
 				<false/>
 				<key>text</key>
+				<string>Show notification and play sound on copy operations</string>
+			</dict>
+			<key>description</key>
+			<string></string>
+			<key>label</key>
+			<string>Notifications</string>
+			<key>type</key>
+			<string>checkbox</string>
+			<key>variable</key>
+			<string>copy_notifications</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>default</key>
+				<true/>
+				<key>required</key>
+				<false/>
+				<key>text</key>
 				<string>Check for 1Password modifications and offer to update</string>
 			</dict>
 			<key>description</key>
@@ -3297,10 +3350,8 @@ Changes come into effect on next cache update.</string>
 			<string>auto_refresh</string>
 		</dict>
 	</array>
-	<key>variablesdontexport</key>
-	<array/>
 	<key>version</key>
-	<string>2025.1</string>
+	<string>2025.3</string>
 	<key>webaddress</key>
 	<string>https://github.com/alfredapp/1password-workflow/</string>
 </dict>
