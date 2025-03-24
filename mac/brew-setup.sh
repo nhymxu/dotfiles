@@ -72,22 +72,11 @@ brew install kubectl kubectx
 
 brew install xo/xo/usql
 
-brew install asdf
-asdf plugin-add python
-# using default python version is macOS pre-installed
-asdf global python system
-
-# python need openssl
-# export CONFIGURE_OPTS="--with-openssl=$(brew --prefix openssl)"
-# asdf install python 3.9.17
+brew install mise
 
 brew install libpq pkg-config bison bzip2 freetype gettext libiconv icu4c jpeg libedit libpng libzip openssl@1.1 readline webp zlib re2c gd krb5 oniguruma   # require to build php
 
 brew install libxml2 # uninstall before php 8.0.30
-
-asdf plugin-add nodejs
-asdf plugin-add php
-asdf plugin-add caddy
 
 brew install mysql-client
 
