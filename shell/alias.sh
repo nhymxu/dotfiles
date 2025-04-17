@@ -256,3 +256,25 @@ function asdf-shell() {
 
     export "ASDF_${plugin_name_formated}_VERSION"="$version"
 }
+
+gt () {
+	gitpath=$(echo "$HOME/work/")
+    # gitpath="$(cd "$gitpath_rel" && pwd -P)"
+	repopath=$(find ${gitpath} -mindepth 3 -maxdepth 3 -type d | awk -F $gitpath '{print $2}' | fzf)
+	if [ -n "$repopath" ]; then
+		cd ${gitpath}${repopath} || echo "Failed to navigate to ${gitpath}${repopath}"
+	else
+		echo "No repository selected."
+	fi
+}
+
+
+tunnel_ssh() {
+    LOCAL_PORT=$1
+    REMOTE_HOST=$2
+    REMOTE_PORT=$3
+    HOST_NAME=$(ssh -v $REMOTE_HOST ' ' 2>&1 | grep '^debug1: Connecting to' | cut -d [ -f 2 | sed "s/\]//")
+    echo "Connected to ${HOST_NAME}"
+    echo "Now, forwarding all traffic from our local $LOCAL_PORT port to its internal $REMOTE_PORT port"
+    ssh -L "$LOCAL_PORT":127.0.0.1:"$REMOTE_PORT" "$REMOTE_HOST" -N
+}
