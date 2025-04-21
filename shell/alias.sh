@@ -260,7 +260,7 @@ function asdf-shell() {
 gt() {
 	gitpath=$(echo "$HOME/work/")
     # gitpath="$(cd "$gitpath_rel" && pwd -P)"
-	repopath=$(find ${gitpath} -mindepth 2 -maxdepth 3 -type d | awk -F $gitpath '{print $2}' | fzf)
+	repopath=$(find ${gitpath} -mindepth 2 -maxdepth 2 -type d | awk -F $gitpath '{print $2}' | fzf)
 	if [ -n "$repopath" ]; then
 		cd ${gitpath}${repopath} || echo "Failed to navigate to ${gitpath}${repopath}"
 	else
