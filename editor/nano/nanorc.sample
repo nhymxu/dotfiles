@@ -19,7 +19,9 @@ set tabsize 4
 set tabstospaces
 
 ## Show linenumbers when nano > 4
-# set linenumbers
+set linenumbers
+
+set minibar
 
 ## color config
 ##
