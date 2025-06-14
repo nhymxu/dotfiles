@@ -19,3 +19,6 @@ defaults write NSGlobalDomain AppleFontSmoothing -int 1
 
 # Enable HiDPI display modes (requires restart)
 sudo defaults write /Library/Preferences/com.apple.windowserver DisplayResolutionEnabled -bool true
+
+# Disable floating preview when taking a screenshot
+# defaults write com.apple.screencapture show-thumbnail -bool false
