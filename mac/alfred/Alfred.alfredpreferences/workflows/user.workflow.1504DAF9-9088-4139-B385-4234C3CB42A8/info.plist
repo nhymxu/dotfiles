@@ -2554,7 +2554,7 @@ tesseract "$temp_image" stdout -l $ocr_languages 2&gt;&amp;1</string>
 				<key>text</key>
 				<string>Open Scratchpad</string>
 				<key>withspace</key>
-				<true/>
+				<false/>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.input.keyword</string>
@@ -5457,13 +5457,14 @@ curl -sL "https://raw.githubusercontent.com/chrisgrieser/alfred-docs-searches/ma
 	<string>## 1️⃣ Setting up this workflow for the first time
 1. Install the Obsidian plugins [Advanced URI](https://obsidian.md/plugins?id=obsidian-advanced-uri) &amp; [Metadata Extractor](https://obsidian.md/plugins?id=metadata-extractor). 
 2. Enable both plugins.
-4. Set your vault path in the configuration to the left.
+3. Set your vault path in the configuration to the left.
 
 **In the Obsidian plugin settings for the "Metadata Extractor"**
 - Enable `Write JSON files automatically when Obsidian launches`.
 - Set `Configure frequency for writing the three JSON files` to how often you
-  want the Metadata to be updated. A value like 30 minutes is reasonable.
-- Do not change any of the other settings.
+  want the Metadata to be updated. A value like 30 minutes is reasonable. Do
+  **not** change any of the other settings.
+- Restart Obsidian.
 
 ## ⚙️ Workflow Configuration
 - **Some features require additional configuration to the left.** You can get further information on those features at the respective sections of the [documentation](https://github.com/chrisgrieser/shimmering-obsidian/blob/main/README.md).
@@ -5494,8 +5495,8 @@ curl -sL "https://raw.githubusercontent.com/chrisgrieser/alfred-docs-searches/ma
 
 ---
 
-**This Alfred plugin has been created by Chris Grieser (aka pseudometa).**
-- [Academic Website](https://chris-grieser.de/)
+**This workflow has been created by Chris Grieser (aka pseudometa).**
+- [Website](https://chris-grieser.de/)
 - [ResearchGate](https://www.researchgate.net/profile/Christopher-Grieser)
 - [Mastodon](https://pkm.social/@pseudometa)
 - [LinkedIn](https://www.linkedin.com/in/christopher-grieser-ba693b17a/)</string>
@@ -6616,7 +6617,7 @@ DOUBLE CLICK THIS to set Hotkey. Suggested Hotkey: cmd + shift + 1</string>
 			<key>colorindex</key>
 			<integer>9</integer>
 			<key>note</key>
-			<string>Copy Markdown Link / wikilink</string>
+			<string>Copy link</string>
 			<key>xpos</key>
 			<real>1680</real>
 			<key>ypos</key>
@@ -7167,12 +7168,16 @@ DOUBLE CLICK THIS to set Hotkey. Suggested Hotkey: cmd + shift + 1</string>
 				<key>pairs</key>
 				<array>
 					<array>
-						<string>Markdown Link</string>
+						<string>Markdown Link with Obsidian URI</string>
 						<string>Markdown Link</string>
 					</array>
 					<array>
 						<string>Wikilink</string>
 						<string>Wikilink</string>
+					</array>
+					<array>
+						<string>Obsidian URI</string>
+						<string>Obsidian URI</string>
 					</array>
 				</array>
 			</dict>
@@ -7524,7 +7529,7 @@ DOUBLE CLICK THIS to set Hotkey. Suggested Hotkey: cmd + shift + 1</string>
 		</dict>
 	</array>
 	<key>version</key>
-	<string>4.13.3</string>
+	<string>4.14.0</string>
 	<key>webaddress</key>
 	<string>https://chris-grieser.de/</string>
 </dict>
