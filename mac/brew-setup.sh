@@ -71,6 +71,8 @@ brew install awscli
 brew install kubectl kubectx
 
 brew install xo/xo/usql
+brew install lazygit
+brew install lazydocker
 
 brew install mise
 
