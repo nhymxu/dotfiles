@@ -63,6 +63,7 @@ brew install --cask pycharm
 brew install --cask goland
 brew install --cask datagrip
 brew install --cask intellij-idea
+brew install neovim
 
 brew install --cask lens
 brew install k9s

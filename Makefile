@@ -67,6 +67,7 @@ link: git-init
 	ln -fs $(DOTFILES_DIR)/bash/.hushlogin $(HOME)/.hushlogin
 	ln -fs $(DOTFILES_DIR)/vim/.vimrc $(HOME)/.vimrc
 	ln -fs $(DOTFILES_DIR)/vim/.vim $(HOME)/.vim
+	ln -fs $(DOTFILES_DIR)/editor/nvim $(HOME)/.config/nvim
 
 unlink:
 	unlink $(HOME)/.bash_profile
