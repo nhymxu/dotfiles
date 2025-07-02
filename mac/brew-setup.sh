@@ -121,8 +121,8 @@ brew install --cask hiddenbar
 #---------------
 # Fonts
 
-brew tap homebrew/cask-fonts
-brew install --cask font-victor-mono
+brew install font-victor-mono font-victor-mono-nerd-font
+brew install font-caskaydia-mono-nerd-font
 
 #------------ Remove outdated versions from the cellar.
 brew cleanup
