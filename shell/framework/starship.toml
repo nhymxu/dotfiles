@@ -20,6 +20,9 @@ truncate_to_repo = false
 disabled = true
 style = "bold #ffb86c"
 
+[gcloud]
+disabled = true
+
 [battery]
 disabled = true
 
