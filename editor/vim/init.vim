@@ -2,7 +2,9 @@
 call plug#begin()
 " Looks
 Plug 'nikitavoloboev/vim-monokai-night' " Theme
+" Plug 'altercation/vim-colors-solarized'
 Plug 'itchyny/lightline.vim' " Light and configurable statusline/tabline plugin.
+Plugin 'elzr/vim-json' " JSON syntax highligting
 
 " Layout
 Plug 'scrooloose/nerdtree' " A tree explorer plugin for vim.
@@ -18,6 +20,8 @@ Plug 'romainl/vim-cool' " Stop matching after search is done.
 Plug 'jiangmiao/auto-pairs' " Insert or delete brackets, parens, quotes in pair..
 " Plug 'jremmen/vim-ripgrep' " Use RipGrep in Vim and display results in a quickfix list.
 Plug 'mhinz/vim-startify' " Start screen
+Plug 'ctrlpvim/ctrlp.vim' " CtrlP for searching file paths
+Plug 'mileszs/ack.vim' " Ack Vim for using ack in vim
 
 " https://github.com/brooth/far.vim
 
@@ -28,7 +32,7 @@ Plug 'tpope/vim-repeat' " Enable repeating supported plugin maps.
 Plug 'tpope/vim-surround' " Quoting/parenthesizing made simple.
 Plug 'junegunn/vim-easy-align' " Simple, easy-to-use alignment.
 
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " Fzf search. 
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " Fzf search.
 Plug 'junegunn/fzf.vim' " Fzf search.
 
 Plug 'haya14busa/incsearch.vim' " Improved incremental searching.
