@@ -214,6 +214,7 @@ function listening() {
 }
 
 alias docker-clean="docker system prune -f"
+alias gpg-fix="pkill -TERM gpg-agent"
 
 # Reload zshrc file to apply changes.
 # Allows you to not need to restart terminal for changes to .zshrc to be applied
