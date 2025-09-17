@@ -186,7 +186,7 @@
 	"feature:tags-on-commits-list": true,
 	"feature:toggle-everything-with-alt": true,
 	"feature:unfinished-comments": true,
-	"feature:unread-anywhere": true,
+	"feature:unread-anywhere": false,
 	"feature:unreleased-commits": true,
 	"feature:unwrap-unnecessary-dropdowns": true,
 	"feature:update-pr-from-base-branch": true,
