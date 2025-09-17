@@ -171,7 +171,13 @@
 [includeIf "gitdir/i:~/work/cpl/"]
 	path = ~/.gitconfig-work
 
+[includeIf "gitdir/i:/Volumes/Data/work/cpl/"]
+	path = ~/.gitconfig-work
+
 [includeIf "gitdir/i:~/workspace/cpl/"]
+	path = ~/.gitconfig-work
+
+[includeIf "gitdir/i:/Volumes/Data/workspace/cpl/"]
 	path = ~/.gitconfig-work
 
 [pack]
