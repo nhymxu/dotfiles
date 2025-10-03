@@ -18,6 +18,8 @@
 
 source ~/.config/zsh-snap/znap.zsh
 
+znap source MichaelAquilina/zsh-you-should-use
+
 znap source Aloxaf/fzf-tab
 
 znap source marlonrichert/zsh-autocomplete
