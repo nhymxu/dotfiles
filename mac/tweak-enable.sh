@@ -79,6 +79,9 @@ source ~/dotfiles/mac/tweaks/other-app.sh
 # Kill affected applications                                                  #
 ###############################################################################
 
+# Apply the settings
+/System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
+
 for app in "Activity Monitor" \
 	"Address Book" \
 	"Calendar" \
@@ -96,4 +99,5 @@ for app in "Activity Monitor" \
 	"iCal"; do
 	killall "${app}" &> /dev/null
 done
+
 echo "Done. Note that some of these changes require a logout/restart to take effect."
