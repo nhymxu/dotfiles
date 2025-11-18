@@ -53,7 +53,7 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>44322D7B-6B6D-47D8-B383-A1D114D6601C</string>
+				<string>3E0D46FA-9DD4-4D74-BC2E-60666C96DF5A</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -131,6 +131,29 @@
 			<dict>
 				<key>destinationuid</key>
 				<string>AADC9859-4CF2-43B3-831D-940B6BCBC278</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>3E0D46FA-9DD4-4D74-BC2E-60666C96DF5A</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>FB417B7C-1060-4A1C-909B-76456CC37254</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>44322D7B-6B6D-47D8-B383-A1D114D6601C</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -430,7 +453,7 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>44322D7B-6B6D-47D8-B383-A1D114D6601C</string>
+				<string>3E0D46FA-9DD4-4D74-BC2E-60666C96DF5A</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -614,7 +637,7 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>44322D7B-6B6D-47D8-B383-A1D114D6601C</string>
+				<string>3E0D46FA-9DD4-4D74-BC2E-60666C96DF5A</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -641,6 +664,34 @@
 			<dict>
 				<key>destinationuid</key>
 				<string>E66CAF69-6370-4360-A348-8F43397D64B1</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>D8BDC8B4-7C81-40EC-9A4A-646DE02EE3D6</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>BC4A10A8-2DE4-4DE2-99D6-F884F04B8D84</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>sourceoutputuid</key>
+				<string>1C197363-62E6-4CC6-977C-749CECEB56F1</string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>DFB4D9F9-1E8C-496C-9FFD-12679D2D498A</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>D8BDC8B4-7C81-40EC-9A4A-646DE02EE3D6</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -839,6 +890,21 @@
 				<string></string>
 				<key>sourceoutputuid</key>
 				<string>_button1</string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>FB417B7C-1060-4A1C-909B-76456CC37254</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>DFB4D9F9-1E8C-496C-9FFD-12679D2D498A</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>sourceoutputuid</key>
+				<string>1C197363-62E6-4CC6-977C-749CECEB56F1</string>
 				<key>vitoclose</key>
 				<false/>
 			</dict>
@@ -2181,6 +2247,35 @@ echo "${new_items_hash}" &gt; "${items_hash_file}"</string>
 			<key>config</key>
 			<dict>
 				<key>concurrently</key>
+				<true/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>function clipboard_hash {
+  /usr/bin/pbpaste | /usr/bin/shasum
+}
+
+readonly itinial_hash="$(clipboard_hash)"
+sleep "${copy_cleanup_seconds}"
+[[ "${itinial_hash}" == "$(clipboard_hash)" ]] &amp;&amp; printf 'true'</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>11</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>DFB4D9F9-1E8C-496C-9FFD-12679D2D498A</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
 				<false/>
 				<key>escaping</key>
 				<integer>102</integer>
@@ -2203,6 +2298,21 @@ echo "${new_items_hash}" &gt; "${items_hash_file}"</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>tasksettings</key>
+				<dict/>
+				<key>taskuid</key>
+				<string>com.alfredapp.automation.core/macOS/clipboard.clear</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.automation.task</string>
+			<key>uid</key>
+			<string>BC4A10A8-2DE4-4DE2-99D6-F884F04B8D84</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>autopaste</key>
 				<false/>
 				<key>clipboardtext</key>
@@ -2218,27 +2328,6 @@ echo "${new_items_hash}" &gt; "${items_hash_file}"</string>
 			<string>66052526-8BC3-4DC3-B7B7-D2C2EF591CB7</string>
 			<key>version</key>
 			<integer>3</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>lastpathcomponent</key>
-				<false/>
-				<key>onlyshowifquerypopulated</key>
-				<false/>
-				<key>removeextension</key>
-				<false/>
-				<key>text</key>
-				<string>{query}</string>
-				<key>title</key>
-				<string>Copied to Clipboard</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.output.notification</string>
-			<key>uid</key>
-			<string>97090C7E-0127-4909-A2CA-D78C9DC0355F</string>
-			<key>version</key>
-			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -2401,6 +2490,38 @@ fi</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>conditions</key>
+				<array>
+					<dict>
+						<key>inputstring</key>
+						<string>{var:copy_cleanup_seconds}</string>
+						<key>matchcasesensitive</key>
+						<true/>
+						<key>matchmode</key>
+						<integer>2</integer>
+						<key>matchstring</key>
+						<string>0</string>
+						<key>outputlabel</key>
+						<string>Clear</string>
+						<key>uid</key>
+						<string>1C197363-62E6-4CC6-977C-749CECEB56F1</string>
+					</dict>
+				</array>
+				<key>elselabel</key>
+				<string></string>
+				<key>hideelse</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.conditional</string>
+			<key>uid</key>
+			<string>FB417B7C-1060-4A1C-909B-76456CC37254</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>argument</key>
 				<string>Username</string>
 				<key>passthroughargument</key>
@@ -2412,6 +2533,38 @@ fi</string>
 			<string>alfred.workflow.utility.argument</string>
 			<key>uid</key>
 			<string>27280DF5-78D3-4386-9EC9-E2E8CA15F869</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>conditions</key>
+				<array>
+					<dict>
+						<key>inputstring</key>
+						<string></string>
+						<key>matchcasesensitive</key>
+						<true/>
+						<key>matchmode</key>
+						<integer>5</integer>
+						<key>matchstring</key>
+						<string></string>
+						<key>outputlabel</key>
+						<string>Clear</string>
+						<key>uid</key>
+						<string>1C197363-62E6-4CC6-977C-749CECEB56F1</string>
+					</dict>
+				</array>
+				<key>elselabel</key>
+				<string></string>
+				<key>hideelse</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.conditional</string>
+			<key>uid</key>
+			<string>D8BDC8B4-7C81-40EC-9A4A-646DE02EE3D6</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
@@ -2472,6 +2625,77 @@ fi</string>
 		</dict>
 		<dict>
 			<key>config</key>
+			<dict/>
+			<key>type</key>
+			<string>alfred.workflow.utility.junction</string>
+			<key>uid</key>
+			<string>3E0D46FA-9DD4-4D74-BC2E-60666C96DF5A</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argument</key>
+				<string>Password</string>
+				<key>passthroughargument</key>
+				<false/>
+				<key>variables</key>
+				<dict/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.argument</string>
+			<key>uid</key>
+			<string>7D3F45C0-A7DC-4185-BA64-B3FD62C7CA86</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>lastpathcomponent</key>
+				<false/>
+				<key>onlyshowifquerypopulated</key>
+				<false/>
+				<key>removeextension</key>
+				<false/>
+				<key>text</key>
+				<string>{query}</string>
+				<key>title</key>
+				<string>Copied to Clipboard</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.notification</string>
+			<key>uid</key>
+			<string>97090C7E-0127-4909-A2CA-D78C9DC0355F</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>./1password.js 'copy_otp' "${itemID}" "${vaultID}" "${accountID}"</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>11</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>A62C2C3E-C332-4A12-93D8-C534D7C0EA15</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
 			<dict>
 				<key>conditions</key>
 				<array>
@@ -2506,7 +2730,7 @@ fi</string>
 			<key>config</key>
 			<dict>
 				<key>argument</key>
-				<string>Password</string>
+				<string>One-Time Password</string>
 				<key>passthroughargument</key>
 				<false/>
 				<key>variables</key>
@@ -2515,7 +2739,7 @@ fi</string>
 			<key>type</key>
 			<string>alfred.workflow.utility.argument</string>
 			<key>uid</key>
-			<string>7D3F45C0-A7DC-4185-BA64-B3FD62C7CA86</string>
+			<string>BEF1EE27-825A-4AD0-8BC4-9EBFAD6DDA4B</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
@@ -2531,46 +2755,6 @@ fi</string>
 			<string>alfred.workflow.output.playsound</string>
 			<key>uid</key>
 			<string>1D21086A-0AED-4EA6-BD28-E6971528277C</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>102</integer>
-				<key>script</key>
-				<string>./1password.js 'copy_otp' "${itemID}" "${vaultID}" "${accountID}"</string>
-				<key>scriptargtype</key>
-				<integer>1</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>type</key>
-				<integer>11</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>A62C2C3E-C332-4A12-93D8-C534D7C0EA15</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>argument</key>
-				<string>One-Time Password</string>
-				<key>passthroughargument</key>
-				<false/>
-				<key>variables</key>
-				<dict/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.utility.argument</string>
-			<key>uid</key>
-			<string>BEF1EE27-825A-4AD0-8BC4-9EBFAD6DDA4B</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
@@ -2636,9 +2820,9 @@ To report a problem, run `!1pdiagnostic`.</string>
 		<key>1D21086A-0AED-4EA6-BD28-E6971528277C</key>
 		<dict>
 			<key>xpos</key>
-			<real>2210</real>
+			<real>2310</real>
 			<key>ypos</key>
-			<real>1310</real>
+			<real>1385</real>
 		</dict>
 		<key>2032CDC0-7BD4-4671-8A03-2BEB9F84B3D3</key>
 		<dict>
@@ -2707,6 +2891,13 @@ To report a problem, run `!1pdiagnostic`.</string>
 			<key>ypos</key>
 			<real>775</real>
 		</dict>
+		<key>3E0D46FA-9DD4-4D74-BC2E-60666C96DF5A</key>
+		<dict>
+			<key>xpos</key>
+			<real>2120</real>
+			<key>ypos</key>
+			<real>1215</real>
+		</dict>
 		<key>3EFD35DD-0984-4561-BB69-91541E75325E</key>
 		<dict>
 			<key>xpos</key>
@@ -2717,9 +2908,9 @@ To report a problem, run `!1pdiagnostic`.</string>
 		<key>44322D7B-6B6D-47D8-B383-A1D114D6601C</key>
 		<dict>
 			<key>xpos</key>
-			<real>2100</real>
+			<real>2220</real>
 			<key>ypos</key>
-			<real>1215</real>
+			<real>1340</real>
 		</dict>
 		<key>4AFED243-84FB-4005-B115-FFD8635E6737</key>
 		<dict>
@@ -2859,9 +3050,9 @@ To report a problem, run `!1pdiagnostic`.</string>
 		<key>97090C7E-0127-4909-A2CA-D78C9DC0355F</key>
 		<dict>
 			<key>xpos</key>
-			<real>2210</real>
+			<real>2310</real>
 			<key>ypos</key>
-			<real>1060</real>
+			<real>1235</real>
 		</dict>
 		<key>985CB791-EA4E-4B3E-A04E-37A481C33035</key>
 		<dict>
@@ -2946,6 +3137,13 @@ To report a problem, run `!1pdiagnostic`.</string>
 			<key>ypos</key>
 			<real>575</real>
 		</dict>
+		<key>BC4A10A8-2DE4-4DE2-99D6-F884F04B8D84</key>
+		<dict>
+			<key>xpos</key>
+			<real>2555</real>
+			<key>ypos</key>
+			<real>1060</real>
+		</dict>
 		<key>BEF1EE27-825A-4AD0-8BC4-9EBFAD6DDA4B</key>
 		<dict>
 			<key>xpos</key>
@@ -2984,6 +3182,22 @@ To report a problem, run `!1pdiagnostic`.</string>
 			<real>1070</real>
 			<key>ypos</key>
 			<real>310</real>
+		</dict>
+		<key>D8BDC8B4-7C81-40EC-9A4A-646DE02EE3D6</key>
+		<dict>
+			<key>xpos</key>
+			<real>2470</real>
+			<key>ypos</key>
+			<real>1090</real>
+		</dict>
+		<key>DFB4D9F9-1E8C-496C-9FFD-12679D2D498A</key>
+		<dict>
+			<key>note</key>
+			<string>Wait to clear clipboard if unchanged</string>
+			<key>xpos</key>
+			<real>2310</real>
+			<key>ypos</key>
+			<real>1060</real>
 		</dict>
 		<key>E0E63366-C846-4EB6-8625-9CCDD1637737</key>
 		<dict>
@@ -3042,6 +3256,13 @@ To report a problem, run `!1pdiagnostic`.</string>
 			<real>2935</real>
 			<key>ypos</key>
 			<real>630</real>
+		</dict>
+		<key>FB417B7C-1060-4A1C-909B-76456CC37254</key>
+		<dict>
+			<key>xpos</key>
+			<real>2220</real>
+			<key>ypos</key>
+			<real>1090</real>
 		</dict>
 	</dict>
 	<key>userconfigurationconfig</key>
@@ -3260,6 +3481,32 @@ To report a problem, run `!1pdiagnostic`.</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>defaultvalue</key>
+				<integer>30</integer>
+				<key>markercount</key>
+				<integer>5</integer>
+				<key>maxvalue</key>
+				<integer>120</integer>
+				<key>minvalue</key>
+				<integer>0</integer>
+				<key>onlystoponmarkers</key>
+				<true/>
+				<key>showmarkers</key>
+				<true/>
+			</dict>
+			<key>description</key>
+			<string>Number of seconds to wait before erasing copied value.
+"0" to disable.</string>
+			<key>label</key>
+			<string>Clipboard Cleanup</string>
+			<key>type</key>
+			<string>slider</string>
+			<key>variable</key>
+			<string>copy_cleanup_seconds</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>default</key>
 				<false/>
 				<key>required</key>
@@ -3353,8 +3600,10 @@ To report a problem, run `!1pdiagnostic`.</string>
 			<string>auto_refresh</string>
 		</dict>
 	</array>
+	<key>variablesdontexport</key>
+	<array/>
 	<key>version</key>
-	<string>2025.5</string>
+	<string>25.1</string>
 	<key>webaddress</key>
 	<string>https://github.com/alfredapp/1password-workflow/</string>
 </dict>

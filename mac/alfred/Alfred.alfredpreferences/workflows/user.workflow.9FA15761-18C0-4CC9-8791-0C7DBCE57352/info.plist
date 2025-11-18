@@ -2422,16 +2422,24 @@ Query DALL·E via the `dalle` keyword.
 			<key>config</key>
 			<dict>
 				<key>default</key>
-				<string>gpt-4.1-nano</string>
+				<string>gpt-5-nano</string>
 				<key>pairs</key>
 				<array>
 					<array>
-						<string>GPT 4.1 nano</string>
-						<string>gpt-4.1-nano</string>
+						<string>GPT 5 nano</string>
+						<string>gpt-5-nano</string>
 					</array>
 					<array>
-						<string>GPT-4o mini</string>
-						<string>gpt-4o-mini</string>
+						<string>GPT 5 mini</string>
+						<string>gpt-5-mini</string>
+					</array>
+					<array>
+						<string>GPT 5</string>
+						<string>gpt-5</string>
+					</array>
+					<array>
+						<string>GPT 4.1 nano</string>
+						<string>gpt-4.1-nano</string>
 					</array>
 					<array>
 						<string>GPT 4.1 mini</string>
@@ -2442,24 +2450,28 @@ Query DALL·E via the `dalle` keyword.
 						<string>gpt-4.1</string>
 					</array>
 					<array>
+						<string>GPT 4o mini</string>
+						<string>gpt-4o-mini</string>
+					</array>
+					<array>
 						<string>GPT 4o</string>
 						<string>gpt-4o</string>
 					</array>
 					<array>
-						<string>o1-mini</string>
-						<string>o1-mini</string>
-					</array>
-					<array>
-						<string>o3-mini</string>
-						<string>o3-mini</string>
-					</array>
-					<array>
-						<string>o4-mini</string>
-						<string>o4-mini</string>
-					</array>
-					<array>
 						<string>o1</string>
 						<string>o1</string>
+					</array>
+					<array>
+						<string>o3</string>
+						<string>o3</string>
+					</array>
+					<array>
+						<string>o3 mini</string>
+						<string>o3-mini</string>
+					</array>
+					<array>
+						<string>o4 mini</string>
+						<string>o4-mini</string>
 					</array>
 				</array>
 			</dict>
@@ -2608,13 +2620,9 @@ Query DALL·E via the `dalle` keyword.
 			<key>config</key>
 			<dict>
 				<key>default</key>
-				<string>dall-e-2</string>
+				<string>dall-e-3</string>
 				<key>pairs</key>
 				<array>
-					<array>
-						<string>DALL·E 2</string>
-						<string>dall-e-2</string>
-					</array>
 					<array>
 						<string>DALL·E 3</string>
 						<string>dall-e-3</string>
@@ -2648,7 +2656,7 @@ Query DALL·E via the `dalle` keyword.
 				</array>
 			</dict>
 			<key>description</key>
-			<string>Only supported on DALL·E 3.</string>
+			<string></string>
 			<key>label</key>
 			<string>Style</string>
 			<key>type</key>
@@ -2674,38 +2682,13 @@ Query DALL·E via the `dalle` keyword.
 				</array>
 			</dict>
 			<key>description</key>
-			<string>Only supported on DALL·E 3.</string>
+			<string>Lower quality images cost less.</string>
 			<key>label</key>
 			<string>Quality</string>
 			<key>type</key>
 			<string>popupbutton</string>
 			<key>variable</key>
 			<string>dalle_quality</string>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>defaultvalue</key>
-				<integer>1</integer>
-				<key>markercount</key>
-				<integer>10</integer>
-				<key>maxvalue</key>
-				<integer>10</integer>
-				<key>minvalue</key>
-				<integer>1</integer>
-				<key>onlystoponmarkers</key>
-				<true/>
-				<key>showmarkers</key>
-				<true/>
-			</dict>
-			<key>description</key>
-			<string>DALL·E 2 can generate up to 10 images. DALL·E 3 generates 1.</string>
-			<key>label</key>
-			<string>Count</string>
-			<key>type</key>
-			<string>slider</string>
-			<key>variable</key>
-			<string>dalle_image_number</string>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -2739,7 +2722,7 @@ Query DALL·E via the `dalle` keyword.
 		<string>https://api.openai.com</string>
 	</dict>
 	<key>version</key>
-	<string>2025.4</string>
+	<string>25.2</string>
 	<key>webaddress</key>
 	<string>https://github.com/alfredapp/openai-workflow/</string>
 </dict>
