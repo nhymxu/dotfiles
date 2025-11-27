@@ -707,6 +707,19 @@ The script should do this: \(ai.prompt)</string>
 				<key>Red Component</key>
 				<integer>0</integer>
 			</dict>
+			<key>Match Background Color</key>
+			<dict>
+				<key>Alpha Component</key>
+				<real>1</real>
+				<key>Blue Component</key>
+				<real>0.32116127014160156</real>
+				<key>Color Space</key>
+				<string>P3</string>
+				<key>Green Component</key>
+				<real>0.98600882291793823</real>
+				<key>Red Component</key>
+				<real>0.99697142839431763</real>
+			</dict>
 			<key>Minimum Contrast</key>
 			<real>0.0</real>
 			<key>Mouse Reporting</key>
@@ -714,7 +727,7 @@ The script should do this: \(ai.prompt)</string>
 			<key>Name</key>
 			<string>nhymxu</string>
 			<key>Non Ascii Font</key>
-			<string>Monaco 12</string>
+			<string>HackNFM-Regular 12</string>
 			<key>Non-ASCII Anti Aliased</key>
 			<true/>
 			<key>Normal Font</key>
@@ -999,7 +1012,7 @@ The script should do this: \(ai.prompt)</string>
 			<key>Use Italic Font</key>
 			<true/>
 			<key>Use Non-ASCII Font</key>
-			<false/>
+			<true/>
 			<key>Vertical Spacing</key>
 			<real>1</real>
 			<key>Visual Bell</key>
@@ -1375,6 +1388,8 @@ The script should do this: \(ai.prompt)</string>
 	<true/>
 	<key>StatusBarPosition</key>
 	<integer>1</integer>
+	<key>TabStyleWithAutomaticOption</key>
+	<integer>5</integer>
 	<key>ToolbeltTools</key>
 	<array>
 		<string>Snippets</string>
