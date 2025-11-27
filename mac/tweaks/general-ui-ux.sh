@@ -69,7 +69,7 @@ defaults write com.apple.CrashReporter DialogType -string "none"
 # defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false
 
 # Disable auto-correct
-# defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
+defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
 
 ###############################################################################
 # Trackpad, mouse, keyboard, Bluetooth accessories, and input                 #
@@ -86,6 +86,7 @@ defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
 # defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
 
 # Set a blazingly fast keyboard repeat rate
+# source: https://mac-key-repeat.zaymon.dev/
 defaults write NSGlobalDomain KeyRepeat -int 1 # normal minimum is 2 (30 ms)
 defaults write NSGlobalDomain InitialKeyRepeat -int 10 # normal minimum is 15 (225 ms)
 
