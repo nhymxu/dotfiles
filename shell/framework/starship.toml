@@ -2,8 +2,10 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 
 add_newline = false
-command_timeout = 1000
+command_timeout = 10000
 scan_timeout = 1000
+# palette = "quiet_light"
+
 
 [git_branch]
 # symbol = "🌱 "
@@ -28,3 +30,39 @@ disabled = true
 
 [bun]
 disabled = true
+
+[palettes.quiet_light]
+# Core UI colors
+background = "#F5F5F5"
+foreground = "#333333"
+
+# Git and syntax colors from VS Code Quiet Light
+dir_blue = "#4B69C6"      # Directory and command color
+git_purple = "#7A3E9D"    # Git branch & class names
+git_green = "#448C27"     # Strings & success
+git_red = "#AA3731"       # Functions & errors
+git_gray = "#8190A0"      # Git status messages
+git_text = "#333333"      # Regular text
+
+# Base terminal colors
+tab = "#C4B7D7"
+cursor = "#705697"
+selection = "#C9D0D9"
+
+# ANSI Colors (keeping these for terminal compatibility)
+ansi_0 = "#000000"
+ansi_1 = "#CD3131"
+ansi_2 = "#448C27"
+ansi_3 = "#949800"
+ansi_4 = "#4B69C6"
+ansi_5 = "#7A3E9D"
+ansi_6 = "#0598BC"
+ansi_7 = "#555555"
+ansi_8 = "#666666"
+ansi_9 = "#CD3131"
+ansi_10 = "#448C27"
+ansi_11 = "#B5BA00"
+ansi_12 = "#4B69C6"
+ansi_13 = "#7A3E9D"
+ansi_14 = "#0598BC"
+ansi_15 = "#A5A5A5"
