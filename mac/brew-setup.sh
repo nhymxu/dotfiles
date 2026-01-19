@@ -44,8 +44,6 @@ brew install tmux
 #---------------
 # Browser
 
-brew install --cask firefox
-
 brew install --cask pritunl # openvpn client
 brew install --cask postman
 
