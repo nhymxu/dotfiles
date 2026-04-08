@@ -52,6 +52,9 @@ brew install --cask zoom
 #---------------
 # Development
 
+brew install git
+brew install --cask git-credential-manager
+
 brew install orbstack
 
 brew install --cask visual-studio-code
