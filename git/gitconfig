@@ -166,7 +166,7 @@
 	textconv = hexdump -v -C
 
 [include]
-    path = .gitconfig_local
+    path = ~/.gitconfig_local
 
 [includeIf "gitdir/i:~/work/cpl/"]
 	path = ~/.gitconfig-work
