@@ -1,7 +1,6 @@
 #!/usr/bin/env zsh
 
-# Claude Code Profile Manager (ccpm)
-
+# Claude Code Profile Manager (ccpm) - Standalone Version
 config_file="$HOME/.ccpm_profiles"
 
 # Initialize the config file if it doesn't exist
@@ -9,11 +8,14 @@ if [[ ! -f "$config_file" ]]; then
   cat << 'EOF' > "$config_file"
 # Claude Code Profiles
 # Group your environments by profile name inside brackets [profile_name]
+# Add a comment directly above the profile to give it a description.
 
+# Local router proxy for testing
 [a]
 ANTHROPIC_BASE_URL="http://localhost:20128/v1"
 ANTHROPIC_AUTH_TOKEN="sk_9router"
 
+# Production environment
 [p]
 ANTHROPIC_BASE_URL="https://api.anthropic.com/v1"
 ANTHROPIC_AUTH_TOKEN="sk_prod_placeholder"
@@ -26,7 +28,22 @@ profile="$2"
 
 if [[ "$command" == "list" ]]; then
   echo "Available profiles (from $config_file):"
-  awk '/^\[.*\]$/ { print "  - " substr($0, 2, length($0)-2) }' "$config_file"
+  awk '
+    # If the line is blank, clear the current description
+    /^[ \t]*$/ { desc = ""; next }
+    # If the line is a comment, store it as the description
+    /^#/ { desc = $0; sub(/^#[ \t]*/, "", desc); next }
+    # If it is a profile block, print the profile and its description
+    /^\[.*\]$/ {
+      profile = substr($0, 2, length($0)-2)
+      if (desc != "") {
+        printf "  - %-10s : %s\n", profile, desc
+      } else {
+        printf "  - %-10s\n", profile
+      }
+      desc = ""
+    }
+  ' "$config_file"
   exit 0
 fi
 
@@ -44,7 +61,7 @@ if [[ "$command" == "use" ]]; then
 
   # Check if profile exists in the file
   profile_exists=$(awk -v p="$profile" '/^\[.*\]$/ { if (substr($0, 2, length($0)-2) == p) print "yes" }' "$config_file")
-
+  
   if [[ -z "$profile_exists" ]]; then
     echo "Error: Profile '$profile' not found in $config_file."
     exit 1
@@ -54,14 +71,14 @@ if [[ "$command" == "use" ]]; then
   shift 2
 
   echo "Starting claude with profile '$profile'..."
-
-  # Since this is a standalone script, the exported variables naturally
-  # won't leak into the user's terminal.
+  
+  # Since this is a standalone script, the exported variables naturally 
+  # won't leak into the user's terminal. 
   eval "$(awk -v p="$profile" '
     /^\[.*\]$/ { current = substr($0, 2, length($0)-2); next }
     current == p && /^[A-Za-z_]/ { print "export " $0 }
   ' "$config_file")"
-
+  
   # `exec` replaces the current script process with the claude process,
   # passing along all the environment variables.
   exec claude "$@"
