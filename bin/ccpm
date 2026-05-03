@@ -1,6 +1,8 @@
 #!/usr/bin/env zsh
 
-# Claude Code Profile Manager (ccpm) - Standalone Version
+# Claude Code Profile Manager (ccpm)
+# env follow: https://code.claude.com/docs/en/env-vars
+
 config_file="$HOME/.ccpm_profiles"
 
 # Initialize the config file if it doesn't exist
@@ -61,7 +63,7 @@ if [[ "$command" == "use" ]]; then
 
   # Check if profile exists in the file
   profile_exists=$(awk -v p="$profile" '/^\[.*\]$/ { if (substr($0, 2, length($0)-2) == p) print "yes" }' "$config_file")
-  
+
   if [[ -z "$profile_exists" ]]; then
     echo "Error: Profile '$profile' not found in $config_file."
     exit 1
@@ -71,14 +73,14 @@ if [[ "$command" == "use" ]]; then
   shift 2
 
   echo "Starting claude with profile '$profile'..."
-  
-  # Since this is a standalone script, the exported variables naturally 
-  # won't leak into the user's terminal. 
+
+  # Since this is a standalone script, the exported variables naturally
+  # won't leak into the user's terminal.
   eval "$(awk -v p="$profile" '
     /^\[.*\]$/ { current = substr($0, 2, length($0)-2); next }
     current == p && /^[A-Za-z_]/ { print "export " $0 }
   ' "$config_file")"
-  
+
   # `exec` replaces the current script process with the claude process,
   # passing along all the environment variables.
   exec claude "$@"
