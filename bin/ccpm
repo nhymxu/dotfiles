@@ -14,12 +14,12 @@ if [[ ! -f "$config_file" ]]; then
 
 # Local router proxy for testing
 [a]
-ANTHROPIC_BASE_URL="http://localhost:20128/v1"
+ANTHROPIC_BASE_URL="http://localhost:20128"
 ANTHROPIC_AUTH_TOKEN="sk_9router"
 
 # Production environment
 [p]
-ANTHROPIC_BASE_URL="https://api.anthropic.com/v1"
+ANTHROPIC_BASE_URL="https://api.anthropic.com"
 ANTHROPIC_AUTH_TOKEN="sk_prod_placeholder"
 EOF
   echo "Created default profile config at $config_file"
