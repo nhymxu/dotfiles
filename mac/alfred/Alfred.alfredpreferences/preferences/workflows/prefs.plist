@@ -8,5 +8,7 @@
 	<string>Dung Nguyen (nhymxu)</string>
 	<key>defaultWebsite</key>
 	<string>https://dungnt.net</string>
+	<key>showCanvasHints</key>
+	<false/>
 </dict>
 </plist>
