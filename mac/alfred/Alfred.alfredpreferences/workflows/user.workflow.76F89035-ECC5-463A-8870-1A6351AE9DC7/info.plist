@@ -40,7 +40,8 @@
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>script</key>
-				<string>diskutil unmount /Volumes/Vault</string>
+				<string># diskutil unmount /Volumes/Vault
+umount -Af -t smbfs</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
