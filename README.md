@@ -47,12 +47,6 @@ eval "$(starship init zsh)"
 [ -f ~/dotfiles/shell/zsh.sh ] && source ~/dotfiles/shell/zsh.sh
 ```
 
-### Install ghostty
-
-```shell
-ln -s ~/dotfiles/mac/ghostty $HOME/.config/ghostty
-```
-
 ### Install vim
 
 ```shell
