@@ -1,0 +1,73 @@
+// Zed settings
+//
+// For information on how to configure Zed, see the Zed
+// documentation: https://zed.dev/docs/configuring-zed
+//
+// To see all of Zed's default settings without changing your
+// custom settings, run the `open default settings` command
+// from the command palette or from `Zed` application menu.
+{
+  "use_system_window_tabs": false,
+  "tab_bar": {
+    "show_pinned_tabs_in_separate_row": false,
+  },
+  "tabs": {
+    "file_icons": true,
+    "git_status": false,
+  },
+  "status_bar": {
+    "line_endings_button": true,
+    "show_active_file": true,
+    "active_encoding_button": "non_utf8",
+  },
+  "terminal": {
+    "show_count_badge": true,
+  },
+  "proxy": "",
+  "cli_default_open_behavior": "new_window",
+  "project_panel": {
+    "git_status_indicator": true,
+    "bold_folder_labels": false,
+    "indent_size": 20.0,
+    "entry_spacing": "comfortable",
+    "dock": "left",
+  },
+  "outline_panel": {
+    "dock": "left",
+  },
+  "agent": {
+    "button": true,
+    "dock": "right",
+    "favorite_models": [],
+    "model_parameters": [],
+  },
+  "git_panel": {
+    "show_count_badge": true,
+    "file_icons": true,
+    "sort_by_path": true,
+    "status_style": "icon",
+    "tree_view": true,
+    "dock": "left",
+  },
+  "disable_ai": true,
+  "theme": {
+    "mode": "light",
+    "light": "One Light",
+    "dark": "One Dark",
+  },
+  "telemetry": {
+    "diagnostics": false,
+    "metrics": false,
+  },
+  "buffer_font_size": 13,
+  "preferred_line_length": 120,
+  "wrap_guides": [120],
+  "auto_update": false, // update via homebrew
+  "collaboration_panel": {
+    "dock": "right",
+    "button": false,
+  },
+  "title_bar": {
+    "show_sign_in": false,
+  },
+}
