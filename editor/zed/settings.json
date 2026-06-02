@@ -7,6 +7,11 @@
 // custom settings, run the `open default settings` command
 // from the command palette or from `Zed` application menu.
 {
+  "colorize_brackets": true,
+  "toolbar": {
+    "code_actions": true
+  },
+  "ui_font_size": 17.0,
   "use_system_window_tabs": false,
   "tab_bar": {
     "show_pinned_tabs_in_separate_row": false,
