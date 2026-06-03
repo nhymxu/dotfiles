@@ -1,0 +1,95 @@
+#!/bin/bash
+
+# 1. Force token-efficient, non-interactive, uncolored configurations
+GIT_CMD="git -c color.ui=false -c core.quotepath=false -c merge.conflictstyle=diff3"
+
+SUBCOMMAND="$1"
+shift
+
+# Helper function to return standardized plain-text errors
+text_error() {
+    echo "ERROR: $1"
+    exit 1
+}
+
+case "$SUBCOMMAND" in
+    # --- AUTOMATIC COMMIT SUMMARY GENERATOR ---
+    summarize-staged)
+        if ! $GIT_CMD diff --cached --quiet; then
+            FILES=$($GIT_CMD diff --cached --name-only | tr '\n' ',' | sed 's/,$//')
+            DIFF_SUMMARY=$($GIT_CMD diff --cached --no-color --no-ext-diff -U0)
+
+            echo "=== STAGED FILES ==="
+            echo "$FILES" | tr ',' '\n'
+            echo "=== DIFF SUMMARY ==="
+            echo "$DIFF_SUMMARY"
+        else
+            echo "No changes are staged for commit. Run 'ai-git-normal add' first."
+        fi
+        ;;
+
+    # --- RAW TEXT OPTIMIZED COMMANDS ---
+    status)
+        OUTPUT=$($GIT_CMD status --porcelain=v1 "$@")
+        if [ -z "$OUTPUT" ]; then
+            echo "Working tree clean."
+        else
+            echo "$OUTPUT"
+        fi
+        ;;
+    diff)
+        exec $GIT_CMD diff --no-color --no-ext-diff -U0 "$@"
+        ;;
+    log)
+        exec $GIT_CMD log --oneline -n 10 --no-decorate "$@"
+        ;;
+    branch)
+        if [ "$1" == "--show-current" ] || [ $# -eq 0 ]; then
+            exec $GIT_CMD branch --show-current
+        else
+            exec $GIT_CMD branch "$@"
+        fi
+        ;;
+    show)
+        exec $GIT_CMD show --no-color -U0 --stat "$@"
+        ;;
+    config|remote)
+        exec $GIT_CMD "$SUBCOMMAND" -v "$@" 2>/dev/null || exec $GIT_CMD "$SUBCOMMAND" --list "$@"
+        ;;
+    fetch|pull)
+        exec $GIT_CMD "$SUBCOMMAND" --quiet "$@"
+        ;;
+
+    # --- AGENT SAFETY GUARDRAILS (DESTRUCTIVE BLOCKS) ---
+    reset)
+        for arg in "$@"; do
+            if [ "$arg" == "--hard" ]; then
+                text_error "The '--hard' flag is forbidden to protect data from accidental wipeouts. Use '--soft' instead."
+            fi
+        done
+        exec $GIT_CMD reset "$@"
+        ;;
+    clean)
+        text_error "The 'git clean' command is entirely blocked. It risks permanently deleting untracked files."
+        ;;
+    push)
+        for arg in "$@"; do
+            if [[ "$arg" == "--force" || "$arg" == "-f" || "$arg" == "--delete" ]]; then
+                text_error "Force pushing (--force, -f, --delete) is blocked to avoid damaging remote repositories."
+            fi
+        done
+        exec $GIT_CMD push "$@"
+        ;;
+    checkout|switch)
+        for arg in "$@"; do
+            if [[ "$arg" == "--force" || "$arg" == "-f" ]]; then
+                text_error "Force switching (-f, --force) is blocked to protect uncommitted files."
+            fi
+        done
+        exec $GIT_CMD "$SUBCOMMAND" "$@"
+        ;;
+
+    *)
+        exec $GIT_CMD "$SUBCOMMAND" "$@"
+        ;;
+esac

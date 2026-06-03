@@ -1,0 +1,100 @@
+#!/bin/bash
+
+# 1. Force token-efficient, non-interactive, uncolored configurations
+GIT_CMD="git -c color.ui=false -c core.quotepath=false -c merge.conflictstyle=diff3"
+
+SUBCOMMAND="$1"
+shift
+
+# Helper function to return standardized JSON errors to the agent
+json_error() {
+    echo "{\"status\": \"error\", \"message\": \"$1\"}"
+    exit 1
+}
+
+case "$SUBCOMMAND" in
+    # --- AI AUTOMATIC COMMIT SUMMARY GENERATOR ---
+    summarize-staged)
+        if ! $GIT_CMD diff --cached --quiet; then
+            FILES=$($GIT_CMD diff --cached --name-only | tr '\n' ',' | sed 's/,$//')
+            DIFF_SUMMARY=$($GIT_CMD diff --cached --no-color --no-ext-diff -U0)
+
+            SAFE_FILES=$(echo "$FILES" | sed 's/"/\\"/g')
+            SAFE_DIFF=$(echo "$DIFF_SUMMARY" | sed 's/"/\\"/g' | awk '{printf "%s\\n", $0}')
+            echo "{\"status\": \"staged_changes_found\", \"modified_files\": \"$SAFE_FILES\", \"raw_diff_summary\": \"$SAFE_DIFF\"}"
+        else
+            echo "{\"status\": \"no_staged_changes\", \"message\": \"No changes are staged for commit. Run 'ai-git add' first.\"}"
+        fi
+        ;;
+
+    # --- MACHINE READABLE & TOKEN OPTIMIZED COMMANDS ---
+    status)
+        OUTPUT=$($GIT_CMD status --porcelain=v1 "$@")
+        if [ -z "$OUTPUT" ]; then
+            echo "{\"status\": \"clean\", \"changes\": []}"
+        else
+            # Parses to clean JSON array with jq if available, fallback to raw string if not
+            echo "$OUTPUT" | awk '{print "{\"flag\": \"" $1 "\", \"file\": \"" $2 "\"}"}' | jq -s '{"status": "dirty", "changes": .}' 2>/dev/null || {
+                CLEAN_RAW=$(echo "$OUTPUT" | tr '\n' ',' | sed 's/,$//')
+                echo "{\"status\": \"dirty\", \"raw_lines\": \"$CLEAN_RAW\"}"
+            }
+        fi
+        ;;
+    diff)
+        # Drops context lines (-U0) to cut LLM token costs heavily
+        exec $GIT_CMD diff --no-color --no-ext-diff -U0 "$@"
+        ;;
+    log)
+        exec $GIT_CMD log --oneline -n 10 --no-decorate "$@"
+        ;;
+    branch)
+        if [ "$1" == "--show-current" ] || [ $# -eq 0 ]; then
+            CURRENT=$($GIT_CMD branch --show-current)
+            echo "{\"current_branch\": \"$CURRENT\"}"
+        else
+            exec $GIT_CMD branch "$@"
+        fi
+        ;;
+    show)
+        exec $GIT_CMD show --no-color -U0 --stat "$@"
+        ;;
+    config|remote)
+        exec $GIT_CMD "$SUBCOMMAND" -v "$@" 2>/dev/null || exec $GIT_CMD "$SUBCOMMAND" --list "$@"
+        ;;
+    fetch|pull)
+        exec $GIT_CMD "$SUBCOMMAND" --quiet "$@"
+        ;;
+
+    # --- AGENT SAFETY GUARDRAILS (DESTRUCTIVE BLOCKS) ---
+    reset)
+        for arg in "$@"; do
+            if [ "$arg" == "--hard" ]; then
+                json_error "The '--hard' flag is forbidden to protect data from accidental wipeouts. Use '--soft' instead."
+            fi
+        done
+        exec $GIT_CMD reset "$@"
+        ;;
+    clean)
+        json_error "The 'git clean' command is entirely blocked. It risks permanently deleting untracked files."
+        ;;
+    push)
+        for arg in "$@"; do
+            if [[ "$arg" == "--force" || "$arg" == "-f" || "$arg" == "--delete" ]]; then
+                json_error "Force pushing (--force, -f, --delete) is blocked to avoid damaging remote repositories."
+            fi
+        done
+        exec $GIT_CMD push "$@"
+        ;;
+    checkout|switch)
+        for arg in "$@"; do
+            if [[ "$arg" == "--force" || "$arg" == "-f" ]]; then
+                json_error "Force switching (-f, --force) is blocked to protect uncommitted files."
+            fi
+        done
+        exec $GIT_CMD "$SUBCOMMAND" "$@"
+        ;;
+
+    *)
+        exec $GIT_CMD "$SUBCOMMAND" "$@"
+        ;;
+esac
