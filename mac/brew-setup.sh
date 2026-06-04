@@ -96,7 +96,7 @@ brew install --cask iterm2
 #---------------
 # Office
 
-brew install --cask gotiengviet
+brew install --cask gonhanh
 brew install --cask calibre
 brew install obsidian
 
