@@ -7,6 +7,7 @@
 // custom settings, run the `open default settings` command
 // from the command palette or from `Zed` application menu.
 {
+  "vim_mode": false,
   "colorize_brackets": true,
   "toolbar": {
     "code_actions": true,
