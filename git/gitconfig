@@ -129,6 +129,7 @@
 
 [credential]
 	helper = store
+	provider = generic
 
 [tag]
 	sort = -version:refname
