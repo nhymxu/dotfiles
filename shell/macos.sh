@@ -53,7 +53,7 @@ brewpackages (){
 }
 
 # sudo softwareupdate -i -a
-alias update='mas upgrade; brew update; brew upgrade; brew upgrade --cask --greedy; brew cleanup'
+alias update='export HOMEBREW_NO_ASK=1; mas upgrade; brew update; brew upgrade; brew upgrade --cask --greedy; brew cleanup'
 
 renice_ggbackup() {
     if [ -z "$1" ]; then
