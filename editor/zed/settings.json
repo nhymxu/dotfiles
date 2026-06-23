@@ -72,7 +72,7 @@
   "auto_update": false, // update via homebrew
   "collaboration_panel": {
     "dock": "right",
-    "button": false,
+    "button": true,
   },
   "title_bar": {
     "show_sign_in": false,
