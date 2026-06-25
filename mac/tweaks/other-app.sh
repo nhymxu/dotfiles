@@ -27,6 +27,9 @@ defaults write com.apple.QuickTimePlayerX MGPlayMovieOnOpen -bool true
 # Prevent Photos from opening automatically when devices are plugged in
 defaults -currentHost write com.apple.ImageCapture disableHotPlug -bool true
 
+# Prevent Preview app from reopening your previously viewed PDF and image files
+defaults write com.apple.Preview ApplePersistenceIgnoreState YES
+
 ###############################################################################
 # Messages                                                                    #
 ###############################################################################
