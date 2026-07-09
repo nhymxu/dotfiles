@@ -18,6 +18,10 @@
   "tab_bar": {
     "show_pinned_tabs_in_separate_row": false,
   },
+  "indent_guides": {
+    "enabled": true,
+    "coloring": "indent_aware"
+  },
   "tabs": {
     "file_icons": true,
     "git_status": false,
@@ -28,6 +32,10 @@
     "active_encoding_button": "non_utf8",
   },
   "terminal": {
+    "cursor_shape": "bar",
+    "blinking": "on",
+    "shell": "system",
+    "default_height": 20,
     "show_count_badge": true,
   },
   "proxy": "",
@@ -35,12 +43,12 @@
   "project_panel": {
     "git_status_indicator": true,
     "bold_folder_labels": false,
-    "indent_size": 20.0,
+    "indent_size": 16.0,
     "entry_spacing": "comfortable",
     "dock": "left",
   },
   "outline_panel": {
-    "dock": "left",
+    "dock": "right",
   },
   "agent": {
     "button": true,
@@ -72,10 +80,25 @@
   "auto_update": false, // update via homebrew
   "collaboration_panel": {
     "dock": "right",
-    "button": true,
+    "button": false,
   },
   "title_bar": {
     "show_sign_in": false,
+  },
+  "lsp": {
+    "tailwindcss-language-server": {
+      "settings": {
+        "classAttributes": ["class", "className", "styles"]
+      }
+    },
+    "vtsls": {
+      "settings": {
+        // For TypeScript:
+        "typescript": { "tsserver": { "maxTsServerMemory": 16184 } },
+        // For JavaScript:
+        "javascript": { "tsserver": { "maxTsServerMemory": 16184 } }
+      }
+    }
   },
   "languages": {
     "PHP": {
@@ -84,6 +107,25 @@
     },
     "JavaScript": {
       "use_autoclose": true,
+      "language_servers": ["typescript-language-server", "!vtsls", "..."],
+      "code_actions_on_format": {
+        "source.organizeImports": true,
+        "source.fixAll.eslint": true
+      }
+    },
+    "TypeScript": {
+      "language_servers": ["typescript-language-server", "!vtsls", "..."],
+      "code_actions_on_format": {
+        "source.organizeImports": true,
+        "source.fixAll.eslint": true
+      }
+    },
+    "TSX": {
+      "language_servers": ["typescript-language-server", "!vtsls", "..."],
+      "code_actions_on_format": {
+        "source.organizeImports": true,
+        "source.fixAll.eslint": true
+      }
     },
     "HTML": {
       "use_autoclose": true,
@@ -101,4 +143,13 @@
     },
   },
   "format_on_save": "off",
+  "cursor_blink": true,
+  // File syntax highlighting
+  "file_types": {
+    "Dockerfile": ["Dockerfile", "Dockerfile.*"],
+    "JSON": ["json", "jsonc", "*.code-snippets"]
+  },
+  "experimental.theme_overrides": {
+    "panel.focused_border": "#FF0000"
+  },
 }
