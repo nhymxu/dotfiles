@@ -1,0 +1,8 @@
+[
+  {
+    "context": "Workspace",
+    "bindings": {
+      "cmd-g": ["task::Spawn", { "task_name": "start lazygit" }]
+    }
+  },
+]

@@ -83,9 +83,8 @@ ln -s ~/dotfiles/editor/micro/settings.json ~/.config/micro/settings.json
 ### Install zed
 
 ```shell
-mkdir -p ~/.config/zed
-rm -rf ~/.config/zed/settings.json
-ln -s ~/dotfiles/editor/zed/settings.json ~/.config/zed/settings.json
+rm -rf  ~/.config/zed
+ln -s ~/dotfiles/editor/zed ~/.config/zed
 ```
 
 ### Install git
