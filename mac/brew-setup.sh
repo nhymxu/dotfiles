@@ -37,8 +37,6 @@ brew install ripgrep
 brew install terminal-notifier
 brew install the_silver_searcher
 
-brew install diff-so-fancy
-
 brew install tmux
 
 #---------------
@@ -54,6 +52,8 @@ brew install --cask zoom
 
 brew install git
 brew install --cask git-credential-manager
+brew install diff-so-fancy
+brew install git-delta
 
 brew install orbstack
 
