@@ -1,5 +1,5 @@
 [core]
-	excludesfile = ~/.gitignore_global
+	excludesfile = ~/dotfiles/git/gitignore
 	pager = delta
 	autocrlf = input
 
@@ -61,9 +61,9 @@
 	autoStash = true
 	updateRefs = true
 
-[pager]
-	diff = diff-so-fancy | less --tabs=4 -RFX
-	show = diff-so-fancy | less --tabs=4 -RFX
+; [pager]
+; 	diff = diff-so-fancy | less --tabs=4 -RFX
+; 	show = diff-so-fancy | less --tabs=4 -RFX
 
 [alias]
 	p = !git pull --ff-only
@@ -124,6 +124,9 @@
 	# git search '#constraint=someMethod,'
 	search = "!f() { git log -S$1 --pretty=oneline --abbrev-commit; }; f"
 
+	# delta diff side-by-side
+	diff-side = -c delta.features=side-by-side diff
+
 [gc]
 	autoDetach = false
 
@@ -172,13 +175,11 @@
 	usePathWalk = true
 
 [include]
-    path = ~/.gitconfig_local
+	path = ~/dotfiles/git/delta.gitconfig
+    path = ~/.gitconfig-local
 
 [includeIf "gitdir/i:~/work/cpl/"]
 	path = ~/.gitconfig-work
 
 [includeIf "gitdir/i:/Volumes/Data/work/cpl/"]
 	path = ~/.gitconfig-work
-
-[delta]
-    navigate = true

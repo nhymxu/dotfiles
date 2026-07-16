@@ -89,18 +89,16 @@ ln -s ~/dotfiles/editor/zed ~/.config/zed
 
 ### Install git
 
-```shell
-# Install diff-so-fancy
-curl https://raw.githubusercontent.com/so-fancy/diff-so-fancy/master/third_party/build_fatpack/diff-so-fancy -o ~/bin/diff-so-fancy
-chmod +x ~/bin/diff-so-fancy
+Require `git-delta` installed (link on the footer).
+Can switch to `diff-so-fancy` if need. But should install first.
 
+```shell
 # Copy example content for local config and edit this
-cp ~/dotfiles/git/local.example ~/.gitconfig_local
+cp ~/dotfiles/git/local.example ~/.gitconfig-local
 
 # Install git config
-rm -rf ~/.gitconfig && rm -rf ~/.gitignore_global
+rm -rf ~/.gitconfig
 ln -s ~/dotfiles/git/gitconfig ~/.gitconfig
-ln -s ~/dotfiles/git/gitignore ~/.gitignore_global
 ```
 
 ### Homebrew
