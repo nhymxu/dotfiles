@@ -148,7 +148,7 @@
   "file_types": {
     "Dockerfile": ["Dockerfile", "Dockerfile.*"],
     "JSON": ["json", "jsonc", "*.code-snippets"],
-    "ini": ["gitconfig"]
+    "ini": ["gitconfig", "*.gitconfig"]
   },
   "experimental.theme_overrides": {
     "panel.focused_border": "#FF0000"
