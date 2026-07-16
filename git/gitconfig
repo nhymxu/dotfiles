@@ -1,6 +1,6 @@
 [core]
 	excludesfile = ~/.gitignore_global
-	pager = diff-so-fancy | less --tabs=4 -RFX
+	pager = delta
 	autocrlf = input
 
 	# Make `git rebase` safer on macOS.
@@ -165,6 +165,12 @@
 	# Use `hexdump` to diff binary files.
 	textconv = hexdump -v -C
 
+[interactive]
+	diffFilter = delta --color-only
+
+[pack]
+	usePathWalk = true
+
 [include]
     path = ~/.gitconfig_local
 
@@ -174,13 +180,5 @@
 [includeIf "gitdir/i:/Volumes/Data/work/cpl/"]
 	path = ~/.gitconfig-work
 
-[includeIf "gitdir/i:~/workspace/cpl/"]
-	path = ~/.gitconfig-work
-
-[includeIf "gitdir/i:/Volumes/Data/workspace/cpl/"]
-	path = ~/.gitconfig-work
-
-[pack]
-	usePathWalk = true
-[credential "http://192.168.0.70:8620"]
-	provider = generic
+[delta]
+    navigate = true
