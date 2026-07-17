@@ -7,6 +7,29 @@
 // custom settings, run the `open default settings` command
 // from the command palette or from `Zed` application menu.
 {
+  "icon_theme": {
+    "mode": "light",
+    "light": "Zed (Default)",
+    "dark": "Zed (Default)"
+  },
+  "auto_install_extensions": {
+    "caddyfile": true,
+    "comment": true,
+    "dockerfile": true,
+    "git-firefly": true,
+    "html": true,
+    "ini": true,
+    "json5": true,
+    "jsonl": true,
+    "log": true,
+    "make": true,
+    "markdown-snippets": true,
+    "mermaid": true,
+    "python-requirements": true,
+    "rainbow-csv": true,
+    "toml": true
+  },
+  "diff_view_style": "split",
   "enable_language_server": false,
   "vim_mode": false,
   "colorize_brackets": true,
