@@ -1,0 +1,314 @@
+#!/usr/bin/env bash
+#
+# brew-viz — visualize installed Homebrew packages as an HTML report.
+#
+# Collects formulae, casks and taps via `brew info --json=v2`, embeds a slim
+# JSON payload into a self-contained HTML page, writes it to a temp file (no
+# cleanup needed) and opens it in the default browser.
+#
+# Features: tabs to split Formulae / Casks / Taps, and live search per tab.
+
+set -euo pipefail
+
+command -v brew >/dev/null 2>&1 || { echo "brew-viz: 'brew' not found in PATH" >&2; exit 1; }
+command -v jq   >/dev/null 2>&1 || { echo "brew-viz: 'jq' not found in PATH"   >&2; exit 1; }
+
+echo "brew-viz: collecting installed package info..." >&2
+
+# Raw data straight from brew. `info --json=v2` covers both formulae and casks.
+info_json="$(brew info --json=v2 --installed)"
+leaves="$(brew leaves 2>/dev/null || true)"       # top-level formulae (not deps)
+taps="$(brew tap 2>/dev/null || true)"            # configured taps
+
+# Slim the payload down to only the fields the report renders.
+# info_json is piped via stdin (jq's main input `.`) — too large for an argv arg.
+data_json="$(printf '%s' "$info_json" | jq \
+  --arg leaves "$leaves" \
+  --arg taps "$taps" '
+  ($leaves | split("\n") | map(select(length > 0))) as $leafset |
+  {
+    formulae: (.formulae | map(
+      .name as $n | .full_name as $fn | {
+      name:       .name,
+      full_name:  .full_name,
+      tap:        .tap,
+      desc:       (.desc // ""),
+      homepage:   (.homepage // ""),
+      version:    (.installed[0].version // ""),
+      on_request: (.installed[0].installed_on_request // false),
+      leaf:       (($leafset | index($n)) != null or ($leafset | index($fn)) != null)
+    }) | sort_by(.name)),
+    casks: (.casks | map({
+      token:    .token,
+      tap:      (.tap // ""),
+      name:     (if (.name | type) == "array" then (.name | join(", ")) else (.name // "") end),
+      desc:     (.desc // ""),
+      homepage: (.homepage // ""),
+      version:  (.version // "")
+    }) | sort_by(.token)),
+    taps: ($taps | split("\n") | map(select(length > 0)) | sort)
+  }')"
+
+out="$(mktemp -t brew-viz).html"
+
+# --- HTML head + styles (static) --------------------------------------------
+cat > "$out" <<'HTML'
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Homebrew Packages</title>
+<style>
+  :root, :root[data-theme="dark"] {
+    --bg: #0f1115; --panel: #171a21; --panel-2: #1e222b; --border: #2a2f3a;
+    --text: #e6e9ef; --muted: #9aa3b2; --accent: #fb923c; --accent-dim: #78350f;
+    --green: #34d399;
+  }
+  :root[data-theme="light"] {
+    --bg: #f7f8fa; --panel: #ffffff; --panel-2: #eef0f4; --border: #d9dde5;
+    --text: #1a1d24; --muted: #6b7280; --accent: #ea580c; --accent-dim: #fde4d0;
+    --green: #059669;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font: 14px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  }
+  header {
+    padding: 20px 24px 0; position: sticky; top: 0; background: var(--bg);
+    border-bottom: 1px solid var(--border); z-index: 10;
+  }
+  .titlerow { display: flex; align-items: center; justify-content: space-between; }
+  h1 { margin: 0 0 4px; font-size: 20px; display: flex; align-items: center; gap: 8px; }
+  h1 .brew { color: var(--accent); }
+  #theme {
+    background: var(--panel); border: 1px solid var(--border); color: var(--text);
+    cursor: pointer; font-size: 16px; line-height: 1; padding: 8px 12px; border-radius: 8px;
+  }
+  #theme:hover { border-color: var(--accent); }
+  .sub { color: var(--muted); font-size: 12px; margin-bottom: 14px; }
+  .tabs { display: flex; gap: 4px; }
+  .tab {
+    background: none; border: none; color: var(--muted); cursor: pointer;
+    padding: 10px 16px; font-size: 14px; border-bottom: 2px solid transparent;
+    border-radius: 6px 6px 0 0;
+  }
+  .tab:hover { color: var(--text); background: var(--panel); }
+  .tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+  .tab .count {
+    display: inline-block; margin-left: 6px; padding: 1px 7px; border-radius: 10px;
+    background: var(--panel-2); color: var(--muted); font-size: 11px;
+  }
+  .tab.active .count { background: var(--accent-dim); color: var(--accent); }
+  .toolbar { padding: 14px 0 16px; display: flex; gap: 12px; align-items: center; }
+  #search {
+    flex: 1; background: var(--panel); border: 1px solid var(--border);
+    color: var(--text); padding: 9px 12px; border-radius: 8px; font-size: 14px;
+  }
+  #search:focus { outline: none; border-color: var(--accent); }
+  .filter {
+    background: var(--panel); border: 1px solid var(--border); color: var(--text);
+    padding: 9px 10px; border-radius: 8px; font-size: 13px; cursor: pointer;
+  }
+  .filter:focus { outline: none; border-color: var(--accent); }
+  .filter.hidden { display: none; }
+  #shown { color: var(--muted); font-size: 12px; white-space: nowrap; }
+  main { padding: 0 24px 40px; }
+  table { width: 100%; border-collapse: collapse; }
+  th {
+    text-align: left; color: var(--muted); font-size: 11px; text-transform: uppercase;
+    letter-spacing: .04em; padding: 8px 10px; border-bottom: 1px solid var(--border);
+  }
+  td { padding: 9px 10px; border-bottom: 1px solid var(--panel-2); vertical-align: top; }
+  tr:hover td { background: var(--panel); }
+  .name { font-weight: 600; }
+  .name a { color: var(--text); text-decoration: none; }
+  .name a:hover { color: var(--accent); text-decoration: underline; }
+  .ver { color: var(--muted); font-family: ui-monospace, monospace; font-size: 12px; }
+  .desc { color: var(--muted); }
+  .badge {
+    display: inline-block; padding: 1px 7px; border-radius: 4px; font-size: 11px;
+    background: var(--panel-2); color: var(--muted);
+  }
+  .badge.leaf { background: var(--accent-dim); color: var(--accent); }
+  .badge.dep  { background: var(--panel-2); color: var(--muted); }
+  .tapname { font-family: ui-monospace, monospace; }
+  .empty { color: var(--muted); padding: 40px; text-align: center; }
+</style>
+</head>
+<body>
+<script id="data" type="application/json">
+HTML
+
+# --- inject the JSON payload -------------------------------------------------
+printf '%s\n' "$data_json" >> "$out"
+
+# --- app script + markup (static) -------------------------------------------
+cat >> "$out" <<'HTML'
+</script>
+
+<header>
+  <div class="titlerow">
+    <h1><span class="brew">🍺</span> Homebrew Packages</h1>
+    <button id="theme" title="Toggle light/dark">🌙</button>
+  </div>
+  <div class="sub" id="generated"></div>
+  <div class="tabs">
+    <button class="tab active" data-tab="formulae">Formulae <span class="count" id="c-formulae"></span></button>
+    <button class="tab" data-tab="casks">Casks <span class="count" id="c-casks"></span></button>
+    <button class="tab" data-tab="taps">Taps <span class="count" id="c-taps"></span></button>
+  </div>
+  <div class="toolbar">
+    <input id="search" type="search" placeholder="Search…" autocomplete="off">
+    <select id="f-type" class="filter hidden"></select>
+    <select id="f-tap" class="filter hidden"></select>
+    <span id="shown"></span>
+  </div>
+</header>
+
+<main><div id="view"></div></main>
+
+<script>
+const DATA = JSON.parse(document.getElementById('data').textContent);
+const NOTAP = '(no tap)';                 // bucket for packages without a tap
+const tapOf = x => x.tap || NOTAP;
+const view = document.getElementById('view');
+const search = document.getElementById('search');
+const shown = document.getElementById('shown');
+const fType = document.getElementById('f-type');
+const fTap = document.getElementById('f-tap');
+let tab = 'formulae';
+
+document.getElementById('generated').textContent =
+  'Generated ' + new Date().toLocaleString();
+// Package counts per tap. Union of configured taps (`brew tap`) and every tap
+// referenced by a package — so built-ins like homebrew/core & homebrew/cask,
+// which aren't listed by `brew tap` on modern Homebrew, still show up.
+const tapStats = {};
+const bump = (t, kind) => { (tapStats[t] ??= { formulae: 0, casks: 0 })[kind]++; };
+for (const t of DATA.taps) tapStats[t] ??= { formulae: 0, casks: 0 };
+for (const f of DATA.formulae) bump(tapOf(f), 'formulae');
+for (const c of DATA.casks) bump(tapOf(c), 'casks');
+const allTaps = Object.keys(tapStats).sort();
+
+document.getElementById('c-formulae').textContent = DATA.formulae.length;
+document.getElementById('c-casks').textContent = DATA.casks.length;
+document.getElementById('c-taps').textContent = allTaps.length;
+
+const esc = s => String(s ?? '').replace(/[&<>"]/g, c =>
+  ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+
+function link(url, text) {
+  return url ? `<a href="${esc(url)}" target="_blank" rel="noopener">${esc(text)}</a>` : esc(text);
+}
+
+// Populate the Type/Tap dropdowns for the active tab. Taps tab uses none.
+function setupFilters() {
+  const opts = (sel, list, allLabel) => {
+    sel.innerHTML = `<option value="">${allLabel}</option>` +
+      list.map(v => `<option value="${esc(v)}">${esc(v)}</option>`).join('');
+    sel.value = '';
+  };
+  if (tab === 'formulae') {
+    opts(fType, ['leaf', 'dependency'], 'All types');
+    opts(fTap, [...new Set(DATA.formulae.map(tapOf))].sort(), 'All taps');
+    fType.classList.remove('hidden'); fTap.classList.remove('hidden');
+  } else if (tab === 'casks') {
+    opts(fTap, [...new Set(DATA.casks.map(tapOf))].sort(), 'All taps');
+    fType.classList.add('hidden'); fTap.classList.remove('hidden');
+  } else {
+    fType.classList.add('hidden'); fTap.classList.add('hidden');
+  }
+}
+
+function render() {
+  const q = search.value.trim().toLowerCase();
+  const type = fType.value, tapf = fTap.value;
+  let rows = '', count = 0, total = 0;
+
+  if (tab === 'formulae') {
+    const items = DATA.formulae.filter(f => {
+      total++;
+      if (type && (f.leaf ? 'leaf' : 'dependency') !== type) return false;
+      if (tapf && tapOf(f) !== tapf) return false;
+      return !q || f.name.toLowerCase().includes(q) || f.desc.toLowerCase().includes(q)
+        || f.tap.toLowerCase().includes(q);
+    });
+    count = items.length;
+    rows = `<table><thead><tr><th>Name</th><th>Version</th><th>Description</th>
+      <th>Tap</th><th>Type</th></tr></thead><tbody>` +
+      items.map(f => `<tr>
+        <td class="name">${link(f.homepage, f.name)}</td>
+        <td class="ver">${esc(f.version)}</td>
+        <td class="desc">${esc(f.desc)}</td>
+        <td><span class="tapname">${esc(tapOf(f))}</span></td>
+        <td>${f.leaf ? '<span class="badge leaf">leaf</span>' : '<span class="badge dep">dependency</span>'}</td>
+      </tr>`).join('') + '</tbody></table>';
+
+  } else if (tab === 'casks') {
+    const items = DATA.casks.filter(c => {
+      total++;
+      if (tapf && tapOf(c) !== tapf) return false;
+      return !q || c.token.toLowerCase().includes(q) || c.name.toLowerCase().includes(q)
+        || c.desc.toLowerCase().includes(q) || c.tap.toLowerCase().includes(q);
+    });
+    count = items.length;
+    rows = `<table><thead><tr><th>Token</th><th>Name</th><th>Version</th>
+      <th>Description</th><th>Tap</th></tr></thead><tbody>` +
+      items.map(c => `<tr>
+        <td class="name">${link(c.homepage, c.token)}</td>
+        <td>${esc(c.name)}</td>
+        <td class="ver">${esc(c.version)}</td>
+        <td class="desc">${esc(c.desc)}</td>
+        <td><span class="tapname">${esc(tapOf(c))}</span></td>
+      </tr>`).join('') + '</tbody></table>';
+
+  } else {
+    const items = allTaps.filter(t => { total++; return !q || t.toLowerCase().includes(q); });
+    count = items.length;
+    rows = `<table><thead><tr><th>Tap</th><th>Formulae</th><th>Casks</th></tr></thead><tbody>` +
+      items.map(t => `<tr>
+        <td class="name tapname">${esc(t)}</td>
+        <td class="ver">${tapStats[t].formulae}</td>
+        <td class="ver">${tapStats[t].casks}</td>
+      </tr>`).join('') + '</tbody></table>';
+  }
+
+  view.innerHTML = count ? rows : '<div class="empty">No matches.</div>';
+  shown.textContent = q ? `${count} of ${total}` : `${total} total`;
+}
+
+// Light/dark toggle. Defaults to dark; remembers choice for the session.
+const themeBtn = document.getElementById('theme');
+function applyTheme(t) {
+  document.documentElement.setAttribute('data-theme', t);
+  themeBtn.textContent = t === 'dark' ? '🌙' : '☀️';
+}
+applyTheme(sessionStorage.getItem('brewviz-theme') || 'light');
+themeBtn.addEventListener('click', () => {
+  const next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+  sessionStorage.setItem('brewviz-theme', next);
+  applyTheme(next);
+});
+
+document.querySelectorAll('.tab').forEach(btn => btn.addEventListener('click', () => {
+  document.querySelector('.tab.active').classList.remove('active');
+  btn.classList.add('active');
+  tab = btn.dataset.tab;
+  setupFilters();
+  render();
+}));
+search.addEventListener('input', render);
+fType.addEventListener('change', render);
+fTap.addEventListener('change', render);
+setupFilters();
+render();
+search.focus();
+</script>
+</body>
+</html>
+HTML
+
+echo "brew-viz: report written to $out" >&2
+open "$out"
