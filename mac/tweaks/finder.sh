@@ -6,10 +6,14 @@
 # Finder: disable window animations and Get Info animations
 # defaults write com.apple.finder DisableAllAnimations -bool true
 
+# Hide icons for All Internal Hard Disks (Macintosh HD) on the desktop
+defaults write com.apple.finder ShowHardDrivesOnDesktop -bool false
+
+# Hide icons for Mounted Server (SMB/NFS connect) on the desktop
+defaults write com.apple.finder ShowMountedServersOnDesktop -bool false
+
 # Show icons for hard drives, servers, and removable media on the desktop
 defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool true
-defaults write com.apple.finder ShowHardDrivesOnDesktop -bool true
-defaults write com.apple.finder ShowMountedServersOnDesktop -bool true
 defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool true
 
 # Finder: show hidden files by default
