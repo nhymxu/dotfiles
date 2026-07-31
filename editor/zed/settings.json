@@ -9,7 +9,7 @@
 {
   "icon_theme": {
     "mode": "light",
-    "light": "Zed (Default)",
+    "light": "Material Icon Theme",
     "dark": "Zed (Default)"
   },
   "auto_install_extensions": {
@@ -24,6 +24,7 @@
     "log": true,
     "make": true,
     "markdown-snippets": true,
+    "material-icon-theme": true,
     "mermaid": true,
     "python-requirements": true,
     "rainbow-csv": true,
