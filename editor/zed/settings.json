@@ -81,6 +81,7 @@
     "model_parameters": [],
   },
   "git_panel": {
+    "group_by": "status",
     "show_count_badge": true,
     "file_icons": true,
     "sort_by_path": true,
