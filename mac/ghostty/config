@@ -1,0 +1,49 @@
+# This is the configuration file for Ghostty.
+#
+# Run `ghostty +show-config --default --docs` to view a list of
+# all available config options and their default values.
+#
+# Additionally, each config option is also explained in detail
+# on Ghostty's website, at https://ghostty.org/docs/config.
+#
+# Ghostty can reload the configuration while running by using the menu
+# options or the bound key (default: Command + Shift + comma on macOS and
+# Control + Shift + comma on other platforms). Not all config options can be
+# reloaded while running; some only apply to new windows and others may require
+# a full restart to take effect.
+
+# Config syntax crash course
+# ==========================
+# --- Text ---
+font-family = CaskaydiaMono Nerd Font Mono
+font-size = 13
+
+# --- Cursor ---
+cursor-style = bar
+cursor-style-blink = true
+cursor-color = #fc971f
+cursor-text = #000000
+
+# --- Base colors ---
+background = #1b1d1e
+foreground = #f8f8f8
+selection-background = #4d4d4d
+selection-foreground = #ffffff
+
+# --- ANSI palette (0-15) ---
+palette = 0=#1b1d1e
+palette = 1=#f92672
+palette = 2=#4df840
+palette = 3=#f4fd22
+palette = 4=#2757d6
+palette = 5=#8c54fe
+palette = 6=#38c8b5
+palette = 7=#ccccc6
+palette = 8=#505354
+palette = 9=#ff5995
+palette = 10=#b6e354
+palette = 11=#feed6c
+palette = 12=#3f78ff
+palette = 13=#9e6ffe
+palette = 14=#23cfd5
+palette = 15=#f8f8f2
