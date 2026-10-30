@@ -131,6 +131,7 @@ brew install --cask font-caskaydia-mono-nerd-font
 brew install --cask font-hack-nerd-font
 brew install --cask font-menlo-for-powerline
 brew install --cask font-jetbrains-mono font-jetbrains-mono-nerd-font
+brew install --cask font-input
 
 #------------ Remove outdated versions from the cellar.
 brew cleanup
