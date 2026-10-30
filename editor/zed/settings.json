@@ -99,7 +99,8 @@
     "diagnostics": false,
     "metrics": false,
   },
-  "buffer_font_size": 13,
+  "buffer_font_family": "Input Mono",
+  "buffer_font_size": 12.5,
   "preferred_line_length": 120,
   "wrap_guides": [120],
   "auto_update": false, // update via homebrew
