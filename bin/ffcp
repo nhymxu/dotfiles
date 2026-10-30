@@ -1,0 +1,111 @@
+#!/usr/bin/env bash
+#
+# Usage: ffcp [profile]
+#
+# Start Firefox with a custom profile stored in ~/Library/ffcp/<profile>.
+# If <profile> is omitted, you will be prompted for it.
+
+set -eu
+
+BASE_PROFILE_DIR="$HOME/Library/ffcp"
+
+usage() {
+  cat <<EOF
+Start Firefox with a custom profile stored in $BASE_PROFILE_DIR.
+
+Usage: ffcp [profile]
+
+  profile   Name of the profile folder inside $BASE_PROFILE_DIR (e.g. profile-1).
+            If omitted, you will be prompted for it.
+
+Examples:
+  $ ffcp profile-1
+  $ ffcp
+EOF
+}
+
+trim() {
+  printf '%s' "$1" | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//'
+}
+
+find_firefox() {
+  if [ -n "${FIREFOX_BIN:-}" ] && [ -x "$FIREFOX_BIN" ]; then
+    printf '%s' "$FIREFOX_BIN"
+    return 0
+  fi
+
+  for bin in \
+    "/Applications/Firefox.app/Contents/MacOS/firefox" \
+    "$HOME/Applications/Firefox.app/Contents/MacOS/firefox" \
+    "/Applications/Firefox Developer Edition.app/Contents/MacOS/firefox" \
+    "/Applications/Firefox Nightly.app/Contents/MacOS/firefox"; do
+    if [ -x "$bin" ]; then
+      printf '%s' "$bin"
+      return 0
+    fi
+  done
+
+  if command -v firefox >/dev/null 2>&1; then
+    command -v firefox
+    return 0
+  fi
+
+  return 1
+}
+
+case "${1:-}" in
+  -h | --help)
+    usage
+    exit 0
+    ;;
+esac
+
+profile="$(trim "${1:-}")"
+
+if [ -z "$profile" ]; then
+  if [ -d "$BASE_PROFILE_DIR" ]; then
+    echo "Available profiles in $BASE_PROFILE_DIR:"
+    for dir in "$BASE_PROFILE_DIR"/*/; do
+      [ -d "$dir" ] && printf '  %s\n' "$(basename "$dir")"
+    done
+    echo
+  fi
+
+  printf 'Enter profile name: '
+  IFS= read -r profile || true
+  profile="$(trim "$profile")"
+fi
+
+if [ -z "$profile" ]; then
+  echo "ffcp: profile name is required" >&2
+  exit 1
+fi
+
+case "$profile" in
+  */* | . | ..)
+    echo "ffcp: invalid profile name: $profile" >&2
+    exit 1
+    ;;
+esac
+
+profile_path="$BASE_PROFILE_DIR/$profile"
+
+if [ ! -d "$BASE_PROFILE_DIR" ]; then
+  echo "ffcp: profile directory does not exist: $BASE_PROFILE_DIR" >&2
+  echo "      create it with: mkdir -p $BASE_PROFILE_DIR" >&2
+  exit 1
+fi
+
+if [ ! -d "$profile_path" ]; then
+  echo "ffcp: profile not found: $profile_path" >&2
+  echo "      create it with: mkdir -p $profile_path" >&2
+  exit 1
+fi
+
+if ! firefox="$(find_firefox)"; then
+  echo "ffcp: could not find Firefox. Set FIREFOX_BIN to its binary path." >&2
+  exit 1
+fi
+
+echo "Starting Firefox with profile: $profile_path"
+nohup "$firefox" -profile "$profile_path" --new-instance >/dev/null 2>&1 &
