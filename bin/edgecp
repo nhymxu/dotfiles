@@ -1,0 +1,141 @@
+#!/usr/bin/env bash
+#
+# Usage: edgecp [profile] [url]
+#
+# Start Microsoft Edge with a custom profile stored in ~/Library/edgecp/<profile>.
+# If <profile> is omitted, you will be prompted for it.
+
+set -eu
+
+BASE_PROFILE_DIR="$HOME/Library/edgecp"
+
+usage() {
+  cat <<EOF
+Start Microsoft Edge with a custom profile stored in $BASE_PROFILE_DIR.
+
+Usage: edgecp [profile] [url]
+
+  profile   Name of the profile folder inside $BASE_PROFILE_DIR (e.g. profile-1).
+            If omitted, you will be prompted for it.
+  url       Optional URL to open.
+
+Examples:
+  $ edgecp profile-1
+  $ edgecp profile-1 https://github.com
+  $ edgecp
+EOF
+}
+
+trim() {
+  printf '%s' "$1" | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//'
+}
+
+find_edge() {
+  if [ -n "${EDGE_BIN:-}" ] && [ -x "$EDGE_BIN" ]; then
+    printf '%s' "$EDGE_BIN"
+    return 0
+  fi
+
+  for app in \
+    "/Applications/Microsoft Edge Beta.app" \
+    "$HOME/Applications/Microsoft Edge Beta.app" \
+    "/Applications/Microsoft Edge Dev.app" \
+    "/Applications/Microsoft Edge Canary.app"; do
+    if [ -d "$app" ]; then
+      printf '%s' "$app"
+      return 0
+    fi
+  done
+
+  return 1
+}
+
+case "${1:-}" in
+  -h | --help)
+    usage
+    exit 0
+    ;;
+esac
+
+profile="$(trim "${1:-}")"
+
+if [ -z "$profile" ]; then
+  if [ -d "$BASE_PROFILE_DIR" ]; then
+    echo "Available profiles in $BASE_PROFILE_DIR:"
+    for dir in "$BASE_PROFILE_DIR"/*/; do
+      [ -d "$dir" ] && printf '  %s\n' "$(basename "$dir")"
+    done
+    echo
+  fi
+
+  printf 'Enter profile name: '
+  IFS= read -r profile || true
+  profile="$(trim "$profile")"
+fi
+
+if [ -z "$profile" ]; then
+  echo "edgecp: profile name is required" >&2
+  exit 1
+fi
+
+case "$profile" in
+  */* | . | ..)
+    echo "edgecp: invalid profile name: $profile" >&2
+    exit 1
+    ;;
+esac
+
+profile_path="$BASE_PROFILE_DIR/$profile"
+
+if [ ! -d "$BASE_PROFILE_DIR" ]; then
+  echo "edgecp: profile directory does not exist: $BASE_PROFILE_DIR" >&2
+  echo "        create it with: mkdir -p $BASE_PROFILE_DIR" >&2
+  exit 1
+fi
+
+if [ ! -d "$profile_path" ]; then
+  echo "edgecp: profile not found: $profile_path" >&2
+  echo "        create it with: mkdir -p $profile_path" >&2
+  exit 1
+fi
+
+if ! edge="$(find_edge)"; then
+  echo "edgecp: Microsoft Edge Beta not found. Install it with:" >&2
+  echo "        brew install --cask microsoft-edge@beta" >&2
+  echo "        (or set EDGE_BIN to a browser binary path)" >&2
+  exit 1
+fi
+
+echo "Starting Microsoft Edge with profile: $profile_path"
+
+# Startup boost keeps Edge alive in the Dock after quit; turn it off in the profile's prefs.
+# Skipped if this profile is already running (Edge would overwrite the file on exit).
+if ! pgrep -f -- "--user-data-dir=$profile_path" >/dev/null 2>&1; then
+  python3 - "$profile_path/Local State" <<'PY'
+import json, os, sys
+p = sys.argv[1]
+try:
+    d = json.load(open(p)) if os.path.exists(p) else {}
+except ValueError:
+    sys.exit(0)
+d.setdefault("startup_boost", {})["enabled"] = False
+json.dump(d, open(p, "w"))
+PY
+fi
+
+if [[ "$OSTYPE" == "darwin"* && -d "$edge" ]]; then
+  # Edge Beta has its own bundle ID, so the normal Edge (Spotlight) stays independent.
+  open -na "$edge" --args \
+    --user-data-dir="$profile_path" \
+    --no-first-run \
+    --no-default-browser-check \
+    --disable-background-mode \
+    "${@:2}"
+else
+  nohup "$edge" \
+    --user-data-dir="$profile_path" \
+    --no-first-run \
+    --no-default-browser-check \
+    --disable-background-mode \
+    "${@:2}" >/dev/null 2>&1 &
+fi
